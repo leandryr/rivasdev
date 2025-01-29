@@ -1,0 +1,159 @@
+.formContainer {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formHeader {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  
+  .formTitle {
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+  
+  .formSubtitle {
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  .formGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .inputGroup {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  .inputLabel {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: #fff;
+    padding: 0 0.3rem;
+  }
+  
+  .formInput {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .formInput:focus {
+    outline: none;
+    border-color: #0070f3;
+    box-shadow: 0 0 0 4px rgba(0, 112, 243, 0.1);
+  }
+  
+  .formInput:focus ~ .inputLabel,
+  .formInput:not(:placeholder-shown) ~ .inputLabel {
+    top: 0;
+    font-size: 0.8rem;
+    color: #0070f3;
+  }
+  
+  .formTextarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, #0070f3, #0060d1);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .submitButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 112, 243, 0.3);
+  }
+  
+  .submitButton:disabled {
+    background: #e0e0e0;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .statusMessage {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    animation: fadeIn 0.3s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .success {
+    background: #e8f9f0;
+    color: #00a76f;
+  }
+  
+  .error {
+    background: #feeceb;
+    color: #ff5630;
+  }
+  
+  .loading {
+    background: #f0f3ff;
+    color: #0070f3;
+  }
+  
+  .statusIcon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  
+  .statusText {
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    .formContainer {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+    
+    .formTitle {
+      font-size: 1.8rem;
+    }
+    
+    .formGrid {
+      grid-template-columns: 1fr;
+    }
+  }

@@ -1,93 +1,108 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaTimes, FaBars } from "react-icons/fa";
 import logo from "../assets/imag/logo.svg";
+import styles from "./Navbar.module.css";
+
+type MenuItem = {
+  name: string;
+  path: string;
+};
+
+const menuItems: MenuItem[] = [
+  { name: "Inicio", path: "/" },
+  { name: "Acerca", path: "/acerca" },
+  { name: "Servicios", path: "/servicios" },
+  { name: "Portafolio", path: "/portafolio" },
+  { name: "Contacto", path: "/contacto" },
+];
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const menuItems = [
-    { name: "Inicio", path: "/" },
-    { name: "Acerca", path: "/acerca" },
-    { name: "Servicios", path: "/servicios" },
-    { name: "Portafolio", path: "/portafolio" },
-    { name: "Contacto", path: "/contacto" },
-  ];
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (query.trim().length > 0) {
+      navigate(`/search?query=${query}`);
+    }
+  };
+
+  const clearSearch = () => setQuery("");
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <nav className="navbar">
-      {/* Logo */}
-      <div className="logo-container">
-        <img src={logo} alt="Logo de RivasDev" className="logo" />
-      </div>
-
-      {/* Buscador Centrado */}
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Buscar..."
-          className="search-input"
-        />
-        <button className="search-button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="search-icon"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1117.1 3.9a7.5 7.5 0 01-.45 13.25z"
-            />
-          </svg>
-        </button>
-      </div>
-
-      {/* Menú de Navegación */}
-      <ul className="menu-items">
-        {menuItems.map((item) => (
-          <li key={item.name}>
-            <Link to={item.path}>{item.name}</Link>
-          </li>
-        ))}
-      </ul>
-
-      {/* Menú móvil */}
-      <button
-        className={`menu-button ${isOpen ? "menu-button-active" : ""}`}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle Menu"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-          />
-        </svg>
-      </button>
-      {isOpen && (
-        <div className="mobile-menu">
-          {menuItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              onClick={() => setIsOpen(false)}
-              className="mobile-menu-link"
-            >
-              {item.name}
-            </Link>
-          ))}
+    <nav className={styles.navContainer}>
+      <div className={styles.navWrapper}>
+        {/* Logo */}
+        <div className={styles.logoContainer}>
+          <Link to="/">
+            <img src={logo} alt="Logo" className={styles.logo} />
+          </Link>
         </div>
-      )}
+
+        {/* Menú Hamburguesa */}
+        <button 
+          className={styles.menuButton} 
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <FaBars />
+        </button>
+
+        {/* Contenido del Navbar */}
+        <div className={`${styles.navContent} ${isMenuOpen ? styles.menuOpen : ""}`}>
+          {/* Botón de Cerrar en móvil */}
+          <button 
+            className={styles.closeButton} 
+            onClick={toggleMenu}
+            aria-label="Close menu"
+          >
+            <FaTimes />
+          </button>
+
+          {/* Buscador */}
+          <div className={styles.searchContainer}>
+            <form onSubmit={handleSearch} className={styles.searchForm}>
+              <div className={styles.inputWrapper}>
+                <input
+                  type="text"
+                  placeholder="Buscar..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className={styles.searchInput}
+                />
+                {query && (
+                  <FaTimes 
+                    onClick={clearSearch} 
+                    className={styles.clearIcon}
+                    aria-label="Clear search"
+                  />
+                )}
+              </div>
+              <button type="submit" className={styles.searchButton}>
+                Buscar
+              </button>
+            </form>
+          </div>
+
+          {/* Menú */}
+          <ul className={styles.menuList}>
+            {menuItems.map((item) => (
+              <li key={item.name} className={styles.menuItem}>
+                <Link 
+                  to={item.path} 
+                  className={styles.menuLink}
+                  onClick={toggleMenu}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </nav>
   );
 };

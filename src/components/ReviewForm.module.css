@@ -1,0 +1,214 @@
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .reviewForm {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 3rem;
+  }
+  
+  .formTitle {
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .formGroup {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .formInput {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .formInput:focus {
+    outline: none;
+    border-color: #0070f3;
+    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
+  }
+  
+  .inputLabel {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: white;
+    padding: 0 0.3rem;
+  }
+  
+  .formInput:focus ~ .inputLabel,
+  .formInput:not(:placeholder-shown) ~ .inputLabel {
+    top: 0;
+    font-size: 0.85rem;
+    color: #0070f3;
+  }
+  
+  .textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .ratingContainer {
+    margin: 1.5rem 0;
+  }
+  
+  .ratingLabel {
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .stars {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .starButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .starButton:hover {
+    transform: scale(1.2);
+  }
+  
+  .starFilled {
+    color: #ffd700;
+    font-size: 1.8rem;
+  }
+  
+  .starEmpty {
+    color: #e0e0e0;
+    font-size: 1.8rem;
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #0070f3, #0051a2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 112, 243, 0.3);
+  }
+  
+  .successMessage {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #00a76f;
+    background: #e8f9f0;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .reviewsSection {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 16px;
+  }
+  
+  .reviewsTitle {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+  }
+  
+  .reviewCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .reviewHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .authorInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .authorName {
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  
+  .reviewDate {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .reviewStars {
+    display: flex;
+    gap: 0.3rem;
+  }
+  
+  .reviewText {
+    color: #444;
+    line-height: 1.6;
+  }
+  
+  .noReviews {
+    color: #666;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .reviewForm {
+      padding: 1.5rem;
+    }
+  
+    .formTitle {
+      font-size: 1.5rem;
+    }
+  
+    .reviewsSection {
+      padding: 1.5rem;
+    }
+  
+    .reviewHeader {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }

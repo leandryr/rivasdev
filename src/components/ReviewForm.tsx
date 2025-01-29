@@ -1,17 +1,18 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from "react";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaRegStar, FaCheckCircle } from "react-icons/fa";
+import styles from "./ReviewForm.module.css";
 
 interface ReviewFormState {
   name: string;
   email: string;
   review: string;
-  rating: string;
+  rating: number;
 }
 
 interface Review {
   name: string;
   review: string;
-  rating: string;
+  rating: number;
   createdAt: string;
 }
 
@@ -20,11 +21,12 @@ const ReviewForm = () => {
     name: "",
     email: "",
     review: "",
-    rating: "0",
+    rating: 0,
   });
 
   const [reviews, setReviews] = useState<Review[]>([]);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [hoverRating, setHoverRating] = useState(0);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -41,17 +43,21 @@ const ReviewForm = () => {
   }, []);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleRatingChange = (newRating: number) => {
+    setFormData((prev) => ({ ...prev, rating: newRating }));
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (formData.rating === "0") {
-      alert("Por favor, elige una calificación.");
+    if (formData.rating === 0) {
+      alert("Por favor, califica con estrellas");
       return;
     }
 
@@ -64,12 +70,10 @@ const ReviewForm = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setReviews((prevReviews) => [data.review, ...prevReviews]);
-        setFormData({ name: "", email: "", review: "", rating: "0" });
-        setSuccessMessage("¡Gracias por tu reseña!");
+        setReviews((prev) => [data.review, ...prev]);
+        setFormData({ name: "", email: "", review: "", rating: 0 });
+        setSuccessMessage("¡Reseña publicada!");
         setTimeout(() => setSuccessMessage(null), 3000);
-      } else {
-        alert("Error al enviar la reseña");
       }
     } catch (error) {
       console.error("Error al enviar la reseña:", error);
@@ -81,96 +85,116 @@ const ReviewForm = () => {
       year: "numeric",
       month: "long",
       day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
     };
     return new Date(dateString).toLocaleDateString("es-ES", options);
   };
 
   return (
-    <div className="review-container" style={{ display: "flex", gap: "2rem" }}>
-      <form onSubmit={handleSubmit} className="review-form" style={{ flex: 1 }}>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Nombre y Apellido"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Tu correo electrónico"
-          required
-        />
-        <textarea
-          name="review"
-          value={formData.review}
-          onChange={handleChange}
-          placeholder="Escribe tu reseña aquí"
-          required
-        />
-        <select
-          name="rating"
-          value={formData.rating}
-          onChange={handleChange}
-          required
-        >
-          <option value="0">Elige una calificación</option>
-          <option value="1">1 Estrella</option>
-          <option value="2">2 Estrellas</option>
-          <option value="3">3 Estrellas</option>
-          <option value="4">4 Estrellas</option>
-          <option value="5">5 Estrellas</option>
-        </select>
-        <button type="submit">Enviar</button>
-        {successMessage && <p className="success-message">{successMessage}</p>}
+    <div className={styles.container}>
+      {/* Formulario */}
+      <form onSubmit={handleSubmit} className={styles.reviewForm}>
+        <h2 className={styles.formTitle}>Deja tu reseña</h2>
+        
+        <div className={styles.formGroup}>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder=" "
+            className={styles.formInput}
+            required
+          />
+          <label className={styles.inputLabel}>Nombre completo</label>
+        </div>
+
+        <div className={styles.formGroup}>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder=" "
+            className={styles.formInput}
+            required
+          />
+          <label className={styles.inputLabel}>Correo electrónico</label>
+        </div>
+
+        <div className={styles.ratingContainer}>
+          <p className={styles.ratingLabel}>Calificación:</p>
+          <div className={styles.stars}>
+            {[...Array(5)].map((_, index) => {
+              const ratingValue = index + 1;
+              return (
+                <button
+                  type="button"
+                  key={ratingValue}
+                  className={styles.starButton}
+                  onMouseEnter={() => setHoverRating(ratingValue)}
+                  onMouseLeave={() => setHoverRating(0)}
+                  onClick={() => handleRatingChange(ratingValue)}
+                >
+                  {ratingValue <= (hoverRating || formData.rating) ? (
+                    <FaStar className={styles.starFilled} />
+                  ) : (
+                    <FaRegStar className={styles.starEmpty} />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className={styles.formGroup}>
+          <textarea
+            name="review"
+            value={formData.review}
+            onChange={handleChange}
+            placeholder=" "
+            className={`${styles.formInput} ${styles.textarea}`}
+            required
+          />
+          <label className={styles.inputLabel}>Escribe tu reseña</label>
+        </div>
+
+        <button type="submit" className={styles.submitButton}>
+          Publicar reseña
+        </button>
+
+        {successMessage && (
+          <div className={styles.successMessage}>
+            <FaCheckCircle />
+            <span>{successMessage}</span>
+          </div>
+        )}
       </form>
 
-      <div
-        className="review-list"
-        style={{
-          flex: 1,
-          maxHeight: "300px",
-          overflowY: "scroll",
-          border: "1px solid #ddd",
-          padding: "1rem",
-          borderRadius: "8px",
-        }}
-      >
-        <h3>Reseñas:</h3>
+      {/* Lista de Reseñas */}
+      <div className={styles.reviewsSection}>
+        <h3 className={styles.reviewsTitle}>Reseñas ({reviews.length})</h3>
+        
         {reviews.length > 0 ? (
           reviews.map((review, index) => (
-            <div
-              key={index}
-              style={{
-                marginBottom: "1rem",
-                padding: "0.5rem",
-                borderBottom: "1px solid #ccc",
-              }}
-            >
-              <strong>{review.name}</strong>
-              <p>{review.review}</p>
-              <div
-                style={{
-                  marginTop: "0.5rem",
-                  color: "gold",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                {Array.from({ length: parseInt(review.rating) }, (_, i) => (
-                  <FaStar key={i} />
-                ))}
+            <div key={index} className={styles.reviewCard}>
+              <div className={styles.reviewHeader}>
+                <div className={styles.authorInfo}>
+                  <span className={styles.authorName}>{review.name}</span>
+                  <span className={styles.reviewDate}>
+                    {formatDate(review.createdAt)}
+                  </span>
+                </div>
+                <div className={styles.reviewStars}>
+                  {[...Array(review.rating)].map((_, i) => (
+                    <FaStar key={i} className={styles.starFilled} />
+                  ))}
+                </div>
               </div>
-              <small>Publicado el {formatDate(review.createdAt)}</small>
+              <p className={styles.reviewText}>{review.review}</p>
             </div>
           ))
         ) : (
-          <p>No hay reseñas aún.</p>
+          <p className={styles.noReviews}>Sé el primero en dejar una reseña</p>
         )}
       </div>
     </div>

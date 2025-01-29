@@ -8,9 +8,7 @@ import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
-
-
-
+import SearchResultsPage from "./pages/SearchResultsPage";
 
 const App: React.FC = () => {
   return (
@@ -25,6 +23,7 @@ const App: React.FC = () => {
             <Route path="/portafolio" element={<Portfolio />} />
             <Route path="/contacto" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/search" element={<SearchResultsPage />} />
           </Routes>
         </main>
         <Footer />

@@ -1,77 +1,160 @@
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { useState } from "react";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import styles from "./Contact.module.css";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<{ type: string; message: string } | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus({ type: "loading", message: "Enviando mensaje..." });
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      
+      if (response.ok) {
+        setStatus({ type: "success", message: "¡Mensaje enviado con éxito!" });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus({ type: "error", message: result.message || "Error al enviar el mensaje" });
+      }
+    } catch (error) {
+      setStatus({ type: "error", message: "Error de conexión con el servidor" });
+    }
+  };
+
   return (
-    <section className="contact-page bg-gradient-to-b from-[#5e81ac] to-[#88c0d0] text-white py-16 px-6">
-      <div className="container mx-auto max-w-7xl">
-        {/* Header Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-extrabold mb-4">Contáctanos</h1>
-          <p className="text-lg max-w-3xl mx-auto leading-relaxed text-justify">
-            En <span className="text-[#eceff4] font-semibold">RivasDev</span>, nos encanta saber de ti. Ya sea para resolver dudas,
-            iniciar un proyecto o simplemente saludar, estamos aquí para ayudarte. Completa el formulario o utiliza
-            cualquiera de los métodos a continuación para comunicarte con nosotros.
+    <section className={styles.contactSection}>
+      {/* Encabezado */}
+      <div className={styles.heroContainer}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>Contáctanos</h1>
+          <p className={styles.heroText}>
+            En <span>RivasDev</span>, nos encanta saber de ti. Ya sea para resolver dudas,
+            iniciar un proyecto o simplemente saludar, estamos aquí para ayudarte.
           </p>
         </div>
+      </div>
 
-        {/* Contact Information */}
-        <div className="contact-info grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-16">
-          <div className="info-card bg-[#2e3440] p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
-            <FaEnvelope className="text-5xl text-[#eceff4] mb-4 mx-auto" />
-            <h3 className="text-2xl font-bold mb-2">Email</h3>
-            <p className="text-sm text-[#d8dee9]">info@rivasdev.com</p>
+      <div className={styles.contactContainer}>
+        {/* Información de Contacto */}
+        <div className={styles.infoContainer}>
+          <div className={styles.infoCard}>
+            <div className={styles.infoIcon}>
+              <FaEnvelope />
+            </div>
+            <h3 className={styles.infoTitle}>Email</h3>
+            <p className={styles.infoText}>info@rivasdev.com</p>
           </div>
-          <div className="info-card bg-[#2e3440] p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
-            <FaPhone className="text-5xl text-[#eceff4] mb-4 mx-auto" />
-            <h3 className="text-2xl font-bold mb-2">Teléfono</h3>
-            <p className="text-sm text-[#d8dee9]">+1 (123) 456-7890</p>
+
+          <div className={styles.infoCard}>
+            <div className={styles.infoIcon}>
+              <FaPhone />
+            </div>
+            <h3 className={styles.infoTitle}>Teléfono</h3>
+            <p className={styles.infoText}>+1 (123) 456-7890</p>
           </div>
-          <div className="info-card bg-[#2e3440] p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
-            <FaMapMarkerAlt className="text-5xl text-[#eceff4] mb-4 mx-auto" />
-            <h3 className="text-2xl font-bold mb-2">Ubicación</h3>
-            <p className="text-sm text-[#d8dee9]">Atlanta, Georgia, EE.UU.</p>
+
+          <div className={styles.infoCard}>
+            <div className={styles.infoIcon}>
+              <FaMapMarkerAlt />
+            </div>
+            <h3 className={styles.infoTitle}>Ubicación</h3>
+            <p className={styles.infoText}>Atlanta, Georgia, EE.UU.</p>
           </div>
         </div>
 
-        {/* Contact Form */}
-        <div className="contact-form bg-[#2e3440] p-10 rounded-lg shadow-lg mb-16">
-          <h2 className="text-3xl font-bold mb-4 text-[#88c0d0] text-center">Envíanos un Mensaje</h2>
-          <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <input
-              type="text"
-              placeholder="Tu Nombre"
-              className="input-field"
-              required
-            />
-            <input
-              type="email"
-              placeholder="Tu Email"
-              className="input-field"
-              required
-            />
-            <textarea
-              placeholder="Tu Mensaje"
-              className="input-field md:col-span-2 h-32"
-              required
-            />
-            <button
-              type="submit"
-              className="md:col-span-2 px-10 py-4 bg-[#88c0d0] text-[#2e3440] font-semibold rounded-lg text-lg shadow-lg hover:bg-[#5e81ac] hover:text-white transition duration-300"
-            >
-              Enviar Mensaje
-            </button>
-          </form>
-        </div>
+        {/* Formulario y Mapa */}
+        <div className={styles.formMapContainer}>
+          {/* Formulario */}
+          <div className={styles.formContainer}>
+            <h2 className={styles.formTitle}>Envíanos un Mensaje</h2>
+            <form onSubmit={handleSubmit} className={styles.contactForm}>
+              <div className={styles.inputGroup}>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder=" "
+                  className={styles.formInput}
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+                <label htmlFor="name" className={styles.inputLabel}>Nombre completo</label>
+              </div>
 
-        {/* Map Section */}
-        <div className="map-section bg-[#2e3440] p-10 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold mb-4 text-[#88c0d0] text-center">Nuestra Ubicación</h2>
-          <iframe
-            title="Mapa de RivasDev"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.8662835193857!2d-84.38974048467663!3d33.74909898068773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5046110e7663b%3A0x32c9d0c1e1d04c8e!2sAtlanta%2C%20GA%2C%20USA!5e0!3m2!1sen!2sve!4v1678988490619!5m2!1sen!2sve"
-            className="w-full h-96 rounded-lg"
-            loading="lazy"
-          ></iframe>
+              <div className={styles.inputGroup}>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder=" "
+                  className={styles.formInput}
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+                <label htmlFor="email" className={styles.inputLabel}>Correo electrónico</label>
+              </div>
+
+              <div className={styles.inputGroup}>
+                <textarea
+                  name="message"
+                  id="message"
+                  placeholder=" "
+                  className={`${styles.formInput} ${styles.formTextarea}`}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+                <label htmlFor="message" className={styles.inputLabel}>Tu mensaje</label>
+              </div>
+
+              <button 
+                type="submit" 
+                className={styles.submitButton}
+                disabled={status?.type === "loading"}
+              >
+                {status?.type === "loading" ? "Enviando..." : "Enviar Mensaje"}
+              </button>
+
+              {status && (
+                <div className={`${styles.statusMessage} ${styles[status.type]}`}>
+                  {status.type === "success" ? (
+                    <FaCheckCircle className={styles.statusIcon} />
+                  ) : (
+                    <FaTimesCircle className={styles.statusIcon} />
+                  )}
+                  <span className={styles.statusText}>{status.message}</span>
+                </div>
+              )}
+            </form>
+          </div>
+
+          {/* Mapa */}
+          <div className={styles.mapContainer}>
+            <h2 className={styles.mapTitle}>Nuestra Ubicación</h2>
+            <div className={styles.mapWrapper}>
+              <iframe
+                title="Mapa de RivasDev"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.8662835193857!2d-84.38974048467663!3d33.74909898068773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5046110e7663b%3A0x32c9d0c1e1d04c8e!2sAtlanta%2C%20GA%2C%20USA!5e0!3m2!1sen!2sve!4v1678988490619!5m2!1sen!2sve"
+                className={styles.mapIframe}
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
         </div>
       </div>
     </section>
