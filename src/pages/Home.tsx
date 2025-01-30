@@ -59,7 +59,7 @@ const Home = () => {
       {/* Sección de Cotización */}
       <section className={`${styles.sectionContainer} ${styles.quotationSection}`}>
         <div className={styles.sectionContent}>
-          <h2 className={styles.sectionTitle}>Solicita una Cotización</h2>
+          <h2 className={styles.sectionTitle}></h2>
           <QuotationForm />
         </div>
       </section>
@@ -67,7 +67,7 @@ const Home = () => {
       {/* Sección de Reseñas */}
       <section className={`${styles.sectionContainer} ${styles.reviewsSection}`}>
         <div className={styles.sectionContent}>
-          <h2 className={styles.sectionTitle}>Reseñas de Clientes</h2>
+          <h2 className={styles.sectionTitle}></h2>
           <ReviewForm />
         </div>
       </section>

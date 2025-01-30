@@ -1,5 +1,6 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import { FaStar, FaRegStar, FaCheckCircle } from "react-icons/fa";
+import gravatarUrl from "gravatar-url"; // Librería para obtener la foto de Gravatar
 import styles from "./ReviewForm.module.css";
 
 interface ReviewFormState {
@@ -11,6 +12,7 @@ interface ReviewFormState {
 
 interface Review {
   name: string;
+  email: string;
   review: string;
   rating: number;
   createdAt: string;
@@ -85,6 +87,8 @@ const ReviewForm = () => {
       year: "numeric",
       month: "long",
       day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     };
     return new Date(dateString).toLocaleDateString("es-ES", options);
   };
@@ -93,7 +97,7 @@ const ReviewForm = () => {
     <div className={styles.container}>
       {/* Formulario */}
       <form onSubmit={handleSubmit} className={styles.reviewForm}>
-        <h2 className={styles.formTitle}>Deja tu reseña</h2>
+        <h2 className={styles.formTitle}>Deja tu testimonio</h2>
         
         <div className={styles.formGroup}>
           <input
@@ -155,11 +159,11 @@ const ReviewForm = () => {
             className={`${styles.formInput} ${styles.textarea}`}
             required
           />
-          <label className={styles.inputLabel}>Escribe tu reseña</label>
+          <label className={styles.inputLabel}>Escribe tu testimonio</label>
         </div>
 
         <button type="submit" className={styles.submitButton}>
-          Publicar reseña
+          Publicar testimonio
         </button>
 
         {successMessage && (
@@ -170,32 +174,39 @@ const ReviewForm = () => {
         )}
       </form>
 
-      {/* Lista de Reseñas */}
+      {/* Lista de Testimonios */}
       <div className={styles.reviewsSection}>
-        <h3 className={styles.reviewsTitle}>Reseñas ({reviews.length})</h3>
+        <h3 className={styles.reviewsTitle}>Testimonios ({reviews.length})</h3>
         
-        {reviews.length > 0 ? (
-          reviews.map((review, index) => (
-            <div key={index} className={styles.reviewCard}>
-              <div className={styles.reviewHeader}>
-                <div className={styles.authorInfo}>
-                  <span className={styles.authorName}>{review.name}</span>
-                  <span className={styles.reviewDate}>
-                    {formatDate(review.createdAt)}
-                  </span>
+        <div className={styles.reviewsScrollContainer}>
+          {reviews.length > 0 ? (
+            reviews.map((review, index) => (
+              <div key={index} className={styles.reviewCard}>
+                <div className={styles.reviewHeader}>
+                  <img
+                    src={gravatarUrl(review.email, { size: 50 })}
+                    alt={review.name}
+                    className={styles.avatar}
+                  />
+                  <div className={styles.authorInfo}>
+                    <span className={styles.authorName}>{review.name}</span>
+                    <span className={styles.reviewDate}>
+                      {formatDate(review.createdAt)}
+                    </span>
+                  </div>
+                  <div className={styles.reviewStars}>
+                    {[...Array(review.rating)].map((_, i) => (
+                      <FaStar key={i} className={styles.starFilled} />
+                    ))}
+                  </div>
                 </div>
-                <div className={styles.reviewStars}>
-                  {[...Array(review.rating)].map((_, i) => (
-                    <FaStar key={i} className={styles.starFilled} />
-                  ))}
-                </div>
+                <p className={styles.reviewText}>{review.review}</p>
               </div>
-              <p className={styles.reviewText}>{review.review}</p>
-            </div>
-          ))
-        ) : (
-          <p className={styles.noReviews}>Sé el primero en dejar una reseña</p>
-        )}
+            ))
+          ) : (
+            <p className={styles.noReviews}>Sé el primero en dejar un testimonio</p>
+          )}
+        </div>
       </div>
     </div>
   );

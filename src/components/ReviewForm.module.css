@@ -1,214 +1,263 @@
+/* Animaciones básicas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Contenedor principal */
 .container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Formulario de reseñas */
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reviewForm:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Título del formulario */
+.formTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Grupos de formulario */
+.formGroup {
+  position: relative;
+}
+
+/* Campos de entrada */
+.formInput {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formInput:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+/* Textarea */
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Etiquetas flotantes */
+.inputLabel {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  font-size: 0.9rem;
+  color: #666;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.formInput:focus + .inputLabel,
+.formInput:not(:placeholder-shown) + .inputLabel {
+  top: -0.5rem;
+  left: 0.5rem;
+  font-size: 0.75rem;
+  color: #007bff;
+  background: #fff;
+  padding: 0 0.25rem;
+}
+
+/* Contenedor de calificación */
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ratingLabel {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Estrellas de calificación */
+.stars {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.starButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.starButton:hover {
+  transform: scale(1.2);
+}
+
+.starFilled {
+  color: #ffc107;
+}
+
+.starEmpty {
+  color: #ccc;
+}
+
+/* Botón de enviar */
+.submitButton {
+  background: linear-gradient(45deg, #007bff, #00bfff);
+  color: #fff;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.submitButton:hover {
+  background: linear-gradient(45deg, #0056b3, #0099cc);
+  transform: translateY(-2px);
+}
+
+/* Mensaje de éxito */
+.successMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #28a745;
+  font-size: 0.9rem;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Sección de reseñas */
+.reviewsSection {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.5s ease-out;
+}
+
+.reviewsTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Contenedor de desplazamiento */
+.reviewsScrollContainer {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+/* Tarjeta de reseña */
+.reviewCard {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reviewCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado de la reseña */
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorName {
+  font-weight: bold;
+  color: #333;
+}
+
+.reviewDate {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Estrellas de la reseña */
+.reviewStars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.reviewText {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Mensaje sin reseñas */
+.noReviews {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+
+/* Diseño responsive */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
   }
-  
+
   .reviewForm {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    margin-bottom: 3rem;
+    flex: 1;
   }
-  
-  .formTitle {
-    font-size: 1.8rem;
-    color: #1a1a1a;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-  
-  .formGroup {
-    position: relative;
-    margin-bottom: 1.5rem;
-  }
-  
-  .formInput {
-    width: 100%;
-    padding: 1rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-  
-  .formInput:focus {
-    outline: none;
-    border-color: #0070f3;
-    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
-  }
-  
-  .inputLabel {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #666;
-    pointer-events: none;
-    transition: all 0.3s ease;
-    background: white;
-    padding: 0 0.3rem;
-  }
-  
-  .formInput:focus ~ .inputLabel,
-  .formInput:not(:placeholder-shown) ~ .inputLabel {
-    top: 0;
-    font-size: 0.85rem;
-    color: #0070f3;
-  }
-  
-  .textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-  
-  .ratingContainer {
-    margin: 1.5rem 0;
-  }
-  
-  .ratingLabel {
-    color: #666;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-  }
-  
-  .stars {
-    display: flex;
-    gap: 0.5rem;
-  }
-  
-  .starButton {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  
-  .starButton:hover {
-    transform: scale(1.2);
-  }
-  
-  .starFilled {
-    color: #ffd700;
-    font-size: 1.8rem;
-  }
-  
-  .starEmpty {
-    color: #e0e0e0;
-    font-size: 1.8rem;
-  }
-  
-  .submitButton {
-    width: 100%;
-    padding: 1rem;
-    background: linear-gradient(135deg, #0070f3, #0051a2);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .submitButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 112, 243, 0.3);
-  }
-  
-  .successMessage {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    color: #00a76f;
-    background: #e8f9f0;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-top: 1.5rem;
-    animation: fadeIn 0.3s ease;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
+
   .reviewsSection {
-    background: #f8f9fa;
-    padding: 2rem;
-    border-radius: 16px;
+    flex: 1;
+    margin-left: 2rem;
   }
-  
-  .reviewsTitle {
-    font-size: 1.5rem;
-    color: #1a1a1a;
-    margin-bottom: 1.5rem;
-  }
-  
-  .reviewCard {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  }
-  
-  .reviewHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .authorInfo {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .authorName {
-    font-weight: 600;
-    color: #1a1a1a;
-  }
-  
-  .reviewDate {
-    color: #666;
-    font-size: 0.9rem;
-  }
-  
-  .reviewStars {
-    display: flex;
-    gap: 0.3rem;
-  }
-  
-  .reviewText {
-    color: #444;
-    line-height: 1.6;
-  }
-  
-  .noReviews {
-    color: #666;
-    text-align: center;
-    padding: 2rem;
-  }
-  
-  @media (max-width: 768px) {
-    .reviewForm {
-      padding: 1.5rem;
-    }
-  
-    .formTitle {
-      font-size: 1.5rem;
-    }
-  
-    .reviewsSection {
-      padding: 1.5rem;
-    }
-  
-    .reviewHeader {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
-    }
-  }
+}

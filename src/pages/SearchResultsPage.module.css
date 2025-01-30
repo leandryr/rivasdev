@@ -1,0 +1,135 @@
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .searchIcon {
+    color: #0070f3;
+    font-size: 2rem;
+  }
+  
+  .searchMeta {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+  }
+  
+  .queryText {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .queryText span {
+    color: #0070f3;
+    font-weight: 600;
+  }
+  
+  .resultsCount {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .resultsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .resultItem {
+    margin-bottom: 1rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .resultItem:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .resultLink {
+    padding: 1.5rem;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .resultName {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0070f3;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .resultPath {
+    font-size: 0.9rem;
+    color: #666;
+    font-family: monospace;
+  }
+  
+  .noResults {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+    border-radius: 16px;
+  }
+  
+  .noResultsIcon {
+    font-size: 3rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+  
+  .noResultsText {
+    color: #666;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+    
+    .resultLink {
+      padding: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      margin: 1rem auto;
+    }
+    
+    .title {
+      font-size: 1.75rem;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .searchMeta {
+      padding: 1rem;
+    }
+  }

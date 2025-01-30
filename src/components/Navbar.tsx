@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaTimes, FaBars } from "react-icons/fa";
+import { FaTimes, FaBars, FaSearch } from "react-icons/fa";
 import logo from "../assets/imag/logo.svg";
 import styles from "./Navbar.module.css";
 
@@ -20,20 +20,58 @@ const menuItems: MenuItem[] = [
 const Navbar = () => {
   const [query, setQuery] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [navbarVisible, setNavbarVisible] = useState(true);
   const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim().length > 0) {
       navigate(`/search?query=${query}`);
+      setIsMenuOpen(false);
     }
   };
 
   const clearSearch = () => setQuery("");
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  // Control del scroll para ocultar/mostrar navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scroll hacia abajo
+        setNavbarVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scroll hacia arriba
+        setNavbarVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    // Throttle para mejorar rendimiento
+    const throttledScroll = throttle(handleScroll, 100);
+    window.addEventListener("scroll", throttledScroll);
+    
+    return () => window.removeEventListener("scroll", throttledScroll);
+  }, [lastScrollY]);
+
+  // Throttle function
+  const throttle = (func: () => void, limit: number) => {
+    let inThrottle: boolean;
+    return () => {
+      if (!inThrottle) {
+        func();
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    };
+  };
+
   return (
-    <nav className={styles.navContainer}>
+    <nav className={`${styles.navContainer} ${navbarVisible ? styles.visible : styles.hidden}`}>
       <div className={styles.navWrapper}>
         {/* Logo */}
         <div className={styles.logoContainer}>
@@ -53,7 +91,8 @@ const Navbar = () => {
 
         {/* Contenido del Navbar */}
         <div className={`${styles.navContent} ${isMenuOpen ? styles.menuOpen : ""}`}>
-          {/* Botón de Cerrar en móvil */}
+          
+          {/* Botón de cerrar menú */}
           <button 
             className={styles.closeButton} 
             onClick={toggleMenu}
@@ -66,6 +105,7 @@ const Navbar = () => {
           <div className={styles.searchContainer}>
             <form onSubmit={handleSearch} className={styles.searchForm}>
               <div className={styles.inputWrapper}>
+                <FaSearch className={styles.searchIcon} />
                 <input
                   type="text"
                   placeholder="Buscar..."
@@ -94,9 +134,10 @@ const Navbar = () => {
                 <Link 
                   to={item.path} 
                   className={styles.menuLink}
-                  onClick={toggleMenu}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
+                  <span className={styles.menuLinkUnderline}></span>
                 </Link>
               </li>
             ))}
