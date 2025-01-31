@@ -1,6 +1,5 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import { FaStar, FaRegStar, FaCheckCircle } from "react-icons/fa";
-import gravatarUrl from "gravatar-url"; // Librería para obtener la foto de Gravatar
 import styles from "./ReviewForm.module.css";
 
 interface ReviewFormState {
@@ -98,7 +97,7 @@ const ReviewForm = () => {
       {/* Formulario */}
       <form onSubmit={handleSubmit} className={styles.reviewForm}>
         <h2 className={styles.formTitle}>Deja tu testimonio</h2>
-        
+
         <div className={styles.formGroup}>
           <input
             type="text"
@@ -177,30 +176,25 @@ const ReviewForm = () => {
       {/* Lista de Testimonios */}
       <div className={styles.reviewsSection}>
         <h3 className={styles.reviewsTitle}>Testimonios ({reviews.length})</h3>
-        
+
         <div className={styles.reviewsScrollContainer}>
           {reviews.length > 0 ? (
             reviews.map((review, index) => (
               <div key={index} className={styles.reviewCard}>
                 <div className={styles.reviewHeader}>
-                  <img
-                    src={gravatarUrl(review.email, { size: 50 })}
-                    alt={review.name}
-                    className={styles.avatar}
-                  />
                   <div className={styles.authorInfo}>
                     <span className={styles.authorName}>{review.name}</span>
-                    <span className={styles.reviewDate}>
-                      {formatDate(review.createdAt)}
-                    </span>
-                  </div>
-                  <div className={styles.reviewStars}>
-                    {[...Array(review.rating)].map((_, i) => (
-                      <FaStar key={i} className={styles.starFilled} />
-                    ))}
+                    <div className={styles.reviewStars}>
+                      {[...Array(review.rating)].map((_, i) => (
+                        <FaStar key={i} className={styles.starFilled} />
+                      ))}
+                    </div>
                   </div>
                 </div>
                 <p className={styles.reviewText}>{review.review}</p>
+                <span className={styles.reviewDate}>
+                  {formatDate(review.createdAt)}
+                </span>
               </div>
             ))
           ) : (

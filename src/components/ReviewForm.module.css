@@ -200,7 +200,7 @@
 .reviewHeader {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0rem;
   margin-bottom: 0.5rem;
 }
 
@@ -252,12 +252,12 @@
     flex-direction: row;
   }
 
-  .reviewForm {
+  .reviewForm,
+  .reviewsSection {
     flex: 1;
   }
 
   .reviewsSection {
-    flex: 1;
     margin-left: 2rem;
   }
 }

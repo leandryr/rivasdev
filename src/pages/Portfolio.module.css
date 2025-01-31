@@ -1,9 +1,45 @@
-/* Variables */
+/* Variables de color */
 :root {
-  --primary-color: #0070f3;
-  --secondary-color: #1a1a1a;
-  --text-color: #444;
-  --light-bg: #f8f9fa;
+  --primary-color: #2563eb; /* Azul más moderno */
+  --secondary-color: #1e293b; /* Gris oscuro */
+  --accent-color: #eeebe6; /* Amarillo anaranjado */
+  --text-color: #374151; /* Gris oscuro para texto */
+  --light-bg: #f8fafc; /* Fondo claro */
+  --white: #ffffff; /* Blanco puro */
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Estilos generales */
@@ -13,10 +49,11 @@
 
 /* Hero Section */
 .heroContainer {
-  padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--secondary-color) 0%, #2d2d2d 100%);
-  color: white;
+  padding: 8rem 2rem;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
+  color: var(--white);
   text-align: center;
+  animation: fadeInUp 1s ease-out;
 }
 
 .heroContent {
@@ -25,20 +62,22 @@
 }
 
 .heroTitle {
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 1.5rem;
   font-weight: 700;
+  animation: slideInLeft 1s ease-out;
 }
 
 .heroText {
   font-size: 1.2rem;
   line-height: 1.8;
   opacity: 0.9;
+  animation: slideInRight 1s ease-out;
 }
 
 .heroText span {
-  color: var(--primary-color);
-  font-weight: 600;
+  color: var(--accent-color);
+  font-weight: 700;
 }
 
 /* Projects Section */
@@ -61,11 +100,12 @@
   border-radius: 16px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1s ease-out;
 }
 
 .projectCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .iconWrapper {
@@ -77,6 +117,11 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.projectCard:hover .iconWrapper {
+  transform: scale(1.1);
 }
 
 .iconWrapper svg {
@@ -107,6 +152,7 @@
   color: var(--secondary-color);
   margin-bottom: 3rem;
   position: relative;
+  animation: fadeIn 1s ease-out;
 }
 
 .sectionTitle::after {
@@ -133,11 +179,13 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1s ease-out;
 }
 
 .workCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .imageContainer {
@@ -151,6 +199,10 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+}
+
+.workCard:hover .workImage {
+  transform: scale(1.1);
 }
 
 .imageOverlay {
@@ -193,8 +245,12 @@
   transition: transform 0.3s ease;
 }
 
+.workLink:hover {
+  color: #0051a2;
+}
+
 .workLink:hover .linkArrow {
-  transform: translateX(3px);
+  transform: translateX(5px);
 }
 
 /* Responsive Design */
@@ -202,31 +258,19 @@
   .heroTitle {
     font-size: 2.5rem;
   }
-  
-  .sectionTitle {
+  .sectionTitle, .featuredTitle {
     font-size: 2rem;
-  }
-  
-  .projectsContainer,
-  .worksContainer {
-    padding: 3rem 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .heroContainer {
-    padding: 4rem 1rem;
+    padding: 6rem 1rem;
   }
-  
   .heroTitle {
     font-size: 2rem;
   }
-  
-  .sectionTitle {
+  .sectionTitle, .featuredTitle {
     font-size: 1.75rem;
-  }
-  
-  .imageContainer {
-    height: 200px;
   }
 }

@@ -63,7 +63,7 @@ const Contact = () => {
               <FaPhone />
             </div>
             <h3 className={styles.infoTitle}>Teléfono</h3>
-            <p className={styles.infoText}>+1 (123) 456-7890</p>
+            <p className={styles.infoText}>+1 (404) 839-4292</p>
           </div>
 
           <div className={styles.infoCard}>

@@ -1,11 +1,12 @@
 import { FaGithub, FaLinkedin, FaTwitter, FaRegEnvelope } from "react-icons/fa";
 import styles from "./Footer.module.css";
+import logo from "../assets/imag/2.png";
 
 const Footer = () => (
   <footer className={styles.footer}>
     <div className={styles.footerContent}>
       <div className={styles.footerSection}>
-        <h3 className={styles.sectionTitle}>RivasDev</h3>
+      <img src={logo} alt="RivasDev Logo" className={styles.logo} />
         <p className={styles.sectionText}>
           Transformando ideas en soluciones digitales extraordinarias.
         </p>
@@ -24,13 +25,13 @@ const Footer = () => (
       <div className={styles.footerSection}>
         <h4 className={styles.sectionSubtitle}>Conectemos</h4>
         <div className={styles.socialContainer}>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+          <a href="https://github.com/leandryr" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
             <FaGithub className={styles.socialIcon} />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+          <a href="https://linkedin.com/in/leandry-rivas-a02246309" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
             <FaLinkedin className={styles.socialIcon} />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+          <a href="https://x.com/leandryrp" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
             <FaTwitter className={styles.socialIcon} />
           </a>
           <a href="mailto:contacto@rivasdev.com" className={styles.socialLink}>
@@ -45,9 +46,9 @@ const Footer = () => (
         © 2025 RivasDev. Todos los derechos reservados.
       </p>
       <div className={styles.legalLinks}>
-        <a href="/privacidad" className={styles.legalLink}>Política de Privacidad</a>
+        <a href="/PrivacyPolicy" className={styles.legalLink}>Política de Privacidad</a>
         <span className={styles.separator}>|</span>
-        <a href="/terminos" className={styles.legalLink}>Términos de Servicio</a>
+        <a href="/TermsOfService" className={styles.legalLink}>Términos de Servicio</a>
       </div>
     </div>
   </footer>

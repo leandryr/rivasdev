@@ -9,6 +9,8 @@ import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import SearchResultsPage from "./pages/SearchResultsPage";
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 const App: React.FC = () => {
   return (
@@ -24,6 +26,8 @@ const App: React.FC = () => {
             <Route path="/contacto" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/search" element={<SearchResultsPage />} />
+            <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+            <Route path="/TermsOfService" element={<TermsOfService />} />
           </Routes>
         </main>
         <Footer />

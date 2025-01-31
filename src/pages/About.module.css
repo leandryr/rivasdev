@@ -1,213 +1,257 @@
 /* Variables de color */
 :root {
-    --primary-color: #0070f3;
-    --secondary-color: #1a1a1a;
-    --text-color: #444;
-    --light-bg: #f8f9fa;
+  --primary-color: #2563eb; /* Azul más moderno */
+  --secondary-color: #1e293b; /* Gris oscuro */
+  --accent-color: #eeebe6; /* Amarillo anaranjado */
+  --text-color: #374151; /* Gris oscuro para texto */
+  --light-bg: #f8fafc; /* Fondo claro */
+  --white: #ffffff; /* Blanco puro */
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .aboutSection {
-    overflow-x: hidden;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* Hero Section */
-  .heroContainer {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #0060d1 100%);
-    padding: 6rem 2rem;
-    color: white;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
   }
-  
-  .heroContent {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Estilos generales */
+.aboutSection {
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.heroContainer {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
+  padding: 8rem 2rem;
+  color: var(--white);
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+
+.heroContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  animation: slideInLeft 1s ease-out;
+}
+
+.heroTitle span {
+  color: var(--accent-color);
+}
+
+.heroText {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.9;
+  animation: slideInRight 1s ease-out;
+}
+
+/* Features Section */
+.featuresContainer {
+  padding: 6rem 2rem;
+  background: var(--light-bg);
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 1s ease-out;
+}
+
+.featureCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.iconContainer {
+  width: 80px;
+  height: 80px;
+  background: rgba(37, 99, 235, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.featureIcon {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+.featureTitle {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.featureText {
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Vision Section */
+.visionContainer {
+  padding: 6rem 2rem;
+  background: var(--secondary-color);
+  color: var(--white);
+  text-align: center;
+}
+
+.visionContent {
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease-out;
+}
+
+.visionTitle {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.visionText {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+/* CTA Section */
+.ctaContainer {
+  padding: 8rem 2rem;
+  background: linear-gradient(135deg, var(--accent-color) 0%, #fbbf24 100%);
+  text-align: center;
+}
+
+.ctaContent {
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease-out;
+}
+
+.ctaTitle {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 1.2rem 2.5rem;
+  background: var(--secondary-color);
+  color: var(--white);
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.ctaButton:hover::before {
+  left: 100%;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .heroTitle {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-  
-  .heroTitle span {
-    color: #ffd700;
-  }
-  
-  .heroText {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  /* Features Section */
-  .featuresContainer {
-    padding: 4rem 2rem;
-    background: var(--light-bg);
-  }
-  
-  .featuresGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .featureCard {
-    background: white;
-    padding: 2rem;
-    border-radius: 16px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .featureCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  .iconContainer {
-    width: 80px;
-    height: 80px;
-    background: rgba(0, 112, 243, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-  }
-  
-  .featureIcon {
-    font-size: 2rem;
-    color: var(--primary-color);
-  }
-  
-  .featureTitle {
-    font-size: 1.3rem;
-    color: var(--secondary-color);
-    margin-bottom: 1rem;
-  }
-  
-  .featureText {
-    color: var(--text-color);
-    line-height: 1.6;
-  }
-  
-  /* Vision Section */
-  .visionContainer {
-    padding: 4rem 2rem;
-    background: var(--secondary-color);
-  }
-  
-  .visionContent {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    color: white;
-  }
-  
-  .visionTitle {
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
   }
-  
-  .visionText {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    opacity: 0.9;
-  }
-  
-  /* CTA Section */
-  .ctaContainer {
-    padding: 6rem 2rem;
-    background: linear-gradient(135deg, #ffd700 0%, #ffc400 100%);
-  }
-  
-  .ctaContent {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
+
   .ctaTitle {
-    font-size: 2.5rem;
-    color: var(--secondary-color);
-    margin-bottom: 2rem;
-    font-weight: 700;
+    font-size: 2rem;
   }
-  
-  .ctaButton {
-    display: inline-block;
-    padding: 1.2rem 2.5rem;
-    background: var(--secondary-color);
-    color: white;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+
+  .visionTitle {
+    font-size: 2rem;
   }
-  
-  .ctaButton::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
-    transition: left 0.6s;
+}
+
+@media (max-width: 480px) {
+  .heroContainer {
+    padding: 6rem 1rem;
   }
-  
-  .ctaButton:hover::before {
-    left: 100%;
+
+  .featuresContainer,
+  .visionContainer,
+  .ctaContainer {
+    padding: 4rem 1rem;
   }
-  
-  .ctaButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+  .heroTitle {
+    font-size: 2rem;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .heroTitle {
-      font-size: 2.5rem;
-    }
-    
-    .ctaTitle {
-      font-size: 2rem;
-    }
-    
-    .visionTitle {
-      font-size: 2rem;
-    }
+
+  .ctaTitle {
+    font-size: 1.8rem;
   }
-  
-  @media (max-width: 480px) {
-    .heroContainer {
-      padding: 4rem 1rem;
-    }
-    
-    .featuresContainer,
-    .visionContainer,
-    .ctaContainer {
-      padding: 3rem 1rem;
-    }
-    
-    .heroTitle {
-      font-size: 2rem;
-    }
-    
-    .ctaTitle {
-      font-size: 1.8rem;
-    }
-  }
+}

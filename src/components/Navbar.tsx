@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaTimes, FaBars, FaSearch } from "react-icons/fa";
-import logo from "../assets/imag/logo.svg";
+import logo from "../assets/imag/1.png";
 import styles from "./Navbar.module.css";
 
 type MenuItem = {
