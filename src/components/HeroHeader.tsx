@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import slide1 from "../assets/images/slide1.svg";
-import slide2 from "../assets/images/slide2.svg";
-import slide3 from "../assets/images/slide3.svg";
+import slide1 from "../assets/images/slide1.webp";
+import slide2 from "../assets/images/slide2.webp";
+import slide3 from "../assets/images/slide3.webp";
 import styles from "./HeroHeader.module.css";
 
 const slides = [

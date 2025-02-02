@@ -1,6 +1,6 @@
 import { FaGithub, FaLinkedin, FaTwitter, FaRegEnvelope } from "react-icons/fa";
 import styles from "./Footer.module.css";
-import logo from "../assets/imag/2.png";
+import logo from "../assets/imag/2.webp";
 
 const Footer = () => (
   <footer className={styles.footer}>

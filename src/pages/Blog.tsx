@@ -1,5 +1,3 @@
-import HeroHeader from "../components/HeroHeader";
-
 const Blog = () => (
   <div>
     <h1>Blog</h1>
