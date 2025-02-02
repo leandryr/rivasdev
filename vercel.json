@@ -1,15 +1,15 @@
 {
+  "redirects": [
+    {
+      "source": "/blog",
+      "destination": "https://leandryrp.com",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/blog",
-      "destination": "leandryrp.com",
-      "permanent": true
     }
   ]
 }
