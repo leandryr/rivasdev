@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a, #2c3e50);
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.errorCode {
+  font-size: 8rem;
+  font-weight: bold;
+  margin: 0;
+  background: linear-gradient(45deg, #2563eb, #0b1024);
+  -webkit-background-clip: text; /* Prefijo para navegadores WebKit (Chrome, Safari) */
+  background-clip: text; /* Propiedad estándar */
+  -webkit-text-fill-color: transparent; /* Prefijo para navegadores WebKit */
+  color: transparent; /* Propiedad estándar */
+  animation: float 3s ease-in-out infinite;
+}
+
+.errorMessage {
+  font-size: 2rem;
+  margin: 10px 0;
+  animation: slideIn 1s ease-out;
+}
+
+.description {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  animation: fadeIn 2s ease-in;
+}
+
+.homeButton {
+  padding: 15px 30px;
+  font-size: 1rem;
+  color: white;
+  background: linear-gradient(45deg, #2563eb, #1b3a7e);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.homeButton:hover {
+  background: linear-gradient(45deg, #4153f1, #0b1024);
+}
+
+/* Animaciones */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
