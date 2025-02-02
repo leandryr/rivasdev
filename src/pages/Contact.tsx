@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import styles from "./Contact.module.css";
 
+const API_URL = import.meta.env.VITE_API_URL; // 🔹 Agregado
+
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<{ type: string; message: string } | null>(null);
@@ -15,7 +17,7 @@ const Contact = () => {
     setStatus({ type: "loading", message: "Enviando mensaje..." });
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch(`${API_URL}/api/contact`, { // 🔹 Modificado
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

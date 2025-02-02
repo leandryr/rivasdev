@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FaCheckCircle, FaTimesCircle, FaRegClock, FaRegCheckCircle, FaRegComments } from "react-icons/fa";
 import styles from "./QuotationForm.module.css";
 
+const API_URL = import.meta.env.VITE_API_URL; // 🔹 Agregado
+
 const QuotationForm = () => {
   const [formData, setFormData] = useState({ 
     name: "", 
@@ -20,7 +22,7 @@ const QuotationForm = () => {
     setStatus({ type: "loading", message: "Enviando solicitud..." });
 
     try {
-      const response = await fetch("http://localhost:5000/api/quotation", {
+      const response = await fetch(`${API_URL}/api/quotation`, { // 🔹 Modificado
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

@@ -2,6 +2,8 @@ import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import { FaStar, FaRegStar, FaCheckCircle } from "react-icons/fa";
 import styles from "./ReviewForm.module.css";
 
+const API_URL = import.meta.env.VITE_API_URL; // 🔹 Agregado
+
 interface ReviewFormState {
   name: string;
   email: string;
@@ -32,7 +34,7 @@ const ReviewForm = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/reviews");
+        const response = await fetch(`${API_URL}/api/reviews`); // 🔹 Modificado
         const data = await response.json();
         setReviews(data);
       } catch (error) {
@@ -63,7 +65,7 @@ const ReviewForm = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/reviews", {
+      const response = await fetch(`${API_URL}/api/reviews`, { // 🔹 Modificado
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
