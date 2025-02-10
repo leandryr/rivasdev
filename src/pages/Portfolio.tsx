@@ -1,6 +1,9 @@
 import { FaCode, FaMobileAlt, FaPaintBrush, FaCogs } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styles from "./Portfolio.module.css";
+import reservasImg from "../assets/images/reservas.png";
+
+
 
 // Definir los tipos de datos
 interface Project {
@@ -28,19 +31,19 @@ const projects: Project[] = [
 
 // Definir los datos de los trabajos destacados
 const works: Work[] = [
+  {    id: 1,
+    title: "Sistema de Registro para Campamento - Solución Profesional",
+    description: "Este sistema ofrece una solución integral para la gestión de eventos, reduciendo esfuerzos manuales y mejorando la organización.",
+    image:  reservasImg,
+    link: "/portfolio/reservas"
+   
+  },
   {
-    id: 1,
+      id: 2,
     title: "E-commerce Avanzado",
     description: "Tienda online con pasarelas de pago integradas.",
     image: "/images/ecommerce.jpg",
     link: "/portfolio/ecommerce"
-  },
-  {
-    id: 2,
-    title: "Aplicación de Reservas",
-    description: "Sistema de reservas con panel administrativo.",
-    image: "/images/reservas.jpg",
-    link: "/portfolio/reservas"
   },
   {
     id: 3,

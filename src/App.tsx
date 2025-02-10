@@ -12,6 +12,7 @@ import SearchResultsPage from "./pages/SearchResultsPage";
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import NotFound from "./pages/NotFound";
+import Reservas from "./pages/Reservas";
 
 const App: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const App: React.FC = () => {
             <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
             <Route path="/TermsOfService" element={<TermsOfService />} />
             <Route path="/NotFound" element={<NotFound/>} />
+            <Route path="/portfolio/reservas" element={<Reservas />} />
           </Routes>
         </main>
         <Footer />
