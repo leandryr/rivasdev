@@ -3,23 +3,15 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CustomCursor } from "@/components/custom-cursor";
-import { ArrowRight, Clock, Tag } from "lucide-react";
+import { getAllPosts } from "@/lib/blog";
+import { ArrowRight, Clock, Tag, Calendar } from "lucide-react";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Blog | Rivas Technologies — Web Development, AI & Business Automation",
-  description:
-    "Technical insights, engineering guides and business automation strategies from the Rivas Technologies team. Learn about Next.js, Laravel, AI integration, scalable architecture and more.",
-  keywords: [
-    "web development blog",
-    "software engineering articles",
-    "Next.js tutorials",
-    "business automation guide",
-    "AI for business",
-    "scalable web architecture",
-    "full stack development tips",
-    "Laravel backend guide",
-    "startup engineering",
-  ],
+  description: "Technical insights, engineering guides and business automation strategies from the Rivas Technologies team. Learn about Next.js, Laravel, AI integration, scalable architecture and more.",
+  keywords: ["web development blog","software engineering articles","Next.js tutorials","business automation guide","AI for business","scalable web architecture","full stack development tips"],
   openGraph: {
     title: "Rivas Technologies Blog — Engineering Insights",
     description: "Technical articles on web development, AI, automation and scalable architecture.",
@@ -28,73 +20,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://rivastechnologies.com/blog" },
 };
 
-const posts = [
-  {
-    slug: "why-your-website-is-losing-you-customers",
-    title: "Why Your Website Is Losing You Customers (And How to Fix It)",
-    description: "Speed, structure and trust signals that separate converting websites from expensive business cards. A technical breakdown for entrepreneurs.",
-    category: "Performance & SEO",
-    readTime: "6 min",
-    date: "2026-05-01",
-    tags: ["Performance", "Core Web Vitals", "SEO"],
-  },
-  {
-    slug: "business-automation-what-to-automate-first",
-    title: "Business Automation: What to Automate First (And What to Leave Alone)",
-    description: "Not every workflow should be automated. Here's the framework we use with clients to identify the highest-ROI automations and avoid the ones that create new problems.",
-    category: "Automation",
-    readTime: "8 min",
-    date: "2026-04-22",
-    tags: ["Automation", "CRM", "Workflow"],
-  },
-  {
-    slug: "nextjs-vs-traditional-wordpress-2026",
-    title: "Next.js vs WordPress in 2026: When to Choose Each",
-    description: "A practical guide for business owners — not a framework fanboy debate. When WordPress makes sense, when it becomes a liability, and what the migration looks like.",
-    category: "Web Development",
-    readTime: "7 min",
-    date: "2026-04-15",
-    tags: ["Next.js", "WordPress", "Migration"],
-  },
-  {
-    slug: "horizontal-scaling-explained-for-founders",
-    title: "Horizontal Scaling Explained for Non-Technical Founders",
-    description: "Your app crashes every time you run a promotion. Here's what that means, why it happens, and what your engineering team should be building instead.",
-    category: "Architecture",
-    readTime: "5 min",
-    date: "2026-04-08",
-    tags: ["Scaling", "Architecture", "Cloud"],
-  },
-  {
-    slug: "ai-integration-practical-guide-small-business",
-    title: "AI Integration: A Practical Guide for Small Business Owners",
-    description: "Cutting through the hype. Real AI use cases we've implemented for clients — with actual results, costs, and what we'd do differently.",
-    category: "AI & Automation",
-    readTime: "9 min",
-    date: "2026-03-30",
-    tags: ["AI", "Automation", "Business"],
-  },
-  {
-    slug: "security-checklist-web-applications-2026",
-    title: "The Web Application Security Checklist Every Founder Should Know",
-    description: "From a digital forensics specialist turned full-stack engineer: the security vulnerabilities we find in almost every client system, and how to close them.",
-    category: "Security",
-    readTime: "10 min",
-    date: "2026-03-20",
-    tags: ["Security", "Authentication", "OWASP"],
-  },
-];
-
 const CATEGORY_COLORS: Record<string, string> = {
-  "Performance & SEO": "#0A7CFF",
-  "Automation":        "#10B981",
-  "Web Development":   "#8B5CF6",
-  "Architecture":      "#F59E0B",
-  "AI & Automation":   "#06B6D4",
-  "Security":          "#EF4444",
+  "Architecture":         "#F59E0B",
+  "Web Development":      "#0A7CFF",
+  "Security":             "#EF4444",
+  "Infrastructure":       "#8B5CF6",
+  "Engineering":          "#06B6D4",
+  "Automatización":       "#10B981",
+  "Rendimiento":          "#0A7CFF",
+  "IA & Automatización":  "#8B5CF6",
+  "Seguridad":            "#EF4444",
 };
 
 export default function BlogPage() {
+  const posts = getAllPosts();
+  const featured = posts[0];
+  const rest     = posts.slice(1);
+
   return (
     <>
       <CustomCursor />
@@ -117,61 +59,112 @@ export default function BlogPage() {
           </p>
         </div>
 
-        {/* Posts grid */}
         <div className="px-6 lg:px-10">
-          {/* Featured post */}
-          <Link href={`/blog/${posts[0].slug}`} className="block group mb-8">
-            <article className="p-8 rounded-2xl border border-border/40 bg-card/20 hover:border-primary/30 hover:bg-card/40 transition-all duration-300">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-[10px] font-mono uppercase tracking-[0.25em] px-2.5 py-1 rounded-full"
-                  style={{ background:`${CATEGORY_COLORS[posts[0].category]}15`, color: CATEGORY_COLORS[posts[0].category], border:`1px solid ${CATEGORY_COLORS[posts[0].category]}30` }}>
-                  {posts[0].category}
-                </span>
-                <span className="text-muted-foreground/60 text-[10px] font-mono flex items-center gap-1">
-                  <Clock size={10} /> {posts[0].readTime} read
-                </span>
-                <span className="text-muted-foreground/40 text-[10px] font-mono ml-auto">{posts[0].date}</span>
-              </div>
-              <h2 className="text-foreground text-2xl lg:text-3xl font-bold tracking-tight mb-3 group-hover:text-primary transition-colors duration-300">
-                {posts[0].title}
-              </h2>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4 max-w-3xl">{posts[0].description}</p>
-              <div className="flex items-center gap-2 text-primary text-xs font-mono uppercase tracking-[0.2em]">
-                Read article <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" />
-              </div>
-            </article>
-          </Link>
+          {posts.length === 0 ? (
+            <div className="text-muted-foreground text-sm font-mono text-center py-20">
+              First post coming soon — check back tomorrow.
+            </div>
+          ) : (
+            <>
+              {/* Featured */}
+              {featured && (
+                <Link href={`/blog/${featured.slug}`} className="block group mb-8">
+                  <article className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl border border-border/40 bg-card/20 hover:border-primary/30 hover:bg-card/40 transition-all duration-300 overflow-hidden">
+                    {/* Cover image */}
+                    <div className="relative overflow-hidden" style={{ minHeight: 280 }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`/api/blog-image?title=${encodeURIComponent(featured.title)}&category=${encodeURIComponent(featured.category)}&readTime=${featured.readTime}&lang=${featured.lang}&date=${featured.date}`}
+                        alt={featured.title}
+                        className="w-full h-full object-cover"
+                        style={{ minHeight: 280 }}
+                      />
+                    </div>
+                    {/* Content */}
+                    <div className="p-8 flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="text-[10px] font-mono uppercase tracking-[0.25em] px-2.5 py-1 rounded-full"
+                            style={{ background:`${CATEGORY_COLORS[featured.category] ?? "#0A7CFF"}15`, color: CATEGORY_COLORS[featured.category] ?? "#0A7CFF", border:`1px solid ${CATEGORY_COLORS[featured.category] ?? "#0A7CFF"}30` }}>
+                            {featured.category}
+                          </span>
+                          <span className="text-muted-foreground/60 text-[10px] font-mono flex items-center gap-1">
+                            <Clock size={10} /> {featured.readTime}
+                          </span>
+                          <span className="text-[9px] font-mono px-1.5 py-0.5 rounded border border-border/30 text-muted-foreground/40">
+                            {featured.lang === "es" ? "ES" : "EN"}
+                          </span>
+                        </div>
+                        <h2 className="text-foreground text-2xl font-bold tracking-tight mb-3 group-hover:text-primary transition-colors duration-300">
+                          {featured.title}
+                        </h2>
+                        <p className="text-muted-foreground text-sm leading-relaxed">{featured.description}</p>
+                      </div>
+                      <div className="flex items-center justify-between mt-6">
+                        <div className="flex items-center gap-1.5 text-muted-foreground/40 text-[10px] font-mono">
+                          <Calendar size={10} /> {featured.date}
+                        </div>
+                        <div className="flex items-center gap-2 text-primary text-xs font-mono uppercase tracking-[0.2em]">
+                          Read <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" />
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              )}
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {posts.slice(1).map(post => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">
-                <article className="h-full p-6 rounded-2xl border border-border/40 bg-card/20 hover:border-primary/30 hover:bg-card/40 transition-all duration-300 flex flex-col">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="text-[9px] font-mono uppercase tracking-[0.2em] px-2 py-0.5 rounded-full"
-                      style={{ background:`${CATEGORY_COLORS[post.category]}15`, color: CATEGORY_COLORS[post.category], border:`1px solid ${CATEGORY_COLORS[post.category]}25` }}>
-                      {post.category}
-                    </span>
-                    <span className="text-muted-foreground/50 text-[9px] font-mono flex items-center gap-1 ml-auto">
-                      <Clock size={9} /> {post.readTime}
-                    </span>
-                  </div>
-                  <h2 className="text-foreground font-semibold text-base leading-snug mb-2 group-hover:text-primary transition-colors duration-300 flex-1">
-                    {post.title}
-                  </h2>
-                  <p className="text-muted-foreground text-xs leading-relaxed mb-4 line-clamp-3">{post.description}</p>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {post.tags.map(t => (
-                      <span key={t} className="text-[8px] font-mono uppercase tracking-[0.15em] px-1.5 py-0.5 rounded border border-border/40 text-muted-foreground/60 flex items-center gap-1">
-                        <Tag size={7} /> {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="text-muted-foreground/40 text-[9px] font-mono">{post.date}</div>
-                </article>
-              </Link>
-            ))}
-          </div>
+              {/* Grid */}
+              {rest.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {rest.map(post => (
+                    <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">
+                      <article className="h-full rounded-2xl border border-border/40 bg-card/20 hover:border-primary/30 hover:bg-card/40 transition-all duration-300 overflow-hidden flex flex-col">
+                        {/* Mini cover */}
+                        <div className="overflow-hidden" style={{ height: 180 }}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={`/api/blog-image?title=${encodeURIComponent(post.title)}&category=${encodeURIComponent(post.category)}&readTime=${post.readTime}&lang=${post.lang}&date=${post.date}`}
+                            alt={post.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <div className="p-5 flex flex-col flex-1">
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="text-[9px] font-mono uppercase tracking-[0.2em] px-2 py-0.5 rounded-full"
+                              style={{ background:`${CATEGORY_COLORS[post.category] ?? "#0A7CFF"}15`, color: CATEGORY_COLORS[post.category] ?? "#0A7CFF", border:`1px solid ${CATEGORY_COLORS[post.category] ?? "#0A7CFF"}25` }}>
+                              {post.category}
+                            </span>
+                            <span className="text-[9px] font-mono px-1.5 py-0.5 rounded border border-border/30 text-muted-foreground/40 ml-auto">
+                              {post.lang === "es" ? "ES" : "EN"}
+                            </span>
+                          </div>
+                          <h2 className="text-foreground font-semibold text-sm leading-snug mb-2 group-hover:text-primary transition-colors duration-300 flex-1">
+                            {post.title}
+                          </h2>
+                          <p className="text-muted-foreground text-xs leading-relaxed mb-3 line-clamp-2">{post.description}</p>
+                          <div className="flex flex-wrap gap-1.5 mb-3">
+                            {post.tags.slice(0, 3).map(t => (
+                              <span key={t} className="text-[8px] font-mono uppercase tracking-[0.15em] px-1.5 py-0.5 rounded border border-border/40 text-muted-foreground/50 flex items-center gap-0.5">
+                                <Tag size={7} /> {t}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-muted-foreground/40 text-[9px] font-mono flex items-center gap-1">
+                              <Calendar size={8} /> {post.date}
+                            </span>
+                            <span className="text-muted-foreground/40 text-[9px] font-mono flex items-center gap-1">
+                              <Clock size={8} /> {post.readTime}
+                            </span>
+                          </div>
+                        </div>
+                      </article>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
         </div>
       </main>
       <SiteFooter />
