@@ -1,0 +1,15 @@
+{
+  "name": "Rivas Technologies LLC",
+  "short_name": "RivasTech",
+  "description": "Enterprise software engineering for entrepreneurs",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050507",
+  "theme_color": "#0A7CFF",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/icono/LLC.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icono/LLC.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "categories": ["business", "productivity", "technology"]
+}
