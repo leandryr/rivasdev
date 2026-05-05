@@ -9,7 +9,8 @@ import { Sun, Moon } from "lucide-react";
 const navItems = [
   { label: "Home",     href: "/",        num: "01", page: true  },
   { label: "About Us", href: "/about",   num: "02", page: true  },
-  { label: "Contact",  href: "/contact", num: "03", page: true  },
+  { label: "Blog",     href: "/blog",    num: "03", page: true  },
+  { label: "Contact",  href: "/contact", num: "04", page: true  },
 ];
 
 const sectionIds: string[] = [];

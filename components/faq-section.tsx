@@ -363,6 +363,19 @@ function HologramPanel({ faq, isLight }: { faq: FAQ; isLight: boolean }) {
 
 // ─── Section ──────────────────────────────────────────────────────────────────
 
+function FaqSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map(f => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+}
+
 export function FaqSection() {
   const [active, setActive] = useState(0);
   const [holoKey, setHoloKey] = useState(0);
@@ -381,6 +394,7 @@ export function FaqSection() {
 
   return (
     <section id="faq" className="relative py-12 lg:py-16 px-6 lg:px-10">
+      <FaqSchema />
       {/* Header */}
       <div ref={headerRef} className="mb-8 lg:mb-10">
         <div className={`flex items-center gap-4 mb-5 transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
