@@ -1,7 +1,5 @@
 import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
-import { readFileSync } from "fs";
-import { join } from "path";
 
 export const dynamic = "force-dynamic";
 
@@ -29,9 +27,6 @@ export async function GET(req: NextRequest) {
   const { accent, secondary } = style;
   const BG = "#050507";
 
-  const iconBuffer = readFileSync(join(process.cwd(), "public/icono/LLC.png"));
-  const iconBase64 = `data:image/png;base64,${iconBuffer.toString("base64")}`;
-
   const shortTitle = title.length > 60 ? title.slice(0, 57) + "..." : title;
 
   return new ImageResponse(
@@ -48,8 +43,8 @@ export async function GET(req: NextRequest) {
         {/* Header */}
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"44px 64px 0" }}>
           <div style={{ display:"flex", alignItems:"center", gap:14 }}>
-            <div style={{ width:44, height:44, borderRadius:11, overflow:"hidden", display:"flex" }}>
-              <img src={iconBase64} alt="" width={44} height={44} style={{ objectFit:"contain" }} />
+            <div style={{ width:44, height:44, borderRadius:11, background:accent, display:"flex", alignItems:"center", justifyContent:"center" }}>
+              <div style={{ color:"#fff", fontSize:26, fontWeight:900, display:"flex" }}>R</div>
             </div>
             <div style={{ display:"flex", flexDirection:"row" }}>
               <div style={{ color:"#fff", fontSize:20, fontWeight:800 }}>Rivas</div>

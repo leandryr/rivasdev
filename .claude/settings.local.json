@@ -14,7 +14,8 @@
       "Bash(curl -s -H 'X-Goog-Api-Key: AIzaSyCsxsvDeP4GFRr9Epqfa-buSS4AzXkcVvE' -H 'X-Goog-FieldMask: places.id,places.displayName,places.rating,places.reviews' 'https://places.googleapis.com/v1/places/ChIJBcG7d4vJdhYR3Z3qVfs6FlI?languageCode=en')",
       "Bash(curl -s http://localhost:3000/api/reviews)",
       "Bash(curl -s -H 'X-Goog-Api-Key: AIzaSyCsxsvDeP4GFRr9Epqfa-buSS4AzXkcVvE' -H 'Referer: https://rivastechnologies.com' -H 'X-Goog-FieldMask: places.id,places.displayName,places.rating' -H 'Content-Type: application/json' -d '{\"textQuery\":\"Rivas Technologies LLC\",\"locationBias\":{\"circle\":{\"center\":{\"latitude\":34.2920345,\"longitude\":-83.826655},\"radius\":5000}}}' https://places.googleapis.com/v1/places:searchText)",
-      "Bash(curl -s -H 'X-Goog-Api-Key: AIzaSyCsxsvDeP4GFRr9Epqfa-buSS4AzXkcVvE' -H 'Referer: https://rivastechnologies.com' -H 'X-Goog-FieldMask: places.id,places.displayName,places.formattedAddress' -H 'Content-Type: application/json' -d '{\"textQuery\":\"Rivas Technologies Gainesville Georgia software\"}' https://places.googleapis.com/v1/places:searchText)"
+      "Bash(curl -s -H 'X-Goog-Api-Key: AIzaSyCsxsvDeP4GFRr9Epqfa-buSS4AzXkcVvE' -H 'Referer: https://rivastechnologies.com' -H 'X-Goog-FieldMask: places.id,places.displayName,places.formattedAddress' -H 'Content-Type: application/json' -d '{\"textQuery\":\"Rivas Technologies Gainesville Georgia software\"}' https://places.googleapis.com/v1/places:searchText)",
+      "Bash(git commit *)"
     ]
   }
 }
