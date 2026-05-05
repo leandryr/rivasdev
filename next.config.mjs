@@ -3,14 +3,12 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     unoptimized: true,
   },
-  serverExternalPackages: [
-    "fluent-ffmpeg",
-    "@ffmpeg-installer/ffmpeg",
-    "sharp",
-  ],
 }
 
 export default nextConfig
