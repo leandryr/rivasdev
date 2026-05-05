@@ -8,7 +8,13 @@ export function JsonLd() {
     url: "https://rivastechnologies.com",
     logo: "https://rivastechnologies.com/logos/logo.png",
     foundingDate: "2021",
-    founders: [{ "@type": "Person", name: "Leandry R Rivas P" }],
+    founders: [{
+      "@type": "Person",
+      name: "Leandry R Rivas P",
+      jobTitle: "Founder & CEO",
+      email: "leandry@rivastechnologies.com",
+      url: "https://rivastechnologies.com/about",
+    }],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Gainesville",

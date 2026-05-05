@@ -64,7 +64,8 @@ const team = [
     location: "Gainesville, GA · United States",
     bio: "Full-stack web developer and digital forensics specialist with a background as Detective Agregado – Forensic Informatics at the Scientific Criminal Investigation Police. Brings law-enforcement-grade security, investigative rigor, and evidence-driven thinking to every engagement.",
     focus: "Next.js & React, Laravel, Node.js, MongoDB, PostgreSQL, MariaDB, Git, Vercel, Linux VPS, AWS, Google Cloud, Kubernetes, horizontally scalable architectures & containerised deployments.",
-    tags: ["Full Stack", "Security", "Founder"],
+    tags: ["Full Stack", "Security", "Founder & CEO"],
+    email: "leandry@rivastechnologies.com",
     initials: "LR",
     color: "#0A7CFF",
     photo: "/team/Leandry.webp",
@@ -77,6 +78,7 @@ const team = [
     bio: "HR and Compliance professional with a strong foundation in Business Information Systems and Human Resources Management. Experienced in managing confidential records, ensuring data accuracy, and supporting regulatory compliance aligned with U.S. Department of Homeland Security standards. Demonstrated ability to coordinate cross-functional operations, streamline administrative processes, and maintain high-volume data systems with precision.",
     focus: "Regulatory compliance, HR operations, cross-functional coordination, administrative process optimization, and organizational integrity through accurate reporting and documentation.",
     tags: ["Business Director", "HR", "Compliance"],
+    email: "",
     initials: "MO",
     color: "#F59E0B",
     photo: "/team/Magaly.jpeg",
@@ -89,6 +91,7 @@ const team = [
     bio: "Frontend developer and web designer focused on building clean, responsive websites and landing pages. WordPress specialist with strong skills in layout, visual design, and performance optimization — combining design sense with solid frontend craft to deliver conversion-oriented experiences.",
     focus: "Frontend development, WordPress, UI implementation, performance optimization.",
     tags: ["Frontend", "Web Design"],
+    email: "",
     initials: "CB",
     color: "#10B981",
     photo: "/team/Carlos.webp",
@@ -101,6 +104,7 @@ const team = [
     bio: "Brand and UX/UI designer focused on building clear, memorable visual identities and user-friendly interfaces. Combines print and digital experience to deliver cohesive design systems across packaging, social media and digital products.",
     focus: "Branding, visual identity systems, UX/UI design, social media content systems.",
     tags: ["Branding", "UX/UI"],
+    email: "",
     initials: "VM",
     color: "#8B5CF6",
     photo: "/team/Maria.webp",
@@ -194,6 +198,14 @@ function TeamCard({ member, isLight }: { member: typeof team[0]; isLight: boolea
       <div className="px-5 pt-4 pb-2">
         <h3 className="font-bold text-base leading-tight mb-1" style={{ color: isLight ? "#050508" : "#FFFFFF" }}>{member.name}</h3>
         <p className="text-xs font-mono font-medium" style={{ color: member.color }}>{member.role}</p>
+        {member.email && (
+          <a href={`mailto:${member.email}`}
+            className="text-[10px] font-mono mt-0.5 hover:underline block"
+            style={{ color: isLight ? "rgba(10,96,230,0.65)" : "rgba(10,124,255,0.6)" }}
+            onClick={e => e.stopPropagation()}>
+            {member.email}
+          </a>
+        )}
       </div>
 
       {/* Bio — slides in on hover */}
