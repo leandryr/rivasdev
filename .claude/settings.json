@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sudo apt-get *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:3000/api/instagram-image?caption=Test&topic=Tech&language=english&seed=123\")",
+      "Bash(curl -v \"http://localhost:3000/api/instagram-image?caption=Test&topic=Tech&language=english&seed=1\")"
+    ]
+  }
+}
