@@ -38,7 +38,7 @@ export function AboutUsSection() {
   const { ref: contentRef, isVisible: contentVisible } = useScrollReveal<HTMLDivElement>(0.1);
 
   return (
-    <section id="about" className="relative py-12 lg:py-16 px-6 lg:px-10 border-t border-border/20">
+    <section id="about" className="relative py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-10 border-t border-border/20">
 
       {/* Header */}
       <div ref={headerRef} className="mb-10 lg:mb-14">

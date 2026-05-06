@@ -7,10 +7,11 @@ import Link from "next/link";
 import { Sun, Moon } from "lucide-react";
 
 const navItems = [
-  { label: "Home",     href: "/",        num: "01", page: true  },
-  { label: "About Us", href: "/about",   num: "02", page: true  },
-  { label: "Blog",     href: "/blog",    num: "03", page: true  },
-  { label: "Contact",  href: "/contact", num: "04", page: true  },
+  { label: "Home",     href: "/",         num: "01", page: true },
+  { label: "Services", href: "/services", num: "02", page: true },
+  { label: "About Us", href: "/about",    num: "03", page: true },
+  { label: "Blog",     href: "/blog",     num: "04", page: true },
+  { label: "Contact",  href: "/contact",  num: "05", page: true },
 ];
 
 const sectionIds: string[] = [];
@@ -74,12 +75,12 @@ export function SiteHeader() {
         scrolled ? "py-2 bg-background/80 backdrop-blur-2xl border-b border-border/40" : "py-4"
       }`}
     >
-      <div className="flex items-center justify-between px-6 lg:px-10">
+      <div className="flex items-center justify-between px-4 sm:px-6 lg:px-10">
 
         {/* Logo */}
         <Link href="/" className="flex items-center" data-cursor-hover>
           <Image src="/logos/logo.png" alt="Rivas Technologies" width={320} height={80}
-            className="h-20 w-auto object-contain" priority />
+            className="h-10 sm:h-14 lg:h-20 w-auto object-contain" priority />
         </Link>
 
         {/* Desktop nav */}
@@ -138,7 +139,7 @@ export function SiteHeader() {
 
       {/* Mobile menu */}
       <div className={`md:hidden overflow-hidden transition-all duration-500 ${menuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"}`}>
-        <nav className="flex flex-col gap-4 px-6 pt-6 pb-4 border-t border-border/30 mt-2 bg-background/95 backdrop-blur-xl">
+        <nav className="flex flex-col gap-4 px-4 sm:px-6 pt-6 pb-4 border-t border-border/30 mt-2 bg-background/95 backdrop-blur-xl">
           {navItems.map((item) => {
             const id = item.href.replace("#", "");
             const isActive = activeId === id;

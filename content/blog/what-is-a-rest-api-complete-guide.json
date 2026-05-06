@@ -1,0 +1,17 @@
+{
+  "slug": "what-is-a-rest-api-complete-guide",
+  "title": "What Is a REST API? The Complete Guide for Founders and Developers",
+  "description": "A thorough explanation of REST APIs — what they are, how they work, when to use them, and how to design one that will not become a maintenance nightmare.",
+  "category": "Web Development",
+  "tags": [
+    "REST API",
+    "Backend",
+    "Web Development",
+    "Architecture"
+  ],
+  "date": "2026-05-02",
+  "readTime": "10 min",
+  "lang": "en",
+  "published": true,
+  "content": "<h2>The one-paragraph explanation</h2><p>An API (Application Programming Interface) is a defined way for two software systems to communicate. A REST API follows architectural principles — REST (Representational State Transfer) — that make it predictable, scalable, and easy to use over HTTP. When your mobile app shows your bank balance, a REST API connected to your bank's servers.</p><h2>How HTTP and REST work together</h2><p>Every REST API interaction consists of a request and a response. The request has: a <strong>method</strong> (action to perform), a <strong>URL</strong> (resource to act on), <strong>headers</strong> (metadata including authentication), and an optional <strong>body</strong>. HTTP methods map to CRUD: GET retrieves, POST creates, PUT/PATCH updates, DELETE removes.</p><h2>Resources and URLs: the grammar of REST</h2><p>REST URLs should be noun-based: <code>GET /users/123</code> not <code>GET /getUser?id=123</code>. Conventions: <code>/resources</code> for a collection, <code>/resources/{id}</code> for a specific item, <code>/resources/{id}/sub-resources</code> for nested relationships. Plural nouns, lowercase, hyphens for multi-word names.</p><h2>Status codes: the language of responses</h2><p>2xx Success: 200 OK, 201 Created, 204 No Content. 4xx Client Errors: 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict. 5xx Server Errors: 500 Internal Server Error, 503 Service Unavailable. Using correct status codes lets clients handle errors correctly without parsing the response body.</p><h2>Authentication patterns</h2><p><strong>API Keys</strong> — static secrets in headers, good for server-to-server. <strong>JWT</strong> — signed tokens with user claims, good for user-facing apps. <strong>OAuth 2.0</strong> — the protocol behind Sign in with Google, for delegated access.</p><h2>Designing an API that does not become a nightmare</h2><p>Mistakes: inconsistent naming, verb-based URLs, different structures for the same resource. Best practices: consistent response envelope, consistent error format, pagination on every list endpoint, documentation generated from code.</p>"
+}

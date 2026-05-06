@@ -157,7 +157,7 @@ export function TestimonialsSection() {
   const error   = false;
 
   return (
-    <section className="relative py-12 lg:py-16 px-6 lg:px-10">
+    <section className="relative py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-10">
       {/* Header */}
       <div ref={headerRef} className="mb-8 lg:mb-10">
         <div className={`flex items-center gap-4 mb-5 transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>

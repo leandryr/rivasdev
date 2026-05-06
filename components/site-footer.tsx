@@ -51,16 +51,17 @@ const serviceLinks = [
 ];
 
 const companyLinks = [
-  { label: "Selected Work",  href: "#projects" },
-  { label: "Tech Stack",     href: "#tech" },
-  { label: "Common Questions", href: "#faq" },
-  { label: "Start an Engagement", href: "#contact" },
+  { label: "Services",         href: "/services" },
+  { label: "Selected Work",    href: "/#projects" },
+  { label: "About Us",         href: "/about" },
+  { label: "Blog",             href: "/blog" },
+  { label: "Start an Engagement", href: "/contact" },
 ];
 
 export function SiteFooter() {
   return (
     <footer className="relative border-t border-border/30">
-      <div className="px-6 lg:px-10 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="px-4 sm:px-6 lg:px-10 py-10 sm:py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
         {/* Brand */}
         <div className="sm:col-span-2 lg:col-span-1">
           <div className="mb-5">
@@ -164,7 +165,7 @@ export function SiteFooter() {
       </div>
 
       {/* Bottom bar */}
-      <div className="px-6 lg:px-10 py-5 border-t border-border/20 flex items-center justify-between gap-4 flex-wrap">
+      <div className="px-4 sm:px-6 lg:px-10 py-5 border-t border-border/20 flex items-center justify-between gap-4 flex-wrap">
         <span className="text-muted-foreground/70 text-[10px] font-mono uppercase tracking-[0.2em]">
           © {new Date().getFullYear()} Rivas Technologies LLC · All rights reserved
         </span>

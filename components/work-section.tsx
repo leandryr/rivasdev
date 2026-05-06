@@ -188,9 +188,9 @@ export function WorkSection() {
   const orderedProjects = [...projects].reverse();
 
   return (
-    <section id="projects" className="relative py-12 lg:py-16">
+    <section id="projects" className="relative py-10 sm:py-12 lg:py-16">
 
-      <div ref={headerRef} className="px-6 lg:px-10 mb-10 lg:mb-12">
+      <div ref={headerRef} className="px-4 sm:px-6 lg:px-10 mb-8 sm:mb-10 lg:mb-12">
         <div className={`flex items-center gap-4 mb-5 transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <span className="text-primary/40 text-[10px] font-mono">01</span>
           <div className="h-px w-8 bg-border" />
@@ -207,8 +207,8 @@ export function WorkSection() {
       {orderedProjects.length === 0 ? (
         <div className="px-6 lg:px-10 text-muted-foreground text-sm font-mono">No projects yet.</div>
       ) : (
-        <div className="px-6 lg:px-10">
-          <div className="grid grid-cols-1 gap-8" style={{ maxWidth: 860 }}>
+        <div className="px-4 sm:px-6 lg:px-10">
+          <div className="grid grid-cols-1 gap-6 sm:gap-8" style={{ maxWidth: 860 }}>
             {orderedProjects.map(p => (
               <ProjectPanel key={p.id} project={p} />
             ))}

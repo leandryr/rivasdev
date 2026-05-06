@@ -17,7 +17,11 @@
       "Bash(curl -s -H 'X-Goog-Api-Key: AIzaSyCsxsvDeP4GFRr9Epqfa-buSS4AzXkcVvE' -H 'Referer: https://rivastechnologies.com' -H 'X-Goog-FieldMask: places.id,places.displayName,places.formattedAddress' -H 'Content-Type: application/json' -d '{\"textQuery\":\"Rivas Technologies Gainesville Georgia software\"}' https://places.googleapis.com/v1/places:searchText)",
       "Bash(git commit *)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:3000/api/blog-image?title=Test&category=Architecture&readTime=5+min&lang=en&date=2026-05-05\")",
-      "Bash(curl -v \"http://localhost:3000/api/blog-image?title=Test&category=Architecture&readTime=5min&lang=en&date=2026-05-05\")"
+      "Bash(curl -v \"http://localhost:3000/api/blog-image?title=Test&category=Architecture&readTime=5min&lang=en&date=2026-05-05\")",
+      "Bash(convert --version)",
+      "Bash(npm run *)",
+      "Bash(node -e ' *)",
+      "Bash(identify /home/rivastechnologies/Desktop/rivasdev/rivasdev/public/og-image.png)"
     ]
   }
 }

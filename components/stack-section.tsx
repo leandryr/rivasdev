@@ -306,7 +306,7 @@ function TechConstellation({ filter, isLight }: { filter: Category | null; isLig
 
   const [hovered,    setHovered]    = useState<number | null>(null);
   const [pinned,     setPinned]     = useState<number | null>(null);
-  const [dimensions, setDimensions] = useState({ w: 900, h: 560 });
+  const [dimensions, setDimensions] = useState({ w: 360, h: 280 });
 
   useEffect(() => { stateRef.current.hovered = hovered; }, [hovered]);
   useEffect(() => { stateRef.current.pinned  = pinned;  }, [pinned]);
@@ -488,8 +488,7 @@ function TechConstellation({ filter, isLight }: { filter: Category | null; isLig
   return (
     <div
       ref={containerRef}
-      className="relative w-full cursor-crosshair"
-      style={{ height: 540 }}
+      className="relative w-full cursor-crosshair h-[280px] sm:h-[400px] lg:h-[540px]"
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       onClick={onClick}
@@ -596,6 +595,99 @@ function TechConstellation({ filter, isLight }: { filter: Category | null; isLig
   );
 }
 
+// ─── Mobile Tech Grid ─────────────────────────────────────────────────────────
+
+const MOBILE_CATS: { cat: Category; label: string; nodes: string[] }[] = [
+  {
+    cat: "frontend",
+    label: "Frontend",
+    nodes: ["React", "Next.js", "TypeScript", "Tailwind"],
+  },
+  {
+    cat: "backend",
+    label: "Backend",
+    nodes: ["Node.js", "Laravel", "GraphQL", "REST API"],
+  },
+  {
+    cat: "database",
+    label: "Database",
+    nodes: ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
+  },
+  {
+    cat: "cloud",
+    label: "Cloud & Infra",
+    nodes: ["Docker", "Kubernetes", "AWS", "Cloud Run", "GitHub", "CI/CD", "Nginx", "Linux"],
+  },
+];
+
+function MobileTechGrid({ isLight }: { isLight: boolean }) {
+  return (
+    <div className="grid grid-cols-1 gap-3">
+      {MOBILE_CATS.map(({ cat, label, nodes }) => {
+        const color = CAT_COLORS[cat];
+        const Icon = TECH_ICONS;
+        return (
+          <div
+            key={cat}
+            className="rounded-2xl border overflow-hidden"
+            style={{
+              borderColor: `${color}25`,
+              background: isLight ? "rgba(255,255,255,0.97)" : "rgba(6,10,22,0.85)",
+            }}
+          >
+            {/* Category header */}
+            <div
+              className="flex items-center gap-2.5 px-4 py-2.5 border-b"
+              style={{
+                borderColor: `${color}20`,
+                background: `${color}0a`,
+              }}
+            >
+              <div
+                className="w-2 h-2 rounded-full"
+                style={{ background: color }}
+              />
+              <span
+                className="text-[10px] font-mono uppercase tracking-[0.3em] font-semibold"
+                style={{ color }}
+              >
+                {label}
+              </span>
+            </div>
+
+            {/* Tech badges */}
+            <div className="flex flex-wrap gap-2 p-4">
+              {nodes.map((name) => {
+                const TechIcon = Icon[name];
+                return (
+                  <div
+                    key={name}
+                    className="flex items-center gap-2 px-3 py-2 rounded-xl border"
+                    style={{
+                      borderColor: `${color}22`,
+                      background: `${color}08`,
+                    }}
+                  >
+                    {TechIcon && (
+                      <TechIcon size={14} />
+                    )}
+                    <span
+                      className="text-[11px] font-mono font-medium"
+                      style={{ color: isLight ? "#050508" : "rgba(220,225,240,0.9)" }}
+                    >
+                      {name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 // ─── Section ──────────────────────────────────────────────────────────────────
 
 export function StackSection() {
@@ -607,7 +699,7 @@ export function StackSection() {
   const isLight = mounted && resolvedTheme === "light";
 
   return (
-    <section id="tech" className="relative py-12 lg:py-16 px-6 lg:px-10">
+    <section id="tech" className="relative py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-10">
       <div ref={ref}>
         <div className={`flex items-center gap-4 mb-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <span className="text-primary/40 text-[10px] font-mono">04</span>
@@ -615,7 +707,7 @@ export function StackSection() {
           <span className="text-muted-foreground text-[10px] uppercase tracking-[0.4em] font-mono">Engineering Infrastructure</span>
         </div>
 
-        <div className="flex items-start justify-between gap-8 flex-wrap mb-8">
+        <div className="flex items-start justify-between gap-8 mb-8">
           <div>
             <h2 className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-[-0.03em] transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
               <span className="text-foreground">Technology </span>
@@ -626,7 +718,7 @@ export function StackSection() {
             </p>
           </div>
 
-          <div className={`flex gap-8 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className={`hidden lg:flex flex-wrap gap-x-8 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             {FILTER_CATS.map((cat) => {
               const count = NODES.filter((n) => n.category === cat).length;
               return (
@@ -639,7 +731,7 @@ export function StackSection() {
           </div>
         </div>
 
-        <div className={`flex flex-wrap gap-2 mb-6 transition-all duration-700 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`hidden lg:flex flex-wrap gap-2 mb-6 transition-all duration-700 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <button onClick={() => setFilter(null)}
             className="px-4 py-1.5 rounded-lg text-[11px] font-mono uppercase tracking-wider border transition-all duration-200"
             style={filter === null ? {
@@ -675,13 +767,19 @@ export function StackSection() {
         </div>
       </div>
 
-      <div className={`border border-border/30 rounded-2xl bg-card/20 overflow-hidden transition-all duration-700 delay-[400ms] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      {/* Mobile: clean categorized grid */}
+      <div className={`lg:hidden transition-all duration-700 delay-[400ms] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <MobileTechGrid isLight={isLight} />
+      </div>
+
+      {/* Desktop: interactive constellation */}
+      <div className={`hidden lg:block border border-border/30 rounded-2xl bg-card/20 overflow-hidden transition-all duration-700 delay-[400ms] ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="px-3 pt-6 pb-3">
           <TechConstellation filter={filter} isLight={isLight} />
         </div>
       </div>
 
-      <p className="text-center text-[10px] font-mono text-muted-foreground/90 uppercase tracking-[0.35em] mt-5">
+      <p className="hidden lg:block text-center text-[10px] font-mono text-muted-foreground/90 uppercase tracking-[0.35em] mt-5">
         Hover to explore · Click to pin · Filter by category
       </p>
     </section>

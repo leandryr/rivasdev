@@ -161,7 +161,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
         }}
       />
 
-      <div className={`relative p-6 lg:p-8 ${service.featured ? "flex flex-col min-h-[380px]" : ""}`}>
+      <div className={`relative p-5 sm:p-6 lg:p-8 ${service.featured ? "flex flex-col sm:min-h-[380px]" : ""}`}>
 
         {/* Icon + number row */}
         <div className="flex items-start justify-between mb-6">
@@ -238,7 +238,7 @@ export function AboutSection() {
   const { ref: headerRef, isVisible: headerVisible } = useScrollReveal<HTMLDivElement>(0.2);
 
   return (
-    <section id="capabilities" className="relative py-12 lg:py-16 px-6 lg:px-10">
+    <section id="capabilities" className="relative py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-10">
       {/* Ambient background glow */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] -z-10 opacity-[0.04] pointer-events-none"

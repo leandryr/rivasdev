@@ -25,8 +25,8 @@ export function TrustedSection() {
 
       <div className="flex items-center h-16">
 
-        {/* Fixed label */}
-        <div className="flex-shrink-0 flex items-center gap-4 pl-6 lg:pl-10 pr-6">
+        {/* Fixed label — hidden on mobile to give marquee space */}
+        <div className="hidden sm:flex flex-shrink-0 items-center gap-4 pl-6 lg:pl-10 pr-6">
           <span className="text-[9px] uppercase tracking-[0.4em] text-muted-foreground/90 font-mono whitespace-nowrap">
             Trusted by companies shipping real products
           </span>

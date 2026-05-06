@@ -274,7 +274,7 @@ function HologramPanel({ faq, isLight }: { faq: FAQ; isLight: boolean }) {
   const statusBg   = isLight ? "rgba(10,124,255,0.04)"  : "rgba(10,124,255,0.04)";
 
   return (
-    <div className="relative w-full h-full flex flex-col animate-holo-flicker" style={{ minHeight: 460 }}>
+    <div className="relative w-full h-full flex flex-col animate-holo-flicker" style={{ minHeight: 'clamp(320px, 50vh, 460px)' }}>
 
       {/* Outer glow */}
       <div className="absolute inset-0 rounded-2xl pointer-events-none"
@@ -393,7 +393,7 @@ export function FaqSection() {
   };
 
   return (
-    <section id="faq" className="relative py-12 lg:py-16 px-6 lg:px-10">
+    <section id="faq" className="relative py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-10">
       <FaqSchema />
       {/* Header */}
       <div ref={headerRef} className="mb-8 lg:mb-10">

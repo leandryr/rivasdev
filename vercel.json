@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/api/cron/daily-post?secret=CRON_SECRET_PLACEHOLDER",
+      "path": "/api/cron/daily-post?secret=rivas2026cron",
       "schedule": "0 9 * * *"
     }
   ]

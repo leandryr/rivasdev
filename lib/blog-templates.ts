@@ -10,186 +10,505 @@ export interface PostTemplate {
 }
 
 export const TEMPLATES: PostTemplate[] = [
-  // ── English posts ──────────────────────────────────────────────────────────
+
+  // ─── Published via JSON — skip ────────────────────────────────────────────
+  // what-is-horizontal-scaling
+  // business-automation-what-to-automate-first
+  // nextjs-vs-traditional-wordpress-2026
+  // horizontal-scaling-explained-for-founders
+  // ai-integration-practical-guide-small-business
+  // security-checklist-web-applications-2026
+
+  // ─── Queue — published one per day by cron ────────────────────────────────
+
   {
-    slug: "what-is-horizontal-scaling",
-    title: "What Is Horizontal Scaling and Why Your Business Needs It",
-    description: "A plain-English explanation of horizontal scaling, load balancing, and why the architecture you choose today determines whether your product survives success.",
-    category: "Architecture", tags: ["Scaling","Cloud","Infrastructure"], readTime: "5 min", lang: "en",
-    content: `<h2>The problem with vertical scaling</h2>
-<p>Most early-stage applications are built on a single server. It's cheaper, simpler, and fast to get started. The problem appears when traffic grows: you upgrade the server (vertical scaling), then upgrade again, until you hit a ceiling — or a bill you can't pay.</p>
-<h2>What is horizontal scaling?</h2>
-<p>Horizontal scaling means adding more servers instead of making one server bigger. Behind a <strong>load balancer</strong>, your application runs on 2, 5, or 50 identical servers. Traffic is distributed automatically. If one server crashes, the others pick up the slack.</p>
-<h2>The key benefits</h2>
-<ul><li><strong>No ceiling:</strong> Add capacity as fast as demand grows.</li><li><strong>High availability:</strong> One failure doesn't take your product down.</li><li><strong>Cost efficiency:</strong> Scale down during low traffic, scale up during launches.</li></ul>
-<h2>What it requires in your codebase</h2>
-<p>Horizontal scaling requires stateless applications — no session data stored on the server itself. Use Redis for sessions, S3 for files, and a managed database like PostgreSQL. At Rivas Technologies, every system we build is architected for horizontal scale from day one.</p>
-<h2>The bottom line</h2>
-<p>If your product is successful, traffic will spike. The question is whether your architecture handles it gracefully or crashes under pressure. We build for the second scenario before it becomes the first.</p>`,
-  },
-  {
-    slug: "nextjs-app-router-explained",
-    title: "Next.js App Router Explained for Non-Technical Founders",
-    description: "Why the App Router matters for your business, what server components actually do, and how it changes the way we build fast, SEO-friendly products.",
-    category: "Web Development", tags: ["Next.js","React","SEO"], readTime: "6 min", lang: "en",
-    content: `<h2>The old way vs. the new way</h2>
-<p>For years, web applications made a hard choice: either render everything on the server (slow for interactions) or render everything on the client (bad for SEO). Next.js App Router changes this equation entirely.</p>
-<h2>Server Components: the game changer</h2>
-<p>Server Components render on the server and ship zero JavaScript to the browser. That means faster load times, better SEO, and less bandwidth — without sacrificing dynamic behavior for parts that need it.</p>
-<h2>What this means for your product</h2>
-<p><strong>SEO:</strong> Google can crawl and index your content immediately — no JavaScript required to see it. <strong>Speed:</strong> Users see content faster because the HTML is pre-rendered. <strong>Cost:</strong> Less JavaScript = smaller bundles = faster CDN delivery.</p>
-<h2>When do we use Client Components?</h2>
-<p>Anything that requires interactivity — forms, dropdowns, animations, real-time updates — stays as a Client Component. The rest is server-rendered. This hybrid model is the best of both worlds.</p>
-<h2>Why we build exclusively with App Router</h2>
-<p>Every product we ship at Rivas Technologies uses the Next.js App Router. It's not a trend preference — it's the technically superior choice for SEO performance, developer productivity, and long-term maintainability.</p>`,
-  },
-  {
-    slug: "api-security-fundamentals",
-    title: "API Security: The Fundamentals Every Developer Must Know",
-    description: "Authentication, rate limiting, input validation and the OWASP API top 10 — from a digital forensics specialist turned full-stack engineer.",
-    category: "Security", tags: ["Security","API","OWASP"], readTime: "8 min", lang: "en",
-    content: `<h2>Why APIs are the new attack surface</h2>
-<p>In 2026, most breaches don't target the frontend — they target exposed APIs. An API endpoint with poor authentication is a direct line to your database, your users' data, and your business logic.</p>
-<h2>Authentication first</h2>
-<p>Every API endpoint should require authentication unless it's explicitly public. Use JWT with short expiration (15 minutes), refresh tokens stored in httpOnly cookies, and never expose sensitive operations without re-authentication.</p>
-<h2>Rate limiting is not optional</h2>
-<p>Without rate limiting, any endpoint can be abused. Brute-force attacks on login, enumeration attacks on IDs, and DDoS through compute-intensive operations all require rate limiting to mitigate.</p>
-<h2>Validate everything at the boundary</h2>
-<p>Never trust input. Validate types, lengths, formats, and allowed values for every parameter — on the server, not just the client. SQL injection, XSS, and command injection all exploit missing validation.</p>
-<h2>The OWASP API Top 10 you need to know</h2>
-<ul><li>Broken Object Level Authorization (BOLA)</li><li>Broken Authentication</li><li>Excessive Data Exposure</li><li>Lack of Resources & Rate Limiting</li><li>Security Misconfiguration</li></ul>
-<h2>From forensics to engineering</h2>
-<p>Having investigated cybercrime cases as a detective, I've seen what API vulnerabilities lead to in the real world. We apply that investigative lens to every system we audit and build at Rivas Technologies.</p>`,
-  },
-  {
-    slug: "docker-kubernetes-for-business",
-    title: "Docker & Kubernetes: What They Are and Why They Matter for Your Business",
-    description: "No technical jargon. A clear explanation of containerization, why it eliminates 'works on my machine' problems, and how it affects your hosting costs.",
-    category: "Infrastructure", tags: ["Docker","Kubernetes","DevOps"], readTime: "6 min", lang: "en",
-    content: `<h2>The problem containers solve</h2>
-<p>Developers write code that works on their laptop. Then it breaks in production. This "works on my machine" problem costs businesses millions in debugging time and delayed launches. Containers solve it permanently.</p>
-<h2>What is Docker?</h2>
-<p>Docker packages your application with everything it needs to run — code, runtime, libraries, configuration — into a single unit called a container. That container runs identically on any machine, any cloud provider, any environment.</p>
-<h2>What is Kubernetes?</h2>
-<p>Kubernetes (K8s) is the system that manages many Docker containers at scale. It handles: automatic restart of failed containers, scaling up or down based on traffic, rolling deployments with zero downtime, and load balancing between instances.</p>
-<h2>What this means for your business</h2>
-<ul><li><strong>Reliability:</strong> Automatic failover means your product stays up even when individual servers fail.</li><li><strong>Cost control:</strong> Scale to zero at night, scale up during business hours.</li><li><strong>Deployments without downtime:</strong> Update your product while users are actively using it.</li></ul>
-<h2>Do you need Kubernetes today?</h2>
-<p>Probably not at the start. We recommend Docker for all projects from day one, and introduce Kubernetes when traffic or complexity justifies it. The key is building your application to be container-ready so the transition is seamless when you need it.</p>`,
-  },
-  {
-    slug: "postgresql-vs-mongodb-when-to-choose",
-    title: "PostgreSQL vs MongoDB: How to Choose the Right Database",
-    description: "The relational vs. document debate settled with real-world examples. Which one fits your product, and what the migration cost is if you choose wrong.",
-    category: "Engineering", tags: ["PostgreSQL","MongoDB","Database"], readTime: "7 min", lang: "en",
-    content: `<h2>The wrong question most founders ask</h2>
-<p>Most teams choose a database based on what they know, what's trendy, or what the tutorial used. The right question is: what does my data actually look like, and how will I query it?</p>
-<h2>When to use PostgreSQL</h2>
-<p>PostgreSQL excels when your data has clear relationships — users have orders, orders have products, products have categories. ACID compliance ensures data consistency. Complex queries with JOINs are performant. It's the right choice for: e-commerce, SaaS platforms, financial systems, and any application where data integrity is critical.</p>
-<h2>When to use MongoDB</h2>
-<p>MongoDB handles unstructured or highly variable data well — content that changes shape, JSON-heavy APIs, rapidly iterating schemas. It's ideal for: content management, real-time analytics, catalog systems where fields vary widely per record.</p>
-<h2>The migration cost of getting it wrong</h2>
-<p>We've inherited systems that chose MongoDB for relational data and spent months migrating to PostgreSQL. The cost is real: schema redesign, data migration scripts, application layer rewrites, and regression testing. Choose based on your actual data model, not on enthusiasm.</p>
-<h2>Our recommendation</h2>
-<p>Default to PostgreSQL. It handles most use cases well and its query capabilities grow with your needs. Add MongoDB or Redis for specific use cases — never as your primary database without clear justification.</p>`,
+    slug: "how-to-build-a-saas-from-scratch-2026",
+    title: "How to Build a SaaS Application from Scratch in 2026",
+    description: "A complete technical roadmap for founders: architecture decisions, tech stack selection, authentication, billing, and the exact sequence that gets you to launch without wasted rebuilds.",
+    category: "Web Development",
+    tags: ["SaaS", "Architecture", "Next.js", "Stripe", "Founders"],
+    readTime: "12 min",
+    lang: "en",
+    content: `<h2>Why most SaaS projects fail before launch</h2>
+<p>The graveyard of unfinished SaaS products is larger than most founders realize. Not because the ideas were wrong — but because the architecture was chosen for the wrong reasons, the scope was not controlled, and the sequence of decisions created compounding rework. This guide is the sequence that avoids those mistakes.</p>
+<h2>Step 1: Define your data model before writing a single line of code</h2>
+<p>The single most important decision in a SaaS application is how your data is structured. Before choosing a framework, before setting up a repository, draw your core entities and their relationships. For most B2B SaaS products, the core entities are: <strong>Organization</strong> (the paying account), <strong>User</strong> (individuals within an organization), <strong>Subscription</strong> (the billing relationship), and your domain-specific entities.</p>
+<p>Multi-tenancy — the ability to serve multiple organizations from a single deployment — must be designed into the data model from day one. Adding it later requires rewriting every query, every permission check, and every data export. The most common patterns are: <strong>shared schema with tenant_id columns</strong> (simplest, works for most SaaS), <strong>separate schemas per tenant</strong> (PostgreSQL, good for compliance-sensitive data), and <strong>separate databases per tenant</strong> (most isolated, highest operational overhead).</p>
+<h2>Step 2: Choose your tech stack based on your team, not trends</h2>
+<p>In 2026, the best SaaS stack for a small team is: <strong>Next.js</strong> for the full-stack framework (server components, API routes, and React frontend in one), <strong>PostgreSQL</strong> as the primary database (battle-tested, ACID-compliant, excellent JSON support for flexible schemas), <strong>Prisma or Drizzle</strong> as the ORM (type-safe queries, migration management), <strong>Redis</strong> for caching and session storage, and <strong>Stripe</strong> for billing.</p>
+<p>The reason to use Next.js over separate frontend/backend: a two-person team should not maintain two repositories, two deployment pipelines, and two environments. A monorepo with Next.js handles 95% of SaaS requirements with significantly less operational overhead. Split into microservices when you have a team large enough to own individual services — not before.</p>
+<h2>Step 3: Authentication first — always</h2>
+<p>Authentication is not a feature you add later. It affects every route, every API endpoint, and every database query. Build it first, build it right, and build it once. The components you need: <strong>sign up and sign in flows</strong>, <strong>email verification</strong>, <strong>password reset</strong>, <strong>session management</strong>, and <strong>role-based access control (RBAC)</strong>.</p>
+<p>In 2026, the fastest correct path is using Auth.js (formerly NextAuth) with your database adapter. It handles OAuth providers, session tokens, and adapter-based persistence. For the RBAC layer, define roles at the organization level: Owner, Admin, and Member cover 90% of B2B SaaS requirements. Store roles in the database, check them in server-side code, never trust client-sent role claims.</p>
+<h2>Step 4: Billing — Stripe is the only defensible choice</h2>
+<p>Stripe's pricing is not cheap, but its API reliability, webhook reliability, and compliance coverage (PCI DSS, SCA, tax handling) make every alternative more expensive when you account for engineering time. The Stripe integration you need at launch: <strong>Stripe Checkout</strong> for the payment page (let Stripe handle the card UI, not you), <strong>Customer Portal</strong> for subscription management (upgrade, downgrade, cancel — again, let Stripe handle the UI), and <strong>webhooks</strong> for keeping your database in sync with Stripe's state.</p>
+<p>The critical implementation detail: treat Stripe as the source of truth for subscription state. Your database holds a mirror. Every important state change — payment success, payment failure, subscription cancellation, trial end — arrives via webhook. Your webhook handler must be idempotent: processing the same event twice must produce the same result as processing it once.</p>
+<h2>Step 5: The deployment stack that lets you move fast</h2>
+<p>For most SaaS at early scale: <strong>Vercel</strong> for the Next.js application (zero-config deployments, preview URLs for every PR, edge functions), <strong>Supabase or Railway</strong> for PostgreSQL (managed backups, connection pooling, point-in-time recovery), <strong>Upstash</strong> for Redis (serverless Redis that works with Vercel's edge runtime), and <strong>Resend</strong> for transactional email.</p>
+<p>This stack costs approximately $50-150/month for early SaaS, scales to thousands of users without configuration changes, and requires no DevOps expertise to operate. When you hit the limits of managed services — typically at 50,000+ monthly active users — you have the revenue to justify a dedicated infrastructure team.</p>
+<h2>Step 6: The features you build first vs. the features you postpone</h2>
+<p>Build at launch: authentication, multi-tenancy, billing, your core value proposition (one workflow, done well), email notifications for key events, and an admin view of your data. Postpone until you have paying customers: complex reporting dashboards, API access for integrations, white-labeling, mobile apps, and advanced RBAC. The SaaS that launches with five features and closes ten customers beats the SaaS that launches with fifty features and closes none.</p>
+<h2>The sequence that works</h2>
+<p>Week 1-2: Data model and database schema. Week 3-4: Authentication and multi-tenancy. Week 5-6: Billing integration. Week 7-10: Core product features. Week 11-12: Onboarding flow and email sequences. Launch. This sequence works because each step depends on the previous one. Authentication depends on the data model. Billing depends on authentication. Product features depend on all three. Skipping steps creates rework that always costs more than doing it right the first time.</p>`,
   },
 
-  // ── Spanish posts ──────────────────────────────────────────────────────────
   {
-    slug: "que-es-una-api-y-por-que-tu-negocio-la-necesita",
-    title: "¿Qué es una API y por qué tu negocio la necesita?",
-    description: "Explicación sin tecnicismos de qué hace una API, por qué conectan tus herramientas digitales y cómo una API bien diseñada puede automatizar tu operación entera.",
-    category: "Automatización", tags: ["API","Integración","Negocios"], readTime: "5 min", lang: "es",
-    content: `<h2>La metáfora que lo explica todo</h2>
-<p>Imagina que tienes un restaurante. La API es el mesero: recibe pedidos de los clientes (otras aplicaciones), los lleva a la cocina (tu sistema), y regresa con la respuesta. Sin el mesero, la cocina y el cliente no pueden comunicarse.</p>
-<h2>¿Qué hace una API en la práctica?</h2>
-<p>Cuando pagas con tu tarjeta en línea, una API conecta tu banco con la tienda. Cuando un cliente llena un formulario y recibe un correo automático, una API está en el medio. Cuando tu CRM se actualiza solo cuando alguien agenda una cita, es una API haciendo el trabajo.</p>
-<h2>Por qué tu negocio necesita APIs</h2>
-<ul><li><strong>Automatización:</strong> Elimina el trabajo manual entre sistemas que no se comunican.</li><li><strong>Escalabilidad:</strong> Una API bien diseñada puede manejar 1 o 1,000,000 de solicitudes sin cambiar el código.</li><li><strong>Integraciones:</strong> Conecta tu tienda, tu CRM, tu sistema de pagos y tu contabilidad en un solo flujo.</li></ul>
-<h2>El costo de no tenerlas</h2>
-<p>Negocios sin APIs sufren procesos manuales, datos duplicados, errores humanos y equipos que pierden horas en tareas que debería hacer software. Es el problema más costoso que nadie ve — hasta que lo calculamos: suele ser 15-30 horas semanales por persona.</p>
-<h2>¿Cómo empezamos?</h2>
-<p>En Rivas Technologies hacemos un mapeo de tus flujos actuales, identificamos qué se puede automatizar con APIs, y lo construimos. El ROI típico: recuperas la inversión en los primeros 90 días.</p>`,
+    slug: "postgresql-vs-mongodb-which-database-2026",
+    title: "PostgreSQL vs MongoDB in 2026: Which Database Should You Choose?",
+    description: "The honest technical comparison between relational and document databases — with concrete guidance on when each one is the right choice for your product.",
+    category: "Architecture",
+    tags: ["PostgreSQL", "MongoDB", "Database", "Architecture", "Backend"],
+    readTime: "9 min",
+    lang: "en",
+    content: `<h2>The false dichotomy</h2>
+<p>The PostgreSQL vs MongoDB debate is often framed as "relational vs NoSQL" — as if the choice is about ideology. It is not. It is about matching your data access patterns to the database that handles them best. Both databases are excellent. The question is which one is excellent for your specific product.</p>
+<h2>PostgreSQL: what it's actually good at</h2>
+<p>PostgreSQL is a relational database. Its core strength is enforcing consistency through ACID transactions, foreign key constraints, and a strict schema. When your application cannot afford data inconsistency — a banking application where a debit without a credit would be catastrophic, an e-commerce platform where inventory counts must be exact — PostgreSQL's consistency guarantees are not just convenient, they are the entire point.</p>
+<p>PostgreSQL is also excellent for complex queries. Joins across multiple tables, aggregations over large datasets, window functions for analytics — PostgreSQL's query planner handles these with a level of sophistication that document databases cannot match. If your product requires reporting, data analysis, or complex data relationships, PostgreSQL's SQL interface is significantly more powerful than MongoDB's aggregation pipeline.</p>
+<p>In 2026, PostgreSQL's JSONB column type also erases one of MongoDB's historical advantages. You can store flexible, schema-less documents inside a PostgreSQL column, index specific fields within those documents, and query them with full SQL. This means you can have relational consistency for your core entities and document flexibility for variable-structure data — in the same database.</p>
+<h2>MongoDB: what it's actually good at</h2>
+<p>MongoDB's document model maps naturally to how object-oriented application code thinks. If your application works with self-contained documents — a product catalog where each product has a variable set of attributes, a content management system where each document type has different fields, a logging system where event schemas vary by event type — MongoDB's lack of a fixed schema is a genuine productivity advantage, not just marketing.</p>
+<p>MongoDB also handles horizontal scaling (sharding) more naturally than PostgreSQL. For truly massive scale — hundreds of terabytes, distributed across global regions — MongoDB's native sharding architecture has less operational complexity than PostgreSQL with Citus or manual partitioning. If you are building a product where horizontal scaling of the database layer is a primary requirement, MongoDB is the more direct path.</p>
+<p>MongoDB's aggregation pipeline, while less expressive than SQL for complex joins, is excellent for document-level transformations and pipeline-style data processing. If your queries are primarily "give me all documents matching these criteria, with these transformations" rather than "join these six tables and compute this aggregate," MongoDB's query model is a good fit.</p>
+<h2>The decision framework</h2>
+<p><strong>Choose PostgreSQL when:</strong> Your data has clear relationships between entities (users belong to organizations, orders contain products). Consistency matters more than flexibility — you cannot afford data that references non-existent records. Your team knows SQL. You need complex reporting or analytics. You want one database that handles both relational and document-style data.</p>
+<p><strong>Choose MongoDB when:</strong> Your primary data structure is self-contained documents with variable schemas. You are building a content management system, product catalog, or IoT data pipeline where documents vary significantly. Your team is more comfortable with JSON-style queries than SQL. You anticipate needing horizontal scaling at a massive scale from the beginning.</p>
+<h2>What most products should actually use</h2>
+<p>For the vast majority of web applications, SaaS products, and APIs built in 2026: use PostgreSQL. The reasons: most web applications have relational data (users, organizations, subscriptions, content); consistency matters for business-critical data; PostgreSQL's JSONB gives you document flexibility when you need it; managed PostgreSQL services (Supabase, Neon, Railway) are excellent and cheap; and the PostgreSQL ecosystem of tools, ORMs, and documentation is mature.</p>
+<p>At Rivas Technologies, we default to PostgreSQL for every new project. We use MongoDB when a client has a specific, justified need for its document model — typically content platforms and IoT applications. We have rebuilt MongoDB applications in PostgreSQL after they struggled with data consistency. We have not rebuilt PostgreSQL applications in MongoDB.</p>`,
   },
+
   {
-    slug: "por-que-tu-web-tarda-en-cargar",
-    title: "Por qué tu web tarda en cargar (y cómo arreglarlo hoy)",
-    description: "Las causas técnicas detrás de los sitios web lentos explicadas para emprendedores. Cada segundo extra te cuesta el 7% de tus conversiones.",
-    category: "Rendimiento", tags: ["Performance","SEO","Velocidad"], readTime: "6 min", lang: "es",
-    content: `<h2>El número que debes conocer</h2>
-<p>Cada segundo adicional que tarda tu web en cargar reduce tus conversiones un <strong>7%</strong>. Si tu sitio tarda 5 segundos y el de tu competidor tarda 1 segundo, ellos están convirtiendo un 28% más de la audiencia que comparten contigo. Cada día.</p>
-<h2>Las causas más comunes</h2>
-<h3>1. Imágenes sin optimizar</h3>
-<p>Una foto de tu iPhone de 8MB enviada directamente al navegador. Es el error más común y el más fácil de solucionar: convierte a WebP, redimensiona al tamaño máximo que se muestra, y comprime. Impacto inmediato: 60-80% de reducción en tiempo de carga.</p>
-<h3>2. Hosting compartido</h3>
-<p>El hosting de $3/mes comparte un servidor entre cientos de sitios. Cuando otro sitio en ese servidor tiene tráfico pico, el tuyo sufre. La solución: Vercel, Railway, o un VPS dedicado.</p>
-<h3>3. WordPress con 40 plugins</h3>
-<p>Cada plugin agrega JavaScript y CSS que el navegador debe descargar y procesar. 40 plugins = 40 razones para que tu web sea lenta. La solución real a menudo es migrar a una arquitectura moderna.</p>
-<h3>4. Sin CDN</h3>
-<p>Si tu servidor está en Nueva York y tu cliente está en Buenos Aires, cada recurso viaja 8,000 km. Un CDN sirve el contenido desde el servidor más cercano al usuario.</p>
-<h2>¿Cómo medir tu situación actual?</h2>
-<p>Ve ahora a <strong>pagespeed.web.dev</strong>, pega tu URL, y mira tu puntaje. Menos de 70 en móvil es urgente. Menos de 50 es crítico. Contáctanos y hacemos la auditoría completa sin costo.</p>`,
+    slug: "what-is-a-rest-api-complete-guide",
+    title: "What Is a REST API? The Complete Guide for Founders and Developers",
+    description: "A thorough explanation of REST APIs — what they are, how they work, when to use them, and how to design one that won't become a maintenance nightmare.",
+    category: "Web Development",
+    tags: ["REST API", "Backend", "Web Development", "Architecture"],
+    readTime: "10 min",
+    lang: "en",
+    content: `<h2>The one-paragraph explanation</h2>
+<p>An API (Application Programming Interface) is a defined way for two software systems to communicate. A REST API is an API that follows a set of architectural principles — called REST (Representational State Transfer) — that make it predictable, scalable, and easy to use over HTTP. When your mobile app shows your bank balance, a REST API connected to your bank's servers. When you log in with Google, a REST API handled that authentication. REST APIs are the connective tissue of the modern internet.</p>
+<h2>How HTTP and REST work together</h2>
+<p>REST APIs use HTTP — the same protocol your browser uses to load web pages. Every REST API interaction consists of a <strong>request</strong> and a <strong>response</strong>. The request has four components: a <strong>method</strong> (what action to perform), a <strong>URL</strong> (what resource to act on), <strong>headers</strong> (metadata about the request, including authentication), and an optional <strong>body</strong> (data to send with the request).</p>
+<p>The HTTP methods map to CRUD operations: <strong>GET</strong> retrieves data (Read). <strong>POST</strong> creates new data (Create). <strong>PUT</strong> or <strong>PATCH</strong> updates existing data (Update). <strong>DELETE</strong> removes data (Delete). A well-designed REST API uses these methods consistently, so developers can understand what an endpoint does before reading its documentation.</p>
+<h2>Resources and URLs: the grammar of REST</h2>
+<p>In REST, everything is a resource. A resource is a thing your API exposes — a user, an order, a product, a blog post. Each resource has a URL that identifies it. The URL design should be noun-based, not verb-based. Good: <code>GET /users/123</code> (get the user with ID 123). Bad: <code>GET /getUser?id=123</code> (the method already says "get").</p>
+<p>REST URL conventions: <code>/resources</code> for a collection (all users), <code>/resources/{id}</code> for a specific item (one user), <code>/resources/{id}/sub-resources</code> for nested relationships (a user's orders). Plural nouns. Lowercase. Hyphens for multi-word names (<code>/blog-posts</code>, not <code>/blogPosts</code>). These conventions are not arbitrary — they create predictability that reduces the time developers spend reading documentation.</p>
+<h2>Status codes: the language of responses</h2>
+<p>Every HTTP response includes a status code that tells the client what happened. The ranges: <strong>2xx Success</strong> — the request worked. 200 OK (generic success), 201 Created (a new resource was created), 204 No Content (success, but no data to return). <strong>4xx Client Errors</strong> — the client did something wrong. 400 Bad Request (invalid input), 401 Unauthorized (not authenticated), 403 Forbidden (authenticated but not permitted), 404 Not Found (resource doesn't exist), 409 Conflict (e.g., duplicate email). <strong>5xx Server Errors</strong> — the server failed. 500 Internal Server Error (something broke on the server), 503 Service Unavailable (server is overloaded or down).</p>
+<p>Using the correct status code is not pedantic — it lets clients handle errors correctly without parsing the response body. A mobile app can show "please log in" for 401 without knowing anything about your API's specific error format.</p>
+<h2>Authentication: how REST APIs verify identity</h2>
+<p>REST APIs are stateless — each request must contain everything needed to process it, including authentication. The most common authentication patterns: <strong>API Keys</strong> — a static secret included in request headers (<code>Authorization: Bearer sk_live_...</code>). Simple, good for server-to-server communication. <strong>JWT (JSON Web Tokens)</strong> — a signed token containing claims about the user, issued after login, included with subsequent requests. Good for user-facing applications. <strong>OAuth 2.0</strong> — the protocol behind "Sign in with Google." Complex but necessary when users need to grant your application access to their data in other services.</p>
+<h2>Versioning: how to evolve an API without breaking clients</h2>
+<p>Once clients depend on your API, changing its behavior breaks them. Versioning lets you make breaking changes in a new version while maintaining the old version for existing clients. The most common approach: version in the URL (<code>/v1/users</code>, <code>/v2/users</code>). Simple, visible, cache-friendly. The rule: never make breaking changes to an existing version. Breaking changes include: removing a field from a response, changing a field's type, changing URL structure, and changing authentication requirements.</p>
+<h2>Designing an API that doesn't become a maintenance nightmare</h2>
+<p>The mistakes that create unmaintainable APIs: inconsistent naming conventions (some endpoints use camelCase, others snake_case), verb-based URLs (<code>/getUserOrders</code>, <code>/createNewProduct</code>), returning different structures for the same resource in different endpoints, and leaking internal implementation details (database column names, internal IDs) into the public API.</p>
+<p>The practices that create maintainable APIs: a consistent response envelope (every response has the same structure), consistent error format (every error response has <code>error</code>, <code>message</code>, and <code>code</code> fields), pagination on every list endpoint (never return unbounded lists), and documentation generated from your code (not written separately and left to drift).</p>`,
   },
+
   {
-    slug: "automatiza-tu-crm-guia-practica",
-    title: "Automatiza tu CRM: guía práctica para emprendedores",
-    description: "Cómo conectar tu CRM con tus formularios, correos, WhatsApp y reportes para eliminar el trabajo manual y no perder ningún lead.",
-    category: "Automatización", tags: ["CRM","Automatización","Ventas"], readTime: "7 min", lang: "es",
-    content: `<h2>El problema del CRM manual</h2>
-<p>Un lead llega por WhatsApp. Lo agregas manualmente al CRM. Olvidas marcarlo como contactado. La semana siguiente no recuerdas en qué etapa está. Pierdes el negocio. Esto ocurre decenas de veces por mes en la mayoría de los negocios pequeños.</p>
-<h2>Lo que puede automatizarse</h2>
-<ul><li><strong>Captura de leads:</strong> Formulario de tu web → CRM automáticamente.</li><li><strong>Seguimiento:</strong> Si no hay actividad en 3 días → correo automático o tarea asignada.</li><li><strong>Pipeline:</strong> Cuando cambia el estado de un deal → notificación al responsable.</li><li><strong>Reportes:</strong> Cada lunes a las 8am → resumen de leads de la semana anterior en tu correo.</li></ul>
-<h2>Las integraciones más valiosas</h2>
-<p><strong>Formularios → CRM:</strong> Todo lead que llena un formulario en tu web aparece instantáneamente en tu CRM con todos sus datos. Cero trabajo manual.</p>
-<p><strong>CRM → WhatsApp/Email:</strong> Secuencias de follow-up automáticas. El lead recibe un mensaje 1 hora después de registrarse, otro al día 3, otro al día 7.</p>
-<p><strong>Pagos → CRM:</strong> Cuando un cliente paga, su estado cambia automáticamente a "cliente activo" y se activa el onboarding.</p>
-<h2>El ROI real</h2>
-<p>Un cliente nuestro recuperó 22 horas semanales de trabajo manual después de automatizar su CRM. A $25/hora, eso es $2,200/mes en productividad recuperada — por un proyecto de automatización que costó $4,000. Recuperó la inversión en 2 meses.</p>`,
+    slug: "docker-for-beginners-complete-guide",
+    title: "Docker for Beginners: What It Is, Why It Matters, and How to Use It",
+    description: "The complete introduction to Docker for developers who have heard the term but never understood why it exists. Containers, images, Dockerfiles, and practical usage explained clearly.",
+    category: "Infrastructure",
+    tags: ["Docker", "DevOps", "Infrastructure", "Containers", "Deployment"],
+    readTime: "11 min",
+    lang: "en",
+    content: `<h2>The problem Docker solves</h2>
+<p>"It works on my machine." These five words have delayed more software releases than any bug. The reason is environment mismatch: your development machine has Node.js 18.12, the staging server has Node.js 16.4, and the production server has Node.js 14.21. Your code works on 18.12, fails silently on 16.4, and crashes on 14.21. Docker eliminates this class of problem by packaging your application with everything it needs to run — the exact runtime version, the exact system libraries, the exact configuration — into a single portable unit called a <strong>container</strong>.</p>
+<h2>Containers vs virtual machines: the critical distinction</h2>
+<p>A virtual machine (VM) emulates an entire computer, including its own operating system kernel. This makes VMs heavyweight — a VM with 512MB of RAM uses 512MB of RAM just for the OS before your application starts. A container shares the host operating system's kernel. It isolates only the application and its dependencies, not the entire OS. A container with a Node.js application might use 50MB. The same application in a VM might use 512MB. Containers start in milliseconds. VMs start in minutes.</p>
+<p>The practical result: you can run 50 containers on a server that can only run 5 VMs. Containers are fast enough to create and destroy as part of a deployment, not just as long-lived infrastructure.</p>
+<h2>Images vs containers: the template vs the instance</h2>
+<p>A Docker <strong>image</strong> is a read-only template — like a class in object-oriented programming. It contains your application code, the runtime, the libraries, and the configuration. A Docker <strong>container</strong> is a running instance of an image — like an object instantiated from a class. You build an image once. You run it as many containers as you need. Delete a container and the image is unchanged. Run two containers from the same image and they are identical at startup, but can diverge as they run (different data written, different state).</p>
+<h2>The Dockerfile: how you define an image</h2>
+<p>A Dockerfile is a text file that describes how to build an image. Each line is an instruction. Docker executes instructions in order, and each instruction creates a layer. Layers are cached — if a layer hasn't changed, Docker reuses it instead of rebuilding it. This is why instruction order matters: put the instructions that change rarely (installing dependencies) before the instructions that change frequently (copying your application code).</p>
+<p>A typical Node.js Dockerfile: <code>FROM node:20-alpine</code> (start from the official Node.js image, Alpine variant for small size). <code>WORKDIR /app</code> (set the working directory inside the container). <code>COPY package*.json ./</code> (copy package files first). <code>RUN npm ci</code> (install dependencies — this layer is cached as long as package.json doesn't change). <code>COPY . .</code> (copy application code). <code>EXPOSE 3000</code> (document that the app listens on port 3000). <code>CMD ["node", "server.js"]</code> (the command to run when the container starts).</p>
+<h2>Docker Compose: running multiple containers together</h2>
+<p>Most applications need more than one container: a web application container, a database container, and a cache container. Docker Compose defines and runs multi-container applications. A <code>docker-compose.yml</code> file describes the services, their images or Dockerfiles, their ports, their environment variables, and how they connect to each other. Running <code>docker compose up</code> starts all services. Running <code>docker compose down</code> stops and removes them. This replaces the multi-step "start the database, start Redis, set the environment variables, start the application" with a single command.</p>
+<h2>Why Docker matters for your deployment pipeline</h2>
+<p>Once your application runs in a Docker container locally, it runs identically in CI/CD, in staging, and in production — because the container carries its own environment. Your deployment pipeline builds the image, pushes it to a registry (Docker Hub, AWS ECR, Google Artifact Registry), and tells the production server to pull and run the new image. The server doesn't know or care what's inside the image. It just runs containers.</p>
+<p>This is the foundation of every modern deployment system: Kubernetes, AWS ECS, Google Cloud Run, Fly.io — they all run Docker containers. Learning Docker is not just learning a tool. It is learning the vocabulary of modern infrastructure.</p>
+<h2>Common mistakes and how to avoid them</h2>
+<p><strong>Running as root:</strong> By default, containers run as the root user, which is a security risk. Add <code>USER node</code> to your Dockerfile to run as a non-root user. <strong>Storing data in containers:</strong> Containers are ephemeral. Data written inside a container disappears when the container is destroyed. Use volumes (managed by Docker) or bind mounts (paths on the host) for persistent data. <strong>Using the <code>latest</code> tag:</strong> <code>FROM node:latest</code> in your Dockerfile means different builds get different Node.js versions. Pin to a specific version: <code>FROM node:20.11.0-alpine</code>. <strong>Ignoring the .dockerignore file:</strong> Like .gitignore, .dockerignore prevents files from being copied into the image. Always add <code>node_modules</code>, <code>.git</code>, and <code>.env</code> to .dockerignore.</p>`,
   },
+
   {
-    slug: "ia-para-emprendedores-casos-reales",
-    title: "IA para emprendedores: casos de uso reales (sin exageración)",
-    description: "No el hype. Los casos de uso de Inteligencia Artificial que realmente funcionan para negocios pequeños y medianos hoy, con resultados medibles.",
-    category: "IA & Automatización", tags: ["IA","Automatización","Negocios"], readTime: "8 min", lang: "es",
-    content: `<h2>El problema con cómo se habla de IA</h2>
-<p>El 90% del contenido sobre IA habla de lo que <em>podría pasar</em> en el futuro. Nosotros trabajamos con lo que funciona hoy, para negocios reales, con resultados medibles.</p>
-<h2>Caso 1: Atención al cliente automatizada</h2>
-<p>Un e-commerce con 200+ preguntas diarias repetidas implementó un chatbot con IA entrenado en sus preguntas frecuentes. Resultado: 73% de consultas resueltas sin intervención humana. El equipo de soporte se enfocó en casos complejos. Tiempo de respuesta promedio: de 4 horas a 30 segundos.</p>
-<h2>Caso 2: Generación de descripciones de productos</h2>
-<p>Una tienda de ropa con 800 productos sin descripciones. IA + plantillas de marca = 800 descripciones únicas, optimizadas para SEO, en 2 horas. Costo: $40 en API. Costo alternativo de hacerlo manualmente: $3,200.</p>
-<h2>Caso 3: Clasificación de leads</h2>
-<p>Un estudio contable recibía 50 consultas semanales de calidad muy variable. Implementamos clasificación automática por IA: alto/medio/bajo potencial basado en el mensaje inicial. El equipo de ventas ahora atiende primero los leads de alto potencial. Conversión aumentó 34%.</p>
-<h2>Lo que la IA NO puede hacer (todavía)</h2>
-<p>Tomar decisiones estratégicas. Manejar situaciones completamente nuevas. Construir relaciones humanas. Reemplazar el juicio experto en contextos complejos. La IA amplifica capacidades humanas — no las reemplaza.</p>
-<h2>¿Por dónde empezar?</h2>
-<p>Identifica la tarea más repetitiva de tu operación. Si requiere procesar texto, clasificar, responder preguntas frecuentes o generar contenido estructurado — hay una solución de IA para eso hoy.</p>`,
+    slug: "core-web-vitals-optimization-guide-2026",
+    title: "Core Web Vitals Optimization: The Complete Guide to Passing Google's Page Experience",
+    description: "LCP, INP, CLS — what they measure, why they affect your search ranking, and the specific techniques that move each metric from red to green.",
+    category: "Performance & SEO",
+    tags: ["Core Web Vitals", "SEO", "Performance", "Lighthouse", "Web Development"],
+    readTime: "13 min",
+    lang: "en",
+    content: `<h2>Why Core Web Vitals are the SEO metric that actually matters in 2026</h2>
+<p>Google uses hundreds of signals to rank pages. Core Web Vitals are unique because they measure something Google cares about directly: how fast and stable your page feels to users. Pages that load quickly, respond instantly to interactions, and don't shift their layout while loading rank better than pages that don't — all else being equal. In competitive niches, all else is rarely equal, which means Core Web Vitals are often the tiebreaker.</p>
+<p>The three metrics: <strong>LCP (Largest Contentful Paint)</strong> — how long until the largest visible element is rendered. <strong>INP (Interaction to Next Paint)</strong> — how quickly the page responds to user interactions like clicks and taps. <strong>CLS (Cumulative Layout Shift)</strong> — how much the page layout shifts unexpectedly after load. Google's thresholds: LCP under 2.5 seconds is Good, over 4 seconds is Poor. INP under 200ms is Good, over 500ms is Poor. CLS under 0.1 is Good, over 0.25 is Poor.</p>
+<h2>Optimizing LCP: make the largest element load first</h2>
+<p>LCP is almost always determined by either a hero image, a large text block, or a video. For images: use the <code>loading="eager"</code> attribute and the <code>fetchpriority="high"</code> attribute on your hero image. This tells the browser to load it immediately, before anything else. Do not lazy-load your LCP image — this is the most common LCP mistake. Use modern formats: WebP images are 25-35% smaller than JPEG at the same quality; AVIF is another 30-50% smaller than WebP. Serve images from a CDN with edge caching, not your application server.</p>
+<p>For server-rendered pages (Next.js with server components): your HTML arrives fully formed, so LCP is primarily a network and image problem. For client-rendered pages (React SPA): the browser must download, parse, and execute JavaScript before rendering any content, which dramatically increases LCP. This is the primary reason server-side rendering matters for SEO and performance. A Next.js page with server components has an LCP advantage of 1-3 seconds over an equivalent React SPA.</p>
+<p>Preloading critical resources: add a <code>&lt;link rel="preload"&gt;</code> tag in the document head for your LCP image. This starts the image download before the browser processes the <code>&lt;img&gt;</code> tag in the body. For web fonts, preload the font files for the weight used in the LCP element. Every second saved in LCP correlates directly with improved conversion rates — Google's research shows a 1-second improvement in LCP increases conversions by 7-12% on e-commerce sites.</p>
+<h2>Optimizing INP: make interactions feel instant</h2>
+<p>INP replaced FID (First Input Delay) as a Core Web Vital in 2024 because it measures all interactions throughout the page lifecycle, not just the first one. Poor INP is almost always caused by JavaScript that blocks the main thread. The browser has one main thread. If JavaScript is running on it, it cannot process clicks, update the UI, or handle scroll events. When a user clicks a button and nothing happens for 500ms, they clicked while JavaScript was blocking the main thread.</p>
+<p>The fixes: <strong>Break up long tasks.</strong> Any JavaScript task that runs for more than 50ms blocks the main thread. Use <code>setTimeout(..., 0)</code>, <code>requestIdleCallback</code>, or the Scheduler API to break long tasks into smaller chunks that yield to the browser. <strong>Reduce JavaScript bundle size.</strong> Every kilobyte of JavaScript you ship must be downloaded, parsed, and compiled before it can run. Tree-shake unused code, code-split by route, and use dynamic imports for code that isn't needed immediately. <strong>Move work off the main thread.</strong> Web Workers run JavaScript in a background thread, keeping the main thread free for user interactions. For CPU-intensive operations (data processing, compression), Web Workers are the correct tool. <strong>Virtualize long lists.</strong> Rendering 10,000 items in a list means 10,000 DOM nodes. Interactions on a DOM with 10,000 nodes are slow. Libraries like TanStack Virtual render only the visible portion.</p>
+<h2>Optimizing CLS: stop your layout from jumping</h2>
+<p>Layout shift happens when elements appear on the page after the initial render and push other elements out of position. The most common causes: images without dimensions, dynamically injected content (ads, cookie banners, chat widgets), and web fonts that cause text to reflow when they load.</p>
+<p><strong>Images:</strong> Always include <code>width</code> and <code>height</code> attributes on <code>&lt;img&gt;</code> elements. Browsers use these to reserve space for the image before it loads, preventing the surrounding content from shifting when the image arrives. In CSS, use <code>aspect-ratio</code> for responsive images: <code>aspect-ratio: 16/9</code> reserves the correct proportional space. <strong>Dynamic content:</strong> Reserve space for ads and chat widgets with CSS before the JavaScript loads them. Skeleton screens (gray placeholder boxes) prevent layout shift for content that loads asynchronously. <strong>Fonts:</strong> Use <code>font-display: optional</code> to prevent text from swapping to the web font after the system font has already rendered, or use <code>font-display: swap</code> with <code>size-adjust</code> to make the fallback font the same size as the web font. Google Fonts hosted on your domain (not Google's servers) eliminate the extra DNS lookup and connection overhead.</p>
+<h2>Measuring and monitoring</h2>
+<p>Tools for measuring Core Web Vitals: <strong>PageSpeed Insights</strong> (Google's official tool, uses real-world Chrome data for your URL). <strong>Lighthouse</strong> in Chrome DevTools (lab measurement, good for development). <strong>Chrome User Experience Report (CrUX)</strong> (real-world data from Chrome users, the data Google actually uses for ranking). <strong>Web Vitals JavaScript library</strong> (measure Core Web Vitals in production, send to your analytics). The critical distinction: lab scores (PageSpeed Insights "Performance" score) and field scores (real-user data) can differ significantly. What matters for SEO is field data. Optimize for real users, not for the lab.</p>`,
   },
+
   {
-    slug: "seguridad-web-checklist-2026",
-    title: "Seguridad web: el checklist que todo fundador debe revisar en 2026",
-    description: "Las vulnerabilidades más comunes en aplicaciones web y cómo cerrarlas. Basado en experiencia forense real como exdetective de informática criminal.",
-    category: "Seguridad", tags: ["Seguridad","OWASP","Web"], readTime: "9 min", lang: "es",
-    content: `<h2>Por qué la seguridad importa desde el día 1</h2>
-<p>En mi tiempo como Detective Agregado de Informática Forense en la CICPC, investigué docenas de casos donde sistemas vulnerables costaron a empresas desde datos de clientes hasta su operación completa. El patrón era siempre el mismo: la seguridad fue una idea para después.</p>
-<h2>Las 5 vulnerabilidades que encontramos en casi todo cliente</h2>
-<h3>1. Contraseñas débiles sin 2FA</h3>
-<p>El 80% de los accesos no autorizados ocurren por credenciales comprometidas. Implementa autenticación de dos factores en todos los sistemas críticos. Sin excepción.</p>
-<h3>2. Formularios sin validación server-side</h3>
-<p>Validar solo en el cliente (JavaScript) no protege nada — cualquiera puede omitir esa validación. Todo input debe validarse en el servidor antes de procesarse.</p>
-<h3>3. APIs sin autenticación o con autenticación débil</h3>
-<p>APIs expuestas sin tokens de autenticación robustos son puertas abiertas. Usa JWT con expiración corta, refresh tokens seguros, y rate limiting en todos los endpoints.</p>
-<h3>4. Dependencias desactualizadas</h3>
-<p>Cada librería desactualizada es una vulnerabilidad conocida esperando ser explotada. Automatiza la revisión de dependencias con herramientas como Dependabot.</p>
-<h3>5. Sin logs de auditoría</h3>
-<p>Sin logs, un incidente de seguridad es imposible de investigar. Registra: quién accedió, qué hizo, desde dónde, y cuándo. Es tu evidencia si algo ocurre.</p>
-<h2>Cómo hacer una auditoría básica hoy</h2>
-<p>Usa OWASP ZAP (gratuito) para hacer un scan básico de tu aplicación. Te dará una lista de vulnerabilidades ordenadas por severidad. Contáctanos para una auditoría completa con plan de remediación.</p>`,
+    slug: "typescript-vs-javascript-which-to-use-2026",
+    title: "TypeScript vs JavaScript in 2026: The Honest Comparison",
+    description: "When TypeScript is the right choice, when plain JavaScript is better, and how to make the decision for your specific team and project.",
+    category: "Web Development",
+    tags: ["TypeScript", "JavaScript", "Web Development", "Engineering"],
+    readTime: "8 min",
+    lang: "en",
+    content: `<h2>The debate is mostly settled — but the nuance matters</h2>
+<p>In 2026, TypeScript has won the popularity contest. NPM download numbers, GitHub trending repositories, job postings, and framework documentation all favor TypeScript. But popularity is not the same as correctness for every use case. The question is not "is TypeScript better than JavaScript in general?" — it clearly provides more tooling for most production codebases. The question is "is TypeScript the right choice for your specific situation?"</p>
+<h2>What TypeScript actually adds</h2>
+<p>TypeScript is a superset of JavaScript. Every valid JavaScript file is a valid TypeScript file. TypeScript adds: <strong>static type checking</strong> (catch type errors at compile time, not runtime), <strong>IDE autocompletion and refactoring</strong> (your editor knows what properties an object has), <strong>explicit interfaces and types</strong> (document what shape your data should have), and <strong>compile-time validation</strong> (the TypeScript compiler rejects code that would fail at runtime). TypeScript does not add new runtime features — it compiles to JavaScript. At runtime, TypeScript code behaves identically to the JavaScript it compiled from.</p>
+<h2>When TypeScript is the clear winner</h2>
+<p><strong>Large codebases with multiple contributors.</strong> Without types, understanding a function requires reading its implementation to understand what arguments it accepts and what it returns. With types, the function signature is the documentation: <code>function createUser(email: string, role: Role): Promise&lt;User&gt;</code> tells you everything. When a codebase has 50+ files and 3+ developers, TypeScript pays back its learning curve in the first week of working on an unfamiliar part of the code.</p>
+<p><strong>Applications that refactor frequently.</strong> Renaming a function, changing the shape of a data structure, or adding a required field to an interface — TypeScript makes these changes safe. The compiler flags every call site that needs updating. JavaScript requires you to search the codebase manually and hope you didn't miss anything.</p>
+<p><strong>API boundaries.</strong> When your frontend and backend share type definitions, a change to an API endpoint's response shape is immediately visible as a type error in the frontend code. Without TypeScript, you discover the mismatch at runtime — usually in production.</p>
+<h2>When JavaScript is the better choice</h2>
+<p><strong>Small scripts and utilities.</strong> A 50-line script that processes a CSV file and sends an email does not need types. The overhead of TypeScript configuration, the compilation step, and the type annotations cost more than they save for a script you'll run once and never touch again.</p>
+<p><strong>Quick prototypes where the type system would slow you down.</strong> In the first two hours of a new idea, JavaScript's dynamic flexibility lets you change data structures rapidly without updating type definitions. The tradeoff: switch to TypeScript before the prototype becomes production code.</p>
+<p><strong>Embedded scripts and configuration files.</strong> Webpack configs, ESLint configs, and simple automation scripts are often better as plain JavaScript where the TypeScript compilation overhead adds no value.</p>
+<h2>The migration path: JavaScript now, TypeScript later</h2>
+<p>If you start a project in JavaScript and want to migrate to TypeScript later, the path is: rename files from <code>.js</code> to <code>.ts</code>, set <code>strict: false</code> in tsconfig.json initially, fix errors incrementally as you touch each file, and enable strict mode once the codebase compiles cleanly. TypeScript supports gradual adoption — a mixed <code>.js</code>/<code>.ts</code> codebase is valid. You do not need to migrate everything at once.</p>
+<h2>The verdict</h2>
+<p>For any application that will be maintained beyond the initial build: TypeScript. The learning curve is real but finite — typically two to four weeks for a developer experienced with JavaScript. The productivity return from IDE tooling, refactoring safety, and type-checked API boundaries compounds over the lifetime of the project. For scripts, quick experiments, and one-off automation: plain JavaScript. The compilation step and type annotations cost more than they save for code with a short lifespan.</p>
+<p>At Rivas Technologies, every production application we build uses TypeScript. Every internal script we write uses JavaScript. The distinction is not about preference — it is about matching the tool to the cost-benefit tradeoff of the specific artifact.</p>`,
   },
+
+  {
+    slug: "github-actions-cicd-guide",
+    title: "CI/CD with GitHub Actions: The Complete Setup Guide",
+    description: "How to set up automated testing, building, and deployment with GitHub Actions — from zero to a professional pipeline that catches bugs before they reach production.",
+    category: "Infrastructure",
+    tags: ["CI/CD", "GitHub Actions", "DevOps", "Automation", "Deployment"],
+    readTime: "10 min",
+    lang: "en",
+    content: `<h2>What CI/CD actually means in practice</h2>
+<p><strong>Continuous Integration (CI)</strong> means every code change is automatically tested. When a developer pushes code or opens a pull request, an automated system checks out the code, installs dependencies, runs the test suite, and reports whether the tests pass. The goal: no code reaches the main branch without passing automated checks. <strong>Continuous Deployment (CD)</strong> means code that passes CI is automatically deployed to production (or staging). No manual deployment steps. No "deployment Fridays" with everyone on standby. Code ships as fast as it is written and verified.</p>
+<p>Together, CI/CD reduces the gap between writing code and getting it to users. Teams with mature CI/CD pipelines deploy multiple times per day safely. Teams without CI/CD deploy weekly or monthly and accumulate risk with every delayed release.</p>
+<h2>GitHub Actions: the modern standard</h2>
+<p>GitHub Actions is a CI/CD platform built into GitHub. Every public GitHub repository gets Actions for free. Every workflow is a YAML file in the <code>.github/workflows/</code> directory. Workflows are triggered by GitHub events: push to a branch, pull request opened, issue created, on a cron schedule, or manually. GitHub provides hosted runners (Linux, Windows, macOS virtual machines) that execute the workflow steps.</p>
+<h2>Your first workflow: automated testing</h2>
+<p>Create <code>.github/workflows/test.yml</code>. This workflow runs on every push and every pull request. It checks out the code, installs Node.js, installs dependencies, and runs the test suite. If any test fails, the workflow fails, and GitHub blocks the pull request from merging (if you've configured branch protection rules).</p>
+<p>The structure of a workflow: <code>name</code> (display name in the GitHub UI), <code>on</code> (the events that trigger it), <code>jobs</code> (the work to do), <code>runs-on</code> (which operating system to use), and <code>steps</code> (the individual commands). Steps use either <code>uses</code> (to run a community action like <code>actions/checkout</code>) or <code>run</code> (to run a shell command).</p>
+<h2>Caching dependencies: making CI fast</h2>
+<p>The most common CI performance mistake: downloading dependencies on every run. A Node.js project's <code>node_modules</code> can be 300MB. Downloading and installing 300MB on every push takes 2-3 minutes. GitHub Actions supports caching. Using the <code>actions/cache</code> action with the <code>node_modules</code> path and <code>package-lock.json</code> as the cache key reduces dependency installation from 2-3 minutes to 10-15 seconds on cache hits. A CI run that took 5 minutes takes 90 seconds with proper caching.</p>
+<h2>Multiple jobs and parallelism</h2>
+<p>One workflow can have multiple jobs that run in parallel. Run unit tests, integration tests, linting, and type checking simultaneously instead of sequentially. Four jobs that each take 2 minutes finish in 2 minutes total, not 8. Define dependencies between jobs with <code>needs</code> — a deployment job can wait for the test job to succeed before running.</p>
+<h2>Deploying to production automatically</h2>
+<p>A deployment job runs after tests pass on the main branch. For Vercel: install the Vercel CLI and run <code>vercel --prod</code> with a Vercel token stored in GitHub Secrets. For AWS: use the <code>aws-actions/configure-aws-credentials</code> action with IAM credentials stored in GitHub Secrets, then run your deployment command. For Docker-based deployments: build the image, push to a registry, and update the container orchestrator. The key principle: secrets (API keys, deployment tokens, database passwords) are never stored in the workflow file. They are stored in GitHub Secrets and injected as environment variables at runtime.</p>
+<h2>Branch protection: enforcing the pipeline</h2>
+<p>A CI pipeline is only useful if it blocks bad code from merging. Enable branch protection on your main branch: require status checks to pass before merging (select your CI workflow), require pull request reviews, and prevent force pushes. With these rules, the only way code reaches main is by passing CI and receiving a code review. No exceptions. No "I'll fix it in the next commit."</p>
+<h2>The compound effect of CI/CD</h2>
+<p>Teams that implement CI/CD report fewer production incidents, faster feature delivery, and less developer stress around deployments. The reason is not magic — it is that small, frequent, tested changes are safer than large, infrequent, manually-deployed changes. Every deployment is low-stakes because it is small. Bugs are caught immediately after introduction, not days or weeks later when the context is gone. At Rivas Technologies, we configure CI/CD in the first week of every engagement. It is not a nice-to-have. It is the foundation of professional software delivery.</p>`,
+  },
+
+  {
+    slug: "stripe-payment-integration-guide",
+    title: "How to Build a Stripe Payment Integration: The Complete Developer Guide",
+    description: "Webhooks, subscriptions, one-time payments, and the Stripe patterns that handle real-world edge cases — from failed payments to free trials to proration.",
+    category: "Web Development",
+    tags: ["Stripe", "Payments", "SaaS", "Web Development", "Backend"],
+    readTime: "11 min",
+    lang: "en",
+    content: `<h2>Why Stripe is the only reasonable choice in 2026</h2>
+<p>Payment processing involves PCI DSS compliance, fraud detection, international card networks, currency conversion, tax calculation, and dispute handling. Stripe has spent fifteen years building infrastructure for all of these. The 2.9% + $0.30 transaction fee buys you a team of hundreds of engineers maintaining payment infrastructure that would cost tens of millions to build and maintain internally. For any company doing less than $50M per year in payment volume, Stripe's pricing is not the cost — it is the saving.</p>
+<h2>The two integration patterns: Payment Links vs. custom integration</h2>
+<p><strong>Stripe Payment Links</strong> require zero code. Create a payment link in the Stripe dashboard, embed it in your site. Payment happens on Stripe's hosted page. Use this for: simple one-time sales, early-stage validation, non-technical teams. The limitation: no control over the payment flow, no custom post-payment logic beyond webhooks.</p>
+<p><strong>Custom integration with Stripe Elements or Checkout</strong> gives you full control. Stripe Checkout is Stripe's hosted payment page — you redirect to it, Stripe handles everything, you get a callback. Stripe Elements embeds the card input directly in your page while Stripe handles card tokenization. For SaaS: use Stripe Checkout for initial purchase, Stripe Customer Portal for subscription management, and webhooks to keep your database in sync. This combination handles 95% of SaaS billing requirements without building custom billing UI.</p>
+<h2>Subscriptions: the mental model you need</h2>
+<p>A Stripe subscription has four components: a <strong>Customer</strong> (who is being billed), a <strong>Price</strong> (what they are being billed for — amount, currency, billing interval), a <strong>Subscription</strong> (the ongoing billing relationship linking a customer to a price), and a <strong>Payment Method</strong> (how they are billed — card, bank account). The subscription state machine: <code>trialing</code> → <code>active</code> → <code>past_due</code> (payment failed) → <code>canceled</code>. Your application must handle all these states and grant/restrict access accordingly.</p>
+<h2>Webhooks: the critical implementation</h2>
+<p>Webhooks are the mechanism by which Stripe tells your application what happened. Every significant Stripe event — payment succeeded, payment failed, subscription created, subscription canceled, trial ended — arrives as an HTTP POST to your webhook endpoint. Your application must process these events to keep its database in sync with Stripe's state of truth.</p>
+<p>The webhook events you must handle for subscriptions: <code>checkout.session.completed</code> (user completed checkout, create/update subscription record in your database), <code>invoice.payment_succeeded</code> (subscription renewed successfully, extend access), <code>invoice.payment_failed</code> (payment failed, send a recovery email, restrict access after grace period), <code>customer.subscription.deleted</code> (subscription canceled, revoke access), and <code>customer.subscription.updated</code> (plan changed, update access level).</p>
+<p>The non-obvious implementation detail: webhooks can arrive out of order, and can arrive multiple times. Your webhook handler must be <strong>idempotent</strong> — processing the same event twice must produce the same result as processing it once. Use the event's <code>id</code> to deduplicate. Store the <code>id</code> in your database when you process an event, and skip processing if you've seen that ID before.</p>
+<h2>Handling failed payments: the dunning flow</h2>
+<p>Payment failure is inevitable. Cards expire, banks decline charges, accounts run out of funds. The revenue impact of unhandled payment failure is significant — studies show 5-10% of SaaS revenue is lost to involuntary churn (users who wanted to stay but whose payment failed). Stripe has built-in dunning: it retries failed payments on a configurable schedule (typically days 1, 3, 7, and 14). Enable Smart Retries in the Stripe dashboard — Stripe uses machine learning to retry at the moment most likely to succeed. Send email notifications at each failure. Restrict access after a grace period (typically 7-14 days). Make updating the payment method as frictionless as possible — Stripe Customer Portal handles this without any code.</p>
+<h2>Free trials: the implementation pattern</h2>
+<p>When creating a subscription with a trial period, set <code>trial_period_days</code> on the subscription. Stripe will not charge the customer until the trial ends. During the trial, the subscription is in <code>trialing</code> state. Your application should grant full access during the trial and prompt users to add a payment method before the trial ends. Send email reminders 7 days, 3 days, and 1 day before trial expiration. Stripe fires <code>customer.subscription.trial_will_end</code> three days before trial end — handle this webhook to trigger your reminder sequence.</p>
+<h2>The security requirement: signature verification</h2>
+<p>Anyone can POST to your webhook endpoint. Without verification, an attacker could send fake payment events. Stripe signs every webhook with a secret key. Your webhook handler must verify this signature using Stripe's SDK before processing the event. Never process a webhook without verifying the signature. The Stripe SDK provides a <code>constructEvent</code> function that handles verification — use it, do not implement signature verification yourself.</p>`,
+  },
+
+  {
+    slug: "redis-explained-when-to-use-it",
+    title: "Redis Explained: What It Is, How It Works, and When You Actually Need It",
+    description: "A clear explanation of Redis — caching, sessions, queues, pub/sub — with concrete guidance on when adding Redis to your stack solves a real problem vs. adding complexity for no gain.",
+    category: "Architecture",
+    tags: ["Redis", "Database", "Performance", "Backend", "Caching"],
+    readTime: "8 min",
+    lang: "en",
+    content: `<h2>What Redis is in one sentence</h2>
+<p>Redis is an in-memory data store — a database that keeps all its data in RAM, not on disk, which makes it extremely fast (microsecond response times) at the cost of limited storage capacity and data volatility (data can be lost if the process restarts, unless you configure persistence).</p>
+<h2>The five primary use cases</h2>
+<p><strong>1. Caching.</strong> The most common Redis use case. An expensive database query that takes 200ms runs once; the result is stored in Redis with a TTL (time-to-live). Subsequent requests return the cached result in under 1ms. Caching is appropriate when: the data changes infrequently, many users request the same data, and the query is slow or expensive. The challenge: cache invalidation — when the underlying data changes, the cached version must be updated or invalidated. The simplest strategy: set a TTL and let the cache expire naturally. This means users may see stale data for the duration of the TTL.</p>
+<p><strong>2. Session storage.</strong> In horizontally scaled applications (multiple server instances), sessions cannot be stored in server memory — a user authenticated on server A will not be authenticated when their next request hits server B. Redis provides a shared session store accessible by all server instances. All session data is stored in Redis. Any server can retrieve any user's session by looking up the session token in Redis. This is the correct way to handle sessions in any non-trivial deployment.</p>
+<p><strong>3. Rate limiting.</strong> Redis's atomic increment operations make it ideal for rate limiting. For every incoming request, increment a counter for the requesting IP or user. If the counter exceeds the limit, reject the request. Set a TTL on the counter so it resets automatically. The Redis atomic operations (INCR, EXPIRE) guarantee that concurrent requests from the same user are counted correctly without race conditions.</p>
+<p><strong>4. Message queues and background jobs.</strong> Redis's list data structure (with LPUSH and BRPOP operations) functions as a simple queue. A producer pushes jobs to the list; workers pop jobs and process them. Libraries like BullMQ (Node.js) use Redis as the backend for production-grade job queues with features like job retries, delays, priorities, and job status tracking. If you need to process tasks asynchronously — sending emails, generating reports, processing uploads — a Redis-backed queue is the standard solution.</p>
+<p><strong>5. Pub/Sub and real-time features.</strong> Redis's publish/subscribe feature allows processes to subscribe to channels and receive messages published to those channels in real time. Use this for broadcasting events between microservices or server instances. When a user's order status changes, publish an event to a Redis channel; all subscribed services receive it instantly. For WebSocket applications that need to broadcast messages across multiple server instances, Redis pub/sub coordinates the broadcast.</p>
+<h2>When you don't need Redis</h2>
+<p>Redis adds operational complexity: another service to deploy, monitor, and maintain. Before adding Redis, ask: is your database actually slow? If your queries run in under 50ms, caching is premature optimization. Do you have session problems? A single-server application can use file-based or database-based sessions without Redis. Do you need a job queue? If you have fewer than 100 background jobs per day, a simple database-backed queue (storing jobs as rows) is sufficient.</p>
+<h2>The managed Redis options</h2>
+<p>Running Redis yourself means managing backups, failover, and updates. Managed Redis services handle this: <strong>Upstash</strong> (serverless Redis, pay-per-request, works with edge runtimes like Vercel, excellent for small-to-medium scale), <strong>Redis Cloud</strong> (the official managed Redis service, more control, better for high throughput), <strong>AWS ElastiCache</strong> (tight AWS integration, best for applications already on AWS). For most applications on Vercel or similar platforms, Upstash is the correct default: zero configuration, scales to zero (no cost when idle), and works from serverless functions.</p>
+<h2>Redis data structures</h2>
+<p>Redis is not just a key-value store. It supports: <strong>Strings</strong> (the basic key-value pair, good for caching), <strong>Lists</strong> (ordered sequences, good for queues), <strong>Sets</strong> (unordered unique values, good for membership testing), <strong>Sorted Sets</strong> (sets with scores, good for leaderboards and priority queues), <strong>Hashes</strong> (field-value maps, good for storing objects), and <strong>Streams</strong> (append-only log, good for event sourcing and audit trails). Using the right data structure for your use case is as important as using Redis itself — a leaderboard built with Strings and sorting will be slow; the same leaderboard built with a Sorted Set will be instant.</p>`,
+  },
+
+  {
+    slug: "microservices-architecture-do-you-need-it",
+    title: "Microservices Architecture: Do You Actually Need It?",
+    description: "The honest answer to whether your company should adopt microservices — with the signals that indicate when monoliths are better and when splitting makes sense.",
+    category: "Architecture",
+    tags: ["Microservices", "Architecture", "Backend", "Scaling", "Engineering"],
+    readTime: "9 min",
+    lang: "en",
+    content: `<h2>The microservices hype vs. the microservices reality</h2>
+<p>Microservices became a mainstream architecture around 2015, and since then have been adopted — and abandoned — by thousands of companies. Netflix, Uber, and Amazon built their scale on microservices, and the industry concluded that microservices are the modern, correct way to build software. This conclusion is wrong, or at least dangerously incomplete. Netflix and Uber adopted microservices to solve specific problems caused by their scale. Adopting microservices without those problems adds the costs without the benefits.</p>
+<h2>What a microservices architecture actually means</h2>
+<p>A monolith is one application that handles all functionality. A microservices architecture splits the application into many small, independent services, each responsible for a specific business domain. An e-commerce platform might have: a User Service (authentication, profiles), an Order Service (creating and managing orders), an Inventory Service (tracking stock levels), a Notification Service (emails, SMS), and a Payment Service (billing). Each service has its own database, deploys independently, and communicates with other services via APIs or message queues.</p>
+<h2>The real costs of microservices that are rarely discussed</h2>
+<p><strong>Distributed system complexity.</strong> A monolith has one database transaction. A distributed operation across three microservices requires coordination — what happens if the second service succeeds but the third fails? You need distributed transactions (complex) or eventual consistency patterns (complex in different ways). Network calls fail. Services become unavailable. Every inter-service call is a potential failure point that must be handled gracefully.</p>
+<p><strong>Operational overhead.</strong> A monolith is one service to deploy, monitor, and debug. A system with twenty microservices is twenty services to deploy, monitor, and debug. You need service discovery, distributed tracing, centralized logging, and a way to coordinate deployments. This is engineering work that does not ship features.</p>
+<p><strong>Local development complexity.</strong> Running a monolith locally means starting one process. Running a microservices system locally means starting twenty services, managing their dependencies, and keeping their versions synchronized. Docker Compose helps, but the cognitive overhead is real.</p>
+<p><strong>Testing complexity.</strong> Testing a monolith means testing one system. Testing microservices requires contract tests between services, integration tests that spin up multiple services, and end-to-end tests that orchestrate the entire system. These tests are slower, flakier, and harder to maintain.</p>
+<h2>When microservices are the right answer</h2>
+<p>Microservices solve problems caused by scale — team scale and traffic scale. <strong>Team scale:</strong> When multiple teams work on the same codebase, they block each other. Merge conflicts, unclear ownership, and coordination overhead slow everyone down. Microservices give each team ownership of a specific service, with clear interfaces to other services. Teams deploy independently without coordinating with other teams. If you have fewer than 15-20 engineers, this problem is not large enough to justify the solution cost. <strong>Traffic scale:</strong> When different parts of your application have dramatically different scaling requirements, a monolith is inefficient. If your image processing workload requires 100x more CPU than your user authentication workload, scaling them together wastes resources. Microservices let you scale each component independently. If your application has uniform scaling requirements (all parts scale together), this benefit does not apply.</p>
+<h2>The modular monolith: the architecture nobody talks about</h2>
+<p>The correct architecture for most growing companies is a well-organized monolith — often called a modular monolith. The application is one deployable unit, but internally structured as distinct modules (domains) with clear boundaries. The User module does not directly import the Inventory module's database models. Modules communicate through well-defined interfaces. This gives you: simple deployment (one service), simple testing (one system), simple local development (one process), while maintaining clean separation of concerns that makes future extraction into microservices possible when the team and traffic scale actually demand it.</p>
+<h2>The migration path when you do need microservices</h2>
+<p>If you are moving from a monolith to microservices, the strangler fig pattern is the safe approach: extract one service at a time, starting with the service most naturally separated (often notifications or image processing). The monolith handles everything until the extracted service is proven. Then extract the next service. Never attempt a "big bang" rewrite — it has failed far more often than it has succeeded. At Rivas Technologies, we build modular monoliths by default. We extract services when a specific, demonstrable need exists — typically when a specific component's scaling or team ownership requirements diverge from the rest of the system.</p>`,
+  },
+
+  {
+    slug: "how-to-build-mobile-app-small-team",
+    title: "How to Build a Mobile App with a Small Team in 2026",
+    description: "The honest guide to cross-platform vs. native development, the tools that actually ship, and the architecture decisions that prevent rewrites six months after launch.",
+    category: "Web Development",
+    tags: ["Mobile", "React Native", "iOS", "Android", "Founders"],
+    readTime: "10 min",
+    lang: "en",
+    content: `<h2>The core decision: native vs. cross-platform</h2>
+<p>Building natively means writing separate codebases for iOS (Swift/SwiftUI) and Android (Kotlin/Jetpack Compose). Cross-platform means writing one codebase that runs on both — React Native and Flutter are the primary options in 2026. For a team of two to five engineers, native development means maintaining two codebases, two test suites, and two CI/CD pipelines. It means features ship slower because every change must be implemented twice. The cases where native is the right choice are narrow: you need maximum performance (3D games, intensive graphics), you need deep system integration (AR, on-device AI, hardware accessories), or your team has strong existing iOS/Android expertise and no JavaScript background.</p>
+<p>For most product teams — especially those building B2B tools, consumer SaaS, marketplaces, and content applications — cross-platform development with React Native is the correct choice. One codebase, both platforms, 80-90% of the code shared. The 10-20% that is platform-specific (push notification setup, payment sheets, deep linking) is handled by well-maintained community libraries.</p>
+<h2>React Native in 2026: what's changed</h2>
+<p>React Native's New Architecture — shipped stable in 2024 — eliminated most of the performance complaints that led developers to choose Flutter or native. The New Architecture uses JSI (JavaScript Interface) for synchronous communication between JavaScript and native code, eliminating the asynchronous "bridge" that caused jank in earlier versions. In 2026, React Native applications with the New Architecture have performance characteristics that are difficult to distinguish from native in typical product interactions — scrolling, transitions, form inputs, and navigation.</p>
+<p>Expo has matured into the default way to build React Native applications. Expo's managed workflow handles native builds, app signing, over-the-air updates, and store submissions without requiring a Mac or Android Studio for most tasks. EAS (Expo Application Services) builds your app in the cloud for both platforms. EAS Update sends JavaScript updates to users' devices without going through app store review. For UI iteration, this means changes ship in minutes, not days.</p>
+<h2>The architecture that doesn't require a rewrite</h2>
+<p>The most common reason for mobile app rewrites: business logic was embedded in components. When requirements change, every screen needs updating. The correct architecture separates concerns: <strong>Data layer</strong> (API calls, caching, data transformation — no UI code), <strong>State management</strong> (application state, user state, derived data — no UI code), and <strong>Presentation layer</strong> (components, screens, navigation — calls the data and state layers, contains no business logic). With this separation, changing how data is fetched means changing the data layer. Changing the UI means changing the presentation layer. The two are independent.</p>
+<p>TanStack Query (formerly React Query) handles server state (data from your API) in React Native as well as React. Zustand or Jotai handle client state (UI state, user preferences, transient data). This combination covers 90% of state management requirements without the boilerplate of Redux.</p>
+<h2>Navigation: the decision that affects everything</h2>
+<p>React Navigation is the standard navigation library for React Native in 2026. The navigation architecture you choose affects deep linking, authentication flow, tab/drawer structure, and push notification handling. Define your navigation structure early — retrofitting deep linking to a poorly structured navigation tree is painful. The standard pattern: an authentication navigator (login, sign up, forgot password) that is shown when the user is not authenticated, and a main navigator (tabs, drawer, or stack) shown when they are. The navigator switches based on authentication state, not on routing.</p>
+<h2>The App Store and Google Play submission process</h2>
+<p>Apple's App Store review takes 1-3 days for new apps and 1-24 hours for updates. Google Play's review takes 1-3 days for new apps and a few hours for updates. Plan your launch timeline accordingly — do not submit your app for review the day before your announced launch date. Common rejection reasons from Apple: missing privacy policy, using private APIs, collecting data without disclosure, or insufficient functionality ("your app is just a website"). Google Play's review is more automated and less likely to reject for subjective reasons.</p>
+<p>EAS Build and Submit automate the build, signing, and submission process. A single command builds your app, signs it with the correct certificates, and submits it to both stores. This removes the most error-prone part of mobile development — managing certificates and provisioning profiles — from your team's operational responsibilities.</p>`,
+  },
+
+  {
+    slug: "seo-for-saas-technical-checklist",
+    title: "SEO for SaaS Companies: The Technical Checklist That Actually Works",
+    description: "The complete technical SEO checklist for SaaS products — from structured data and Core Web Vitals to content architecture and link building strategies that compound over time.",
+    category: "Performance & SEO",
+    tags: ["SEO", "SaaS", "Marketing", "Technical SEO", "Content"],
+    readTime: "12 min",
+    lang: "en",
+    content: `<h2>Why SaaS SEO is different from regular website SEO</h2>
+<p>A retail website competes for product-specific keywords. A SaaS company competes for intent-based keywords — searches made by people trying to solve problems your software solves. The buyer journey is longer, the keywords are more varied, and the content strategy must address multiple stages: awareness ("what is X"), consideration ("X vs Y comparison"), and decision ("best X software for small business"). Technical SEO is the foundation. Without it, great content does not rank. With it, every piece of content compounds into organic growth.</p>
+<h2>Technical foundation: the non-negotiables</h2>
+<p><strong>Server-side rendering.</strong> Your product pages, pricing page, and blog must render on the server. Googlebot can crawl JavaScript, but server-rendered HTML indexes faster and more reliably. Next.js with server components gives you this by default. SPAs (React without SSR) have a systematic disadvantage in indexing speed. <strong>Core Web Vitals.</strong> Pages with Good Core Web Vitals scores have a ranking advantage in Google. LCP under 2.5s, INP under 200ms, CLS under 0.1. Measure with PageSpeed Insights, fix the specific issues it identifies. <strong>HTTPS everywhere.</strong> HTTP pages do not rank. HTTPS is table stakes. Enable HSTS to prevent downgrade attacks. <strong>Mobile-first indexing.</strong> Google indexes the mobile version of your site. Your mobile experience must be at least as good as desktop.</p>
+<h2>Structured data: the rich snippets opportunity</h2>
+<p>Structured data (JSON-LD schema) tells Google what your content means, not just what it says. For SaaS companies: <strong>Organization schema</strong> — establishes your brand identity in Google's knowledge graph. <strong>FAQPage schema</strong> — FAQ sections with schema appear as expandable answers in search results, increasing your click-through rate by 20-30%. <strong>HowTo schema</strong> — step-by-step guides with schema get rich result treatment. <strong>Article/BlogPosting schema</strong> — blog posts with schema get author, date, and image information in search results. <strong>BreadcrumbList schema</strong> — navigation structure helps Google understand your site architecture and shows breadcrumbs in search results.</p>
+<h2>The content architecture that compounds</h2>
+<p>Topic clusters are the content architecture that generates compounding SEO returns. A pillar page covers a broad topic comprehensively (e.g., "The Complete Guide to Business Automation"). Cluster pages cover specific subtopics within that domain (e.g., "How to Automate Your Lead Follow-Up Process," "CRM Automation Best Practices"). Every cluster page links back to the pillar page. Every pillar page links to cluster pages. This internal linking structure signals to Google that your site is an authority on the topic, and helps distribute page rank across the cluster.</p>
+<p>For a software engineering company: pillar pages on "Web Development," "API Architecture," "Security for Web Applications." Cluster pages for specific technical topics within each pillar. The clusters you build now continue generating traffic three years from now — unlike paid advertising, which stops the moment you stop paying.</p>
+<h2>Keyword research for SaaS: the intent framework</h2>
+<p>Classify keywords by search intent: <strong>Informational</strong> ("what is horizontal scaling") — the searcher wants to learn. Write educational content. Conversion rate from this traffic is low, but brand awareness and backlinks are high. <strong>Comparative</strong> ("Next.js vs WordPress") — the searcher is evaluating options. Write comparison content that fairly addresses both options. Conversion rate is moderate. <strong>Commercial</strong> ("best web development agency Gainesville GA") — the searcher is ready to hire or buy. Optimize your service pages and local SEO for these terms. Conversion rate is highest. Build content across all three intents, with different goals for each.</p>
+<h2>Local SEO: the underutilized advantage for service businesses</h2>
+<p>If you serve local or regional clients, local SEO generates high-intent traffic with lower competition than national terms. The foundation: a complete and verified Google Business Profile with accurate name, address, phone number, hours, services, and photos. Consistent NAP (name, address, phone) across all online directories. LocalBusiness schema on your website. Location-specific service pages ("Web Development Services in Gainesville, GA"). Reviews on Google — ask satisfied clients directly. A SaaS company with ten 5-star Google reviews ranks above a competitor with zero for local searches, regardless of technical sophistication.</p>
+<h2>Link building: the long game</h2>
+<p>Backlinks from authoritative sites remain a primary ranking factor. For SaaS companies, the most effective link building strategies: <strong>Original data and research</strong> — publish studies, surveys, or data analyses that other sites reference. <strong>Technical tutorials</strong> — detailed how-to content earns links from developers who find it genuinely useful. <strong>Guest posts</strong> — articles in industry publications with a link back to your site. <strong>PR and press mentions</strong> — company news, product launches, and founder stories. <strong>Tool creation</strong> — free calculators, generators, or checkers that rank in their own right and link to your main site. The principle: links are earned by being genuinely useful and visible, not by link-swapping schemes that Google has penalized since 2012.</p>`,
+  },
+
+  {
+    slug: "how-to-reduce-aws-costs",
+    title: "How to Reduce Your AWS Bill by 40-60% Without Changing Your Architecture",
+    description: "Practical, immediately actionable AWS cost optimization techniques — Reserved Instances, Savings Plans, right-sizing, S3 storage classes, and the audit process that finds the waste.",
+    category: "Infrastructure",
+    tags: ["AWS", "Cloud", "Cost Optimization", "Infrastructure", "DevOps"],
+    readTime: "10 min",
+    lang: "en",
+    content: `<h2>Where AWS costs come from (and where the waste hides)</h2>
+<p>AWS bills are complex because you pay for dozens of services, each with multiple pricing dimensions. But cost waste concentrates in a few categories: over-provisioned EC2 instances (paying for resources you don't use), on-demand pricing for predictable workloads (paying 3x more than necessary), forgotten resources (load balancers, EBS volumes, Elastic IPs attached to stopped instances), and data transfer costs (paying to move data between regions or to the internet). The first step in cost optimization is a systematic audit to find where your money is actually going.</p>
+<h2>The cost audit: where to start</h2>
+<p>Enable AWS Cost Explorer if it isn't already enabled. Look at your cost breakdown by service (which services are driving the bill), by region (costs in regions you didn't expect indicate forgotten resources), and by usage type (which specific resources within each service). Sort by cost. The top 3-5 line items are almost always where optimization has the highest return. AWS Trusted Advisor (available on Business and Enterprise support plans) automatically identifies under-utilized resources, idle load balancers, and unattached EBS volumes. AWS Compute Optimizer analyzes your EC2 usage and recommends right-sizing — switching from an over-provisioned instance to a smaller one that fits your actual workload.</p>
+<h2>EC2 pricing models: the biggest savings opportunity</h2>
+<p>On-demand instances — the default — are the most expensive per hour. They are appropriate for variable, unpredictable workloads. For predictable workloads (your production application, your database servers, your bastion hosts), you have cheaper options:</p>
+<p><strong>Reserved Instances (RIs):</strong> Commit to using a specific instance type in a specific region for 1 or 3 years. Savings: 40-60% vs. on-demand. 1-year no-upfront RIs save approximately 40%. 3-year all-upfront RIs save approximately 60%. Use Convertible RIs if you might need to change instance types. <strong>Savings Plans:</strong> Similar commitment-based pricing, but more flexible than RIs. Compute Savings Plans apply to any EC2 instance type, any region, and also cover Lambda and Fargate. If you're uncertain about future instance types, Compute Savings Plans are safer than RIs. <strong>Spot Instances:</strong> Unused AWS capacity sold at 70-90% discount vs. on-demand. The catch: AWS can terminate Spot Instances with a 2-minute warning when it needs the capacity back. Use for fault-tolerant workloads: batch processing, CI/CD runners, non-critical background jobs. Never for databases or stateful services.</p>
+<h2>Right-sizing: the free savings</h2>
+<p>Right-sizing means using instances with resources that match your actual workload, not the resources you might eventually need. The most common waste: over-provisioned instances running at 10-20% CPU utilization. AWS Compute Optimizer analyzes CloudWatch metrics and recommends smaller instance types. Look at average CPU and memory utilization over the last 14 days. If average CPU is under 40% and peak is under 80%, you are likely over-provisioned. Test the next smaller instance type — if performance is acceptable, switch.</p>
+<h2>S3 cost optimization: storage tiers and lifecycle policies</h2>
+<p>S3 has multiple storage tiers at different price points. S3 Standard is the most expensive and appropriate for frequently accessed data. S3 Standard-IA (Infrequent Access) is 45% cheaper but charges retrieval fees — use for data accessed less than once per month. S3 Glacier Instant Retrieval is 68% cheaper than Standard — use for data accessed a few times per year (backups, archives). S3 Glacier Flexible Retrieval and Deep Archive are cheaper still but have retrieval times of minutes to hours.</p>
+<p>S3 Lifecycle Policies automatically transition objects between storage tiers based on age. A typical policy: after 30 days in Standard, move to Standard-IA. After 90 days, move to Glacier Instant Retrieval. After 365 days, move to Deep Archive. After 7 years, delete. Enable this on every S3 bucket that stores time-stamped data (logs, backups, user uploads) and your storage costs drop immediately without changing any application code.</p>
+<h2>Data transfer: the hidden cost</h2>
+<p>AWS does not charge for inbound data transfer. It charges for outbound data transfer to the internet and inter-region data transfer. For applications serving media (images, videos, documents), putting CloudFront in front of your S3 bucket or EC2 instances reduces data transfer costs significantly — CloudFront has lower transfer pricing than EC2, and data transfer from EC2 to CloudFront within the same region is free. If you are transferring large amounts of data between AWS regions, evaluate whether the data actually needs to be in multiple regions or whether you are paying for unnecessary redundancy.</p>`,
+  },
+
+  {
+    slug: "multi-tenant-saas-architecture-guide",
+    title: "Multi-Tenant SaaS Architecture: The Complete Implementation Guide",
+    description: "How to design and implement multi-tenancy in your SaaS product — data isolation strategies, row-level security, tenant-scoped APIs, and the performance considerations that matter at scale.",
+    category: "Architecture",
+    tags: ["SaaS", "Multi-tenancy", "PostgreSQL", "Architecture", "Security"],
+    readTime: "11 min",
+    lang: "en",
+    content: `<h2>What multi-tenancy means and why it matters</h2>
+<p>A multi-tenant application serves multiple customers (tenants) from a single deployed instance, while keeping each customer's data isolated from other customers. This is the standard model for B2B SaaS: one application, hundreds of customers, each believing they have a dedicated system. The alternative — deploying a separate instance per customer — is operationally untenable at scale. Multi-tenancy enables you to serve thousands of customers with a single application deployment, a single database cluster, and a single engineering team's operational effort.</p>
+<h2>The three data isolation strategies</h2>
+<p><strong>Shared database, shared schema (tenant_id column):</strong> Every table has a <code>tenant_id</code> column. Every query filters by the current tenant's ID. The application is responsible for ensuring queries always include the tenant filter — a missing filter exposes one tenant's data to another. This is the most common approach for early-stage SaaS. It has the lowest operational overhead and the most straightforward implementation. The risk: a missing WHERE clause in a single query leaks data. The mitigation: row-level security in PostgreSQL enforces tenant isolation at the database level, regardless of application-layer bugs.</p>
+<p><strong>Shared database, separate schemas:</strong> Each tenant gets a separate PostgreSQL schema (a namespace within the database). Tables exist in the tenant's schema rather than a shared schema. Tenant isolation is enforced by setting the search path to the current tenant's schema at the beginning of each request. Stronger isolation than the shared schema approach, with lower overhead than separate databases. Appropriate for compliance-sensitive applications where data isolation must be auditable.</p>
+<p><strong>Separate databases per tenant:</strong> Each tenant gets a dedicated database. Maximum isolation — a bug that exposes data cannot cross database boundaries. The tradeoffs: provisioning a new tenant requires creating a new database, operational complexity scales with the number of tenants, and cross-tenant analytics require federation. Use this approach when your customers have contractual or regulatory requirements for data isolation (healthcare, finance, government).</p>
+<h2>PostgreSQL row-level security: the safety net</h2>
+<p>Row-level security (RLS) enforces tenant isolation at the database layer, regardless of application code. With RLS enabled on a table, every query automatically filters rows based on a policy you define. A policy for a <code>users</code> table: "return only rows where <code>tenant_id</code> equals the current tenant ID." The current tenant ID is set as a PostgreSQL session variable at the beginning of each request. Even if application code forgets to include a WHERE clause, the database enforces the filter. RLS is the correct safety net for the shared schema approach.</p>
+<h2>Tenant resolution: how to know which tenant is making the request</h2>
+<p>Every request must be associated with a tenant before touching the database. The three common strategies: <strong>Subdomain-based:</strong> Each tenant has a subdomain (<code>acme.yourapp.com</code>). The subdomain identifies the tenant. Simple and visible. <strong>Domain-based:</strong> Each tenant uses their own domain (<code>app.acme.com</code>). Premium feature, requires DNS configuration per tenant. <strong>JWT claim-based:</strong> The tenant ID is embedded in the authentication token. The application extracts the tenant ID from the token on every request. Works for API clients and mobile apps where subdomain routing is not applicable.</p>
+<h2>Tenant-scoped API design</h2>
+<p>In a multi-tenant API, every endpoint must validate that the authenticated user belongs to the tenant that owns the requested resource. The pattern: authenticate the user (verify the JWT), extract the user's tenant ID, load the requested resource, verify that the resource's tenant ID matches the user's tenant ID, and only then return the resource. Skipping the ownership verification — BOLA (Broken Object Level Authorization) — is the most common API vulnerability in multi-tenant systems. A user from Tenant A should never be able to access resources belonging to Tenant B, even if they know the resource's ID.</p>
+<h2>Tenant onboarding: the flow that matters</h2>
+<p>New tenant onboarding involves: creating the tenant record in your database, provisioning any tenant-specific resources (separate schema if using that isolation model), creating the first user (the organization owner), setting up billing (creating a Stripe customer, starting a trial subscription), sending the welcome email, and redirecting to the application. This entire flow should be automated and complete in under 10 seconds. A tenant that signs up and sees their workspace ready immediately has a dramatically better first impression than one that waits for manual provisioning.</p>`,
+  },
+
+  {
+    slug: "nextjs-authentication-jwt-guide",
+    title: "Authentication in Next.js: JWT, Sessions, and the Patterns That Actually Work",
+    description: "How to implement secure authentication in Next.js applications — Auth.js setup, JWT best practices, role-based access control, and protecting routes on both the client and server.",
+    category: "Web Development",
+    tags: ["Next.js", "Authentication", "JWT", "Security", "Web Development"],
+    readTime: "10 min",
+    lang: "en",
+    content: `<h2>The authentication landscape in Next.js in 2026</h2>
+<p>Next.js applications can implement authentication in multiple ways, and the choice affects security, complexity, and developer experience significantly. The options: <strong>Auth.js (formerly NextAuth.js)</strong> — the most popular authentication library for Next.js, handles OAuth providers, database sessions, and JWT out of the box. <strong>Clerk</strong> — a managed authentication service with pre-built UI components. Less control, faster implementation, ongoing cost. <strong>Custom JWT implementation</strong> — build the entire authentication system yourself using the jsonwebtoken library and database queries. Maximum control, maximum implementation effort. For most applications, Auth.js is the correct default: it's open source, mature, and handles the security details correctly.</p>
+<h2>Sessions vs. JWTs: the real difference</h2>
+<p><strong>Database sessions:</strong> When a user logs in, you create a session record in your database and give the user a session token (a random string). On every request, you look up the session token in the database to identify the user. The advantage: you can invalidate sessions instantly by deleting the database record. The disadvantage: every authenticated request hits the database. <strong>JWTs (JSON Web Tokens):</strong> When a user logs in, you generate a cryptographically signed token containing the user's ID and claims. On every request, you verify the signature without hitting the database. The advantage: no database lookup on every request. The disadvantage: you cannot invalidate a JWT before it expires — if a token is stolen, it works until expiration.</p>
+<p>The practical recommendation: for most web applications, use short-lived JWTs (15-minute access tokens) combined with longer-lived refresh tokens stored in httpOnly cookies. The access token is stateless and fast. The refresh token is validated against the database (where it can be revoked). This gives you the performance benefits of JWTs with the ability to revoke sessions.</p>
+<h2>Where to store tokens: the security-critical decision</h2>
+<p>Never store JWTs or session tokens in localStorage or sessionStorage. JavaScript can read localStorage, which means an XSS vulnerability in your application can steal every user's authentication token. The correct storage: <code>httpOnly</code> cookies. These are inaccessible to JavaScript — they can only be read by the server. The browser sends them automatically with every request to the same domain. Configure with <code>Secure</code> (HTTPS only) and <code>SameSite=Strict</code> (not sent with cross-site requests) for full protection.</p>
+<h2>Protecting routes in Next.js</h2>
+<p>Route protection must happen on the server, not the client. Client-side route guards (checking authentication state in React components) prevent rendering the protected content, but they do not prevent the API calls that fetch the protected data. A sophisticated attacker who bypasses the UI check can still call your API directly. The correct approach in Next.js: use middleware to protect routes server-side. Next.js middleware runs before the request reaches the page or API route, and can redirect unauthenticated users before any data is fetched or rendered.</p>
+<p>In the middleware file (<code>middleware.ts</code>), check for the session token on every request that matches a protected path pattern. If the token is missing or invalid, redirect to the login page. This check runs at the edge — it is fast and happens before any server-side rendering. Every protected page and API route is guaranteed to have an authenticated user when reached.</p>
+<h2>Role-based access control: beyond authenticated vs. unauthenticated</h2>
+<p>Most applications need more than "logged in vs. logged out." RBAC defines roles (Admin, Member, Viewer) with different permissions. The implementation: store the user's role in the database, include the role in the JWT claims, check the role in middleware or server components before granting access to role-restricted resources. The middleware check: if the request is to an admin-only path, verify the user's role is Admin before allowing through.</p>
+<p>The common mistake: checking the role only in the UI. A user who knows the admin API endpoints can call them directly even if the admin UI is not rendered for them. Role checks must happen in the API handlers and server actions, not just in the UI components that link to them.</p>
+<h2>Social login with Auth.js</h2>
+<p>Auth.js supports OAuth login with Google, GitHub, Discord, Twitter, and dozens of other providers. The configuration: add the provider with its client ID and client secret (obtained from the provider's developer console), define the database adapter (Prisma, Drizzle, or others), and set your session strategy. Auth.js handles the OAuth flow, token exchange, and user creation automatically. The <code>signIn</code> callback lets you restrict which users can log in — useful for invite-only applications or applications limited to a specific email domain.</p>`,
+  },
+
+  {
+    slug: "kubernetes-do-you-actually-need-it",
+    title: "Kubernetes: Do You Actually Need It? An Honest Assessment",
+    description: "Kubernetes is powerful and complex. Here is a clear framework for deciding whether your company is at the scale where Kubernetes solves more problems than it creates.",
+    category: "Infrastructure",
+    tags: ["Kubernetes", "DevOps", "Infrastructure", "Docker", "Scaling"],
+    readTime: "8 min",
+    lang: "en",
+    content: `<h2>The Kubernetes problem</h2>
+<p>Kubernetes has become the default answer to "how should we deploy our application?" in many engineering communities. The correct answer is: it depends on your scale, your team, and your operational maturity. Kubernetes is a remarkable piece of engineering that solves real problems at scale. It is also deeply complex, has a steep learning curve, and carries significant operational overhead. Adopting Kubernetes before you need it means spending engineering time on infrastructure instead of product.</p>
+<h2>What Kubernetes actually does</h2>
+<p>Kubernetes is a container orchestration platform. It takes Docker containers and manages their deployment, scaling, networking, and health across a cluster of machines. Key capabilities: <strong>Automatic scaling</strong> — scale the number of container replicas based on CPU usage or custom metrics. <strong>Self-healing</strong> — restart containers that fail, reschedule containers when nodes fail. <strong>Rolling deployments</strong> — update your application with zero downtime. <strong>Service discovery and load balancing</strong> — route traffic to healthy containers. <strong>Configuration management</strong> — inject environment variables and secrets. These are valuable capabilities. The question is whether simpler tools can provide the same value for your scale.</p>
+<h2>What Kubernetes is not</h2>
+<p>Kubernetes is not a platform as a service. It does not provision databases, manage DNS, handle TLS certificates automatically (without additional tools), or make operational decisions for you. It is a building block. A production Kubernetes cluster requires: the cluster itself (managed by EKS, GKE, or AKS — still not trivial to configure), an ingress controller (Nginx, Traefik), a certificate manager (cert-manager), monitoring (Prometheus, Grafana), log aggregation (Fluentd, Loki), a secrets management system (external-secrets, Vault), and a CI/CD integration. This is weeks of engineering work before you deploy your first application.</p>
+<h2>The alternatives that handle most use cases</h2>
+<p><strong>Vercel / Netlify:</strong> For Next.js and static applications. Zero configuration, global CDN, automatic preview deployments, serverless functions. Appropriate for most web applications. Not appropriate for long-running processes, stateful workloads, or custom infrastructure requirements. <strong>Railway / Render:</strong> Deploy Docker containers or applications from a GitHub repository. Managed databases, cron jobs, background workers. Simple pricing, minimal configuration. Appropriate for applications that need more flexibility than Vercel but less operational control than Kubernetes. <strong>Google Cloud Run / AWS App Runner:</strong> Serverless container hosting. Deploy a Docker image, get a URL. Auto-scaling from zero to thousands of instances. Pay per request. No cluster management. For most containerized applications that don't need persistent storage, Cloud Run is the most cost-effective and lowest-overhead option.</p>
+<h2>When Kubernetes is the right answer</h2>
+<p>The signals that suggest Kubernetes makes sense: you have multiple applications that need to share cluster infrastructure, and the per-application overhead of separate PaaS deployments is too high. You have complex networking requirements between services that managed platforms cannot satisfy. You have regulatory or compliance requirements that prevent using shared managed platforms. You have specific hardware requirements (GPUs for ML workloads). You have a dedicated platform engineering team (typically 3+ engineers) whose job is to maintain the cluster. You are processing workloads at a scale where Kubernetes's resource efficiency generates meaningful cost savings over PaaS pricing.</p>
+<h2>The graduation path</h2>
+<p>Start with the simplest deployment that meets your requirements. A new SaaS application starts on Vercel (frontend) and Railway (backend API and database). As the product grows: migrate to Cloud Run for more container flexibility. As the team grows and operational needs become more specific: evaluate Kubernetes with a managed cluster (GKE, EKS). At no point should you adopt a tool for its theoretical future benefits rather than current, demonstrated needs. At Rivas Technologies, we have migrated applications from Kubernetes to Cloud Run when the operational overhead was not justified. We have also migrated applications to Kubernetes when their scale and complexity required it. The correct tool is the one that fits the problem at your current scale.</p>`,
+  },
+
+  {
+    slug: "web-performance-complete-guide",
+    title: "Web Performance Optimization: The Complete Guide for Developers in 2026",
+    description: "Every performance optimization technique that moves the needle — from network, JavaScript, CSS, and image optimization to rendering strategies and performance monitoring in production.",
+    category: "Performance & SEO",
+    tags: ["Performance", "Web Development", "Core Web Vitals", "JavaScript", "Optimization"],
+    readTime: "14 min",
+    lang: "en",
+    content: `<h2>Why performance is a product decision, not just a technical one</h2>
+<p>The business case for web performance is quantified and consistent across industries. Amazon found that 100ms of additional latency costs 1% in sales. Google found that a 0.5-second increase in search page load time drops traffic by 20%. A Deloitte study found that a 0.1-second improvement in load time drives retail conversions up by 8%. These numbers are not abstract — they represent real revenue impact from decisions about how code is written and how assets are served. Performance is not a technical nicety. It is a product and business priority.</p>
+<h2>The network layer: the biggest gains are here</h2>
+<p>Before any JavaScript runs, the browser must connect to your server and download your HTML. Reducing this time has the highest leverage. <strong>CDN (Content Delivery Network):</strong> A CDN stores copies of your content on servers distributed globally. A user in Tokyo requesting your site served from a US server has ~150ms of additional network latency. The same request served from a Tokyo CDN edge has ~5ms of latency. Vercel, Netlify, and Cloudflare automatically distribute your content globally. Every production application should serve from a CDN. <strong>HTTP/3:</strong> HTTP/3 uses QUIC, a UDP-based transport that reduces connection establishment time and eliminates head-of-line blocking. Enable HTTP/3 on your CDN and server — it is supported by all major browsers and reduces connection latency especially on mobile networks. <strong>Compression:</strong> Serve text assets (HTML, CSS, JavaScript, JSON) with Brotli compression. Brotli achieves 15-25% better compression than gzip at the same CPU cost. Enable Brotli on your CDN and origin server.</p>
+<h2>JavaScript optimization: the most impactful and most neglected</h2>
+<p><strong>Bundle size.</strong> Every kilobyte of JavaScript you send must be downloaded, parsed, and compiled before the browser can use it. On a mobile device with a mediocre processor (which describes the median user), JavaScript compilation is 4-5x slower than on a developer's MacBook. Audit your bundle with tools like webpack-bundle-analyzer or vite-bundle-visualizer. Look for large dependencies that have lighter alternatives: moment.js (300KB) → date-fns (choose specific functions, 10-50KB). lodash (imported wholesale, 70KB) → individual lodash functions or native methods. Full icon libraries (import * from '@fortawesome') → individual icons.</p>
+<p><strong>Code splitting.</strong> Do not send code for every page on the first load. Next.js splits code by route automatically — the code for the settings page is not sent until the user navigates to settings. For dynamic imports within a page, use <code>import()</code> to defer loading until the code is needed. A modal component that appears only when a button is clicked does not need to be in the initial bundle. <strong>Tree shaking.</strong> Modern bundlers (Vite, webpack 5) remove unused code from bundles. Tree shaking only works with ES modules (<code>import/export</code>), not CommonJS (<code>require</code>). Ensure your dependencies and your own code use ES module syntax.</p>
+<h2>Image optimization: the lowest effort, highest return</h2>
+<p>Images typically account for 50-80% of the bytes transferred for a web page. Optimizing images is the single highest-return performance optimization in terms of effort vs. impact. <strong>Format:</strong> Use WebP instead of JPEG (25-35% smaller at equivalent quality). Use AVIF instead of WebP (30-50% smaller). Next.js Image component serves the optimal format automatically based on browser support. <strong>Dimensions:</strong> Never serve a 2000px image to display it at 400px. Serve images at the dimensions they are displayed. Use responsive images with <code>srcset</code> to serve different sizes for different viewports. <strong>Lazy loading:</strong> Images below the fold should use <code>loading="lazy"</code>. The browser will not download them until the user scrolls near them. Never lazy-load the LCP image (the main hero image) — it will delay your most important performance metric.</p>
+<h2>Rendering strategies: choosing the right approach for each page</h2>
+<p>Not all pages need the same rendering strategy. <strong>Static generation (SSG):</strong> The page is rendered at build time and served as static HTML from a CDN. Fastest possible load time, no server-side computation per request. Appropriate for marketing pages, blog posts, documentation — content that changes infrequently. <strong>Server-side rendering (SSR):</strong> The page is rendered on the server on each request. The server sends complete HTML, so the user sees content immediately. Appropriate for personalized pages, search results, pages that need real-time data. <strong>Incremental Static Regeneration (ISR):</strong> Static pages that are regenerated in the background at a configured interval. Combines the performance of static serving with the freshness of SSR. Appropriate for content that changes daily or weekly (blog listings, product catalogs).</p>
+<h2>CSS performance: the overlooked dimension</h2>
+<p>Large CSS files block rendering — the browser cannot display content until it has downloaded and parsed all CSS in the <code>&lt;head&gt;</code>. Reduce CSS blocking time: remove unused CSS (PurgeCSS for Tailwind, or Chrome's Coverage tool to identify unused rules). Critical CSS — inline the styles needed for above-the-fold content, load the rest asynchronously. Avoid expensive CSS properties in animations: <code>top</code>, <code>left</code>, <code>width</code>, and <code>height</code> trigger layout recalculation and repaint. Prefer <code>transform</code> and <code>opacity</code> — they are composited by the GPU and do not trigger layout.</p>
+<h2>Performance monitoring in production</h2>
+<p>Lab measurements (PageSpeed Insights, Lighthouse) tell you the potential performance of your site. Field measurements tell you the actual performance users experience. Implement the Web Vitals library to measure LCP, INP, and CLS for real users in production, and send the data to your analytics. Google Search Console's Core Web Vitals report shows your field data aggregated from Chrome users — this is the data Google uses for ranking. Set performance budgets: automated alerts if your JavaScript bundle exceeds a threshold, or if your build-time Lighthouse score drops below a target. Catch performance regressions before they reach users, not after.</p>`,
+  },
+
+  {
+    slug: "how-to-build-api-at-scale",
+    title: "How to Build an API That Handles 1 Million Requests Per Day",
+    description: "The architecture, caching strategies, database optimization, and infrastructure choices that take a basic API from handling thousands to millions of daily requests.",
+    category: "Architecture",
+    tags: ["API", "Scaling", "Performance", "Backend", "Architecture"],
+    readTime: "11 min",
+    lang: "en",
+    content: `<h2>1 million requests per day in perspective</h2>
+<p>One million requests per day sounds like a lot. It is 41,667 requests per hour, 694 per minute, or approximately 12 requests per second. An average Node.js or Laravel API instance can handle 100-500 requests per second depending on the workload. This means 1 million daily requests is well within the capacity of a single well-configured server — if the code is efficient. The challenge is not raw throughput for most applications at this scale. The challenges are: database query performance, external API call latency, memory management under sustained load, and handling traffic spikes that exceed the average rate by 10-50x.</p>
+<h2>The database is almost always the bottleneck</h2>
+<p>Most API performance problems trace back to the database. The patterns that create database bottlenecks: <strong>N+1 queries</strong> — fetching a list of 100 records, then making a separate query for each record's related data. 100 records becomes 101 queries instead of 2. Fix with eager loading (joins or includes in your ORM). <strong>Missing indexes</strong> — a query that filters or sorts by a column without an index performs a full table scan. On a table with 10 million rows, this is catastrophically slow. Add indexes on columns used in WHERE clauses, JOIN conditions, and ORDER BY clauses. <strong>Selecting all columns</strong> — <code>SELECT *</code> retrieves columns you don't need, wastes memory and network bandwidth, and prevents the query planner from using index-only scans. Select only the columns your API response needs. <strong>Unbounded queries</strong> — queries without LIMIT clauses can return hundreds of thousands of rows if the table grows. Always paginate query results.</p>
+<h2>Caching: the force multiplier</h2>
+<p>Caching means serving a previously computed result instead of recomputing it. A database query that takes 50ms, cached in Redis, returns in under 1ms. For read-heavy APIs (which most are — reads typically outnumber writes 10:1 or more), caching the most common read queries dramatically reduces database load and response latency. The caching layers: <strong>Application cache (Redis):</strong> Cache expensive query results with a TTL appropriate to the data's freshness requirements. <strong>HTTP caching:</strong> For public API responses, set Cache-Control headers. CDNs cache API responses at the edge, eliminating origin server load for cached requests. <strong>Database query cache:</strong> PostgreSQL's shared_buffers and effective_cache_size settings allow the database itself to cache frequently accessed data pages. Tune these for your workload.</p>
+<h2>Horizontal scaling: the architecture prerequisite</h2>
+<p>A single API server has a capacity ceiling. Horizontal scaling — running multiple server instances behind a load balancer — removes that ceiling. The prerequisite: your API must be stateless. No session data stored in server memory. No local file storage. No in-process caches (they diverge across instances). External storage for all state: Redis for sessions and caches, S3 for files, PostgreSQL for persistent data. With a stateless API, adding instances is the only change needed to handle more traffic. The load balancer distributes requests across all instances, and any instance can handle any request.</p>
+<h2>Rate limiting and abuse prevention</h2>
+<p>Without rate limiting, a single client can generate traffic that impacts all other clients. Common scenarios: a misconfigured client making thousands of requests per second, a scraper hammering your public endpoints, or a denial-of-service attack. Rate limiting caps the number of requests a client can make in a time window. Implementation: use Redis to store per-client request counters with a TTL. On each request, increment the counter. If it exceeds the limit, return 429 Too Many Requests. The client identifier is typically the API key, user ID, or IP address (least reliable — shared IPs and NAT). Set different limits for different endpoint types: read endpoints can have higher limits than write endpoints, which have higher limits than compute-intensive endpoints.</p>
+<h2>Connection pooling: the database connection problem</h2>
+<p>Every database query requires a database connection. Opening a database connection is expensive — it takes 20-100ms for authentication and protocol negotiation. An API that opens a new connection per request at 12 requests per second is opening 12 new connections per second. Connection pools reuse connections across requests. A pool of 20 connections handles thousands of requests per second, each reusing an existing connection. Every database access library supports connection pooling. Configure it correctly: too few connections creates a bottleneck, too many connections overloads the database. PgBouncer is a dedicated PostgreSQL connection pooler for high-throughput scenarios where the application pool is insufficient.</p>
+<h2>Monitoring: how to know when something is wrong</h2>
+<p>You cannot optimize what you do not measure. For an API at scale, the metrics that matter: <strong>Request rate</strong> (how many requests per second), <strong>Error rate</strong> (what percentage return 5xx errors), <strong>Response latency</strong> (median p50, 95th percentile p95, 99th percentile p99 — p99 reveals the worst experience a significant number of users have), <strong>Database query latency</strong> (which queries are slow), and <strong>Cache hit rate</strong> (if below 80%, your caching strategy needs adjustment). Set alerts for anomalies: error rate above 1%, p95 latency above your SLA threshold, cache hit rate drop. Catch issues before users report them.</p>`,
+  },
+
+  {
+    slug: "react-vue-angular-comparison-2026",
+    title: "React vs Vue vs Angular in 2026: Which Frontend Framework Should You Choose?",
+    description: "An honest, opinionated comparison of the three dominant frontend frameworks — with clear guidance on which one is right for your team size, project type, and engineering culture.",
+    category: "Web Development",
+    tags: ["React", "Vue", "Angular", "JavaScript", "Frontend"],
+    readTime: "9 min",
+    lang: "en",
+    content: `<h2>Why the question matters less than it used to</h2>
+<p>In 2019, the choice between React, Vue, and Angular was consequential — the frameworks differed significantly in their APIs, tooling, and ecosystem maturity. In 2026, all three are production-proven, well-supported, and capable of building any web application. The decision factors have shifted from "which one works" to "which one fits my team, my hiring context, and my project's specific requirements."</p>
+<h2>React: the pragmatic choice with the largest ecosystem</h2>
+<p>React is not a framework — it is a UI library. It handles rendering and state. Everything else (routing, data fetching, styling, forms, testing) requires third-party libraries or meta-frameworks like Next.js. This is simultaneously React's greatest strength and its most common frustration. The strength: you choose the best tool for each job. The frustration: you must make those choices, evaluate the libraries, and integrate them. A Next.js application is the most complete React-based starting point for production applications: routing, server rendering, API routes, image optimization, and deployment are all handled.</p>
+<p>React's ecosystem advantage is significant. More jobs list React than Vue and Angular combined. More third-party libraries have React examples. More UI component libraries (shadcn/ui, Radix, Mantine) target React. More developers are available who know React. For a company that needs to hire developers, React's market dominance is a practical advantage.</p>
+<h2>Vue: the progressive framework for teams who want opinionation without lock-in</h2>
+<p>Vue occupies the middle ground between React (minimal, flexible) and Angular (comprehensive, opinionated). Vue includes routing (Vue Router) and state management (Pinia) as first-party maintained packages — you don't choose between ten state management libraries, you use Pinia. Vue's single-file components (combining template, script, and styles in one file) feel natural to developers coming from HTML-first backgrounds. Vue's reactivity system (based on proxies) is more explicit than React's hooks model and avoids some of the gotchas around closures and stale state.</p>
+<p>Nuxt (the Vue meta-framework, equivalent to Next.js for React) has matured significantly and provides server-side rendering, file-based routing, and automatic code splitting. For teams comfortable with Vue's conventions and building applications that don't need React's ecosystem breadth, Nuxt + Vue 3 is an excellent production choice.</p>
+<h2>Angular: the enterprise framework for teams that want everything decided</h2>
+<p>Angular is a complete framework. It includes its own routing, HTTP client, form handling, dependency injection, internationalization, and testing utilities. When you choose Angular, you get a complete, opinionated solution for every common web application problem. There is one way to do things, documented by the Angular team. This is the right tradeoff for large enterprise teams with many developers: consistency is more valuable than flexibility when fifty developers work in the same codebase.</p>
+<p>Angular's TypeScript integration is deeper than React or Vue — TypeScript is not optional, it is the language Angular is written in and assumes. Angular's dependency injection system is sophisticated and makes large applications more testable and maintainable. Angular's build tooling is comprehensive. The cost: Angular applications have more boilerplate, a steeper initial learning curve, and a smaller component ecosystem than React.</p>
+<h2>The decision framework</h2>
+<p><strong>Choose React (with Next.js) when:</strong> You need to hire developers and want access to the largest talent pool. Your project needs the broadest ecosystem of third-party libraries. You are building a SaaS product where server-side rendering and SEO matter. Your team is comfortable making architectural decisions. <strong>Choose Vue (with Nuxt) when:</strong> Your team comes from a traditional HTML/backend background and finds Vue's template syntax more natural. You want a framework that makes more decisions for you than React without Angular's full enterprise overhead. <strong>Choose Angular when:</strong> You are building a large enterprise application with a large team. You value consistency and opinionation over flexibility. Your team already knows Angular. You want TypeScript as a first-class requirement, not an option.</p>
+<p>At Rivas Technologies, we build with React and Next.js for new projects. The ecosystem maturity, the Next.js deployment story, and the availability of senior React developers in the market make it the lowest-risk choice for client projects that need to be maintained by client teams after we deliver them.</p>`,
+  },
+
 ];
 
-export function getNextTemplate(existingSlugs: string[]): PostTemplate | null {
-  const available = TEMPLATES.filter(t => !existingSlugs.includes(t.slug));
-  if (available.length === 0) return null;
-  // Alternate EN/ES and vary categories
-  return available[Math.floor(Math.random() * Math.min(available.length, 5))];
+export function getNextTemplate(usedSlugs: string[]): PostTemplate | null {
+  const available = TEMPLATES.filter(t => !usedSlugs.includes(t.slug));
+  return available[0] ?? null;
 }

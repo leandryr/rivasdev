@@ -251,10 +251,20 @@ function Section({ children, className = "", delay = 0 }: { children: React.Reac
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
+const breadcrumbSchemaAbout = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home",     item: "https://rivastechnologies.com" },
+    { "@type": "ListItem", position: 2, name: "About Us", item: "https://rivastechnologies.com/about" },
+  ],
+});
+
 export default function AboutPage() {
   const isLight = useIsLight();
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumbSchemaAbout }} />
       <CustomCursor />
       <SiteHeader />
       <main className="pt-28 pb-20">

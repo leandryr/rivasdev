@@ -23,6 +23,15 @@ function ContactRow({ icon, label, href }: { icon: React.ReactNode; label: strin
   return content;
 }
 
+const breadcrumbSchemaContact = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home",    item: "https://rivastechnologies.com" },
+    { "@type": "ListItem", position: 2, name: "Contact", item: "https://rivastechnologies.com/contact" },
+  ],
+});
+
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", lastName: "", email: "", phone: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -48,9 +57,10 @@ export default function ContactPage() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumbSchemaContact }} />
       <CustomCursor />
       <SiteHeader />
-      <main className="pt-28 pb-20 px-6 lg:px-10">
+      <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-10">
 
         {/* Header */}
         <div className="mb-14">

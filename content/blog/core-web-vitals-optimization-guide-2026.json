@@ -1,0 +1,18 @@
+{
+  "slug": "core-web-vitals-optimization-guide-2026",
+  "title": "Core Web Vitals Optimization: The Complete Guide to Passing Google's Page Experience",
+  "description": "LCP, INP, CLS — what they measure, why they affect your search ranking, and the specific techniques that move each metric from red to green.",
+  "category": "Performance & SEO",
+  "tags": [
+    "Core Web Vitals",
+    "SEO",
+    "Performance",
+    "Lighthouse",
+    "Web Development"
+  ],
+  "date": "2026-04-29",
+  "readTime": "13 min",
+  "lang": "en",
+  "published": true,
+  "content": "<h2>Why Core Web Vitals affect your SEO ranking in 2026</h2><p>Google uses Core Web Vitals as a ranking signal. Pages that load quickly, respond instantly, and do not shift their layout rank better. The three metrics: <strong>LCP (Largest Contentful Paint)</strong> — time until the largest visible element renders. Good: under 2.5s. <strong>INP (Interaction to Next Paint)</strong> — how quickly the page responds to interactions. Good: under 200ms. <strong>CLS (Cumulative Layout Shift)</strong> — how much the layout shifts unexpectedly. Good: under 0.1.</p><h2>Optimizing LCP</h2><p>LCP is determined by your hero image or main text block. Use <code>fetchpriority=\"high\"</code> on your hero image. Use WebP (25-35% smaller than JPEG) or AVIF (another 30-50% smaller). Never lazy-load the LCP image. Serve from a CDN. Add a <code>link rel=\"preload\"</code> for the LCP image. Server-side rendering has a 1-3 second LCP advantage over React SPAs because HTML arrives fully formed.</p><h2>Optimizing INP</h2><p>Poor INP is caused by JavaScript blocking the main thread. The browser cannot process clicks while JavaScript runs. Fixes: break up long tasks using <code>setTimeout(..., 0)</code> or <code>requestIdleCallback</code>. Reduce bundle size — tree-shake unused code, code-split by route. Move CPU-intensive work to Web Workers. Virtualize long lists with TanStack Virtual.</p><h2>Optimizing CLS</h2><p>Layout shift is caused by images without dimensions, dynamically injected content, and web fonts that cause text reflow. Fixes: always include <code>width</code> and <code>height</code> on images. Reserve space for ads with CSS before JavaScript loads them. Use <code>font-display: optional</code> to prevent text swapping. Use skeleton screens for async content.</p><h2>Measuring</h2><p>PageSpeed Insights (real-world Chrome data), Lighthouse in DevTools (lab measurement), Chrome User Experience Report (real-user data used for ranking). What matters for SEO is field data, not lab scores. Monitor with the Web Vitals JavaScript library in production.</p>"
+}

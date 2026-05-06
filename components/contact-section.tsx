@@ -38,7 +38,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative py-12 lg:py-16 px-6 lg:px-10 border-t border-border/20"
+      className="relative py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-10 border-t border-border/20"
     >
       {/* Header */}
       <div ref={headerRef} className="mb-8 lg:mb-10">

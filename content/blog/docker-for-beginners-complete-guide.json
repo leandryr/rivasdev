@@ -1,0 +1,18 @@
+{
+  "slug": "docker-for-beginners-complete-guide",
+  "title": "Docker for Beginners: What It Is, Why It Matters, and How to Use It",
+  "description": "The complete introduction to Docker for developers who have heard the term but never understood why it exists. Containers, images, Dockerfiles, and practical usage explained clearly.",
+  "category": "Infrastructure",
+  "tags": [
+    "Docker",
+    "DevOps",
+    "Infrastructure",
+    "Containers",
+    "Deployment"
+  ],
+  "date": "2026-04-30",
+  "readTime": "11 min",
+  "lang": "en",
+  "published": true,
+  "content": "<h2>The problem Docker solves</h2><p>\"It works on my machine.\" Docker eliminates environment mismatch by packaging your application with everything it needs — the exact runtime version, system libraries, and configuration — into a single portable container.</p><h2>Containers vs virtual machines</h2><p>A VM emulates an entire computer including its own OS kernel — heavyweight, 512MB minimum. A container shares the host OS kernel, isolates only the application and dependencies. A container starts in milliseconds; a VM in minutes. You can run 50 containers on a server that fits only 5 VMs.</p><h2>Images vs containers</h2><p>A Docker <strong>image</strong> is a read-only template — like a class. A Docker <strong>container</strong> is a running instance of an image — like an object. Build an image once. Run it as many containers as you need.</p><h2>The Dockerfile</h2><p>A Dockerfile describes how to build an image. Each instruction creates a cached layer. Put rarely-changing instructions first: <code>FROM node:20-alpine</code>, <code>WORKDIR /app</code>, <code>COPY package*.json ./</code>, <code>RUN npm ci</code>, <code>COPY . .</code>, <code>EXPOSE 3000</code>, <code>CMD [\"node\", \"server.js\"]</code>.</p><h2>Docker Compose: multiple containers together</h2><p>Most applications need a web container, a database container, and a cache container. Docker Compose defines them all in a <code>docker-compose.yml</code> file. <code>docker compose up</code> starts everything. <code>docker compose down</code> stops it. One command replaces a multi-step startup process.</p><h2>Why Docker matters for deployment</h2><p>Once your app runs in Docker locally, it runs identically in CI, staging, and production. Your pipeline builds the image, pushes to a registry, and the server pulls and runs it. This is the foundation of Kubernetes, AWS ECS, Google Cloud Run, and Fly.io.</p><h2>Common mistakes</h2><p>Running as root (add USER node). Storing data in containers (use volumes). Using the latest tag (pin to specific versions). Ignoring .dockerignore (always exclude node_modules, .git, .env).</p>"
+}

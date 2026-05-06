@@ -515,18 +515,18 @@ export function HeroSection() {
     <section className="relative min-h-[85vh] flex items-center blueprint-grid overflow-hidden">
       <ConstellationCanvas />
 
-      <div className="absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-border/30" aria-hidden="true" />
-      <div className="absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-border/30" aria-hidden="true" />
+      <div className="hidden sm:block absolute left-6 lg:left-10 top-0 bottom-0 w-px bg-border/30" aria-hidden="true" />
+      <div className="hidden sm:block absolute right-6 lg:right-10 top-0 bottom-0 w-px bg-border/30" aria-hidden="true" />
 
-      <div className="relative z-10 w-full px-6 lg:px-10 py-24">
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-10 pt-24 pb-20 sm:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
           {/* Left content */}
           <div className="lg:col-span-5">
-            <div className={`flex items-center gap-4 mb-10 transition-all duration-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-              <div className="w-2 h-2 rounded-full bg-primary" />
-              <div className="h-px bg-primary transition-all duration-1000 ease-out" style={{ width: `${lineWidth}px` }} />
-              <span className="text-muted-foreground text-[10px] uppercase tracking-[0.4em] font-mono">Enterprise Engineering Partner</span>
+            <div className={`flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10 transition-all duration-700 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+              <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
+              <div className="h-px bg-primary transition-all duration-1000 ease-out flex-shrink-0" style={{ width: `${lineWidth}px` }} />
+              <span className="text-muted-foreground text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] font-mono">Enterprise Engineering Partner</span>
             </div>
 
             <h1 className="text-balance">
@@ -543,14 +543,14 @@ export function HeroSection() {
               <span className="text-foreground/70 font-medium">building at scale</span>
             </p>
 
-            <div className={`my-10 h-px bg-border transition-all duration-1000 delay-400 ${loaded ? "w-full opacity-100" : "w-0 opacity-0"}`} />
+            <div className={`my-7 sm:my-10 h-px bg-border transition-all duration-1000 delay-400 ${loaded ? "w-full opacity-100" : "w-0 opacity-0"}`} />
 
             <p className={`text-muted-foreground text-sm sm:text-base leading-relaxed max-w-lg transition-all duration-700 delay-500 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
               We serve as the engineering backbone for product leaders who need to move fast and scale without compromise. Architecture, execution, and delivery — fully aligned from day one to production.
             </p>
 
-            <div className={`mt-10 flex items-center gap-4 transition-all duration-700 delay-[650ms] ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-              <a href="#contact" data-cursor-hover className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors duration-300">
+            <div className={`mt-8 sm:mt-10 flex flex-wrap items-center gap-3 sm:gap-4 transition-all duration-700 delay-[650ms] ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+              <a href="#contact" data-cursor-hover className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors duration-300">
                 Start an Engagement
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </a>
@@ -559,6 +559,21 @@ export function HeroSection() {
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1v12M1 7l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </a>
             </div>
+          </div>
+
+          {/* Mobile-only: compact stats strip */}
+          <div className={`lg:hidden flex items-center gap-6 pt-2 pb-2 border-t border-border/30 transition-all duration-700 delay-[750ms] ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+            {[
+              { val: "10+", label: "Years" },
+              { val: "50+", label: "Projects" },
+              { val: "99%", label: "Satisfaction" },
+              { val: "24h", label: "Response" },
+            ].map((s) => (
+              <div key={s.label} className="text-center flex-1">
+                <div className="text-lg font-bold text-primary tabular-nums">{s.val}</div>
+                <div className="text-[9px] text-muted-foreground/70 font-mono uppercase tracking-wider">{s.label}</div>
+              </div>
+            ))}
           </div>
 
           {/* Right: Tech card */}
