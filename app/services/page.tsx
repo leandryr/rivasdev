@@ -189,122 +189,125 @@ export default function ServicesPage() {
       <SiteHeader />
 
       <main className="min-h-screen bg-background pt-28 pb-20">
-        <div className="px-4 sm:px-6 lg:px-10 max-w-6xl mx-auto">
+        <div className="px-4 sm:px-5 lg:px-6 xl:px-6 2xl:px-8">
+          <div className="w-full">
+            <div className="max-w-5xl">
 
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-[11px] font-mono text-muted-foreground/70 mb-12" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-foreground">Services</span>
-          </nav>
+              {/* Breadcrumb */}
+              <nav className="flex items-center gap-2 text-[11px] font-mono text-muted-foreground/70 mb-12" aria-label="Breadcrumb">
+                <Link href="/" className="hover:text-primary transition-colors">Home</Link>
+                <span>/</span>
+                <span className="text-foreground">Services</span>
+              </nav>
 
-          {/* Header */}
-          <div className="mb-16">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-2 h-2 rounded-full bg-primary" />
-              <div className="h-px w-8 bg-border" />
-              <span className="text-muted-foreground text-[10px] uppercase tracking-[0.4em] font-mono">What We Build</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-[-0.03em] text-balance mb-6">
-              <span className="text-foreground">Engineering </span>
-              <span className="text-primary">services</span>
-            </h1>
-            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl">
-              Every engagement is scoped around your specific product goals — not a menu of generic deliverables. We serve as the engineering backbone for companies that need to move fast and scale without compromise.
-            </p>
-          </div>
-
-          {/* Services grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
-            {services.map((service) => {
-              const Icon = service.icon;
-              return (
-                <div
-                  key={service.num}
-                  className="group relative rounded-2xl border border-border/40 bg-card/30 p-6 sm:p-8 hover:border-border/70 transition-all duration-300"
-                >
-                  {/* Top line on hover */}
-                  <div
-                    className="absolute top-0 left-0 right-0 h-px rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: `linear-gradient(to right, transparent, ${service.accent}80, transparent)` }}
-                  />
-
-                  <div className="flex items-start justify-between mb-5">
-                    <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center"
-                      style={{ background: `${service.accent}12`, border: `1px solid ${service.accent}25` }}
-                    >
-                      <Icon className="w-5 h-5" style={{ color: service.accent }} />
-                    </div>
-                    <span className="text-[11px] font-mono tabular-nums" style={{ color: `${service.accent}50` }}>
-                      {service.num}
-                    </span>
-                  </div>
-
-                  <h2 className="text-lg font-semibold text-foreground mb-3">{service.title}</h2>
-                  <p className="text-muted-foreground/85 text-sm leading-relaxed mb-5">{service.description}</p>
-
-                  <ul className="space-y-2 mb-5">
-                    {service.deliverables.map((d) => (
-                      <li key={d} className="flex items-start gap-2 text-sm text-muted-foreground/80">
-                        <CheckCircle className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{ color: service.accent }} />
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {service.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded-md"
-                        style={{
-                          background: `${service.accent}0a`,
-                          color: `${service.accent}cc`,
-                          border: `1px solid ${service.accent}20`,
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+              {/* Header */}
+              <div className="mb-16 xl:mb-18">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-2 h-2 rounded-full bg-primary" />
+                  <div className="h-px w-8 bg-border" />
+                  <span className="text-muted-foreground text-[10px] uppercase tracking-[0.4em] font-mono">What We Build</span>
                 </div>
-              );
-            })}
-          </div>
-
-          {/* CTA */}
-          <div className="border border-border/40 rounded-2xl p-8 sm:p-12 text-center bg-card/20">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] font-mono">
-                Accepting new engagements · Q2 2026
-              </span>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-[-0.03em] text-balance mb-6">
+                  <span className="text-foreground">Engineering </span>
+                  <span className="text-primary">services</span>
+                </h1>
+                <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl">
+                  Every engagement is scoped around your specific product goals — not a menu of generic deliverables. We serve as the engineering backbone for companies that need to move fast and scale without compromise.
+                </p>
+              </div>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-              Ready to start an engagement?
-            </h2>
-            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-lg mx-auto mb-8">
-              Qualified engagements receive a dedicated engineering assessment within 24 hours. Tell us about your initiative and we will outline a delivery path.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors duration-300"
-              >
-                Start an Engagement
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/#projects"
-                className="inline-flex items-center gap-2 text-muted-foreground text-sm hover:text-foreground transition-colors duration-300"
-              >
-                View our work
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+
+            {/* Services grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 xl:gap-6 mb-20">
+              {services.map((service) => {
+                const Icon = service.icon;
+                return (
+                  <div
+                    key={service.num}
+                    className="group relative rounded-2xl border border-border/40 bg-card/30 p-6 sm:p-8 hover:border-border/70 transition-all duration-300"
+                  >
+                    {/* Top line on hover */}
+                    <div
+                      className="absolute top-0 left-0 right-0 h-px rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{ background: `linear-gradient(to right, transparent, ${service.accent}80, transparent)` }}
+                    />
+
+                    <div className="flex items-start justify-between mb-5">
+                      <div
+                        className="w-11 h-11 rounded-xl flex items-center justify-center"
+                        style={{ background: `${service.accent}12`, border: `1px solid ${service.accent}25` }}
+                      >
+                        <Icon className="w-5 h-5" style={{ color: service.accent }} />
+                      </div>
+                      <span className="text-[11px] font-mono tabular-nums" style={{ color: `${service.accent}50` }}>
+                        {service.num}
+                      </span>
+                    </div>
+
+                    <h2 className="text-lg font-semibold text-foreground mb-3">{service.title}</h2>
+                    <p className="text-muted-foreground/85 text-sm leading-relaxed mb-5">{service.description}</p>
+
+                    <ul className="space-y-2 mb-5">
+                      {service.deliverables.map((d) => (
+                        <li key={d} className="flex items-start gap-2 text-sm text-muted-foreground/80">
+                          <CheckCircle className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{ color: service.accent }} />
+                          {d}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {service.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] font-mono px-2 py-0.5 rounded-md"
+                          style={{
+                            background: `${service.accent}0a`,
+                            color: `${service.accent}cc`,
+                            border: `1px solid ${service.accent}20`,
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* CTA */}
+            <div className="border border-border/40 rounded-2xl p-8 sm:p-12 text-center bg-card/20">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] font-mono">
+                  Accepting new engagements · Q2 2026
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+                Ready to start an engagement?
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-lg mx-auto mb-8">
+                Qualified engagements receive a dedicated engineering assessment within 24 hours. Tell us about your initiative and we will outline a delivery path.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors duration-300"
+                >
+                  Start an Engagement
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/#projects"
+                  className="inline-flex items-center gap-2 text-muted-foreground text-sm hover:text-foreground transition-colors duration-300"
+                >
+                  View our work
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </div>
           </div>
-
         </div>
       </main>
 

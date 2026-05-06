@@ -40,6 +40,15 @@ const socialLinks = [
     ),
   },
   {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@rivastechnologies",
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.228V2h-3.274v13.517a2.727 2.727 0 1 1-1.863-2.59V9.595a6.01 6.01 0 1 0 5.137 5.922V8.641a8.064 8.064 0 0 0 4.726 1.526V6.686a4.816 4.816 0 0 1-.956 0z" />
+      </svg>
+    ),
+  },
+  {
     label: "YouTube",
     href: "https://www.youtube.com/@rivastechnologies",
     icon: (
