@@ -30,9 +30,9 @@ export function JsonLd() {
     },
     sameAs: [
       "https://www.instagram.com/rivastechnologies",
-      "https://www.linkedin.com/company/rivastechnologies",
-      "https://twitter.com/rivastechnologies",
-      "https://www.facebook.com/rivastechnologies",
+      "https://www.linkedin.com/company/rivas-technologies-llc/",
+      "https://x.com/leandryrp",
+      "https://www.facebook.com/profile.php?id=61575844187685",
       "https://www.tiktok.com/@rivastechnologies",
     ],
     description:

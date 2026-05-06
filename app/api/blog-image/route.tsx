@@ -104,7 +104,7 @@ export async function GET(req: NextRequest) {
   <!-- Footer -->
   <line x1="64" y1="595" x2="1136" y2="595" stroke="rgba(255,255,255,0.07)"/>
   <text x="64" y="618" font-family="sans-serif" font-size="16" fill="rgba(255,255,255,0.3)">rivastechnologies.com/blog</text>
-  <text x="1136" y="618" font-family="sans-serif" font-size="16" fill="rgba(255,255,255,0.3)" text-anchor="end">@rivastechnologies</text>
+  <text x="1136" y="618" font-family="sans-serif" font-size="16" fill="rgba(255,255,255,0.3)" text-anchor="end">@leandryrp</text>
 
   <!-- Bottom accent -->
   <defs>

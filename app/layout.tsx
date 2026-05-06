@@ -82,8 +82,8 @@ export const metadata: Metadata = {
   // ── Twitter / X ──────────────────────────────────────────────────────────
   twitter: {
     card:        "summary_large_image",
-    site:        "@rivastechnologies",
-    creator:     "@rivastechnologies",
+    site:        "@leandryrp",
+    creator:     "@leandryrp",
     title:       "Rivas Technologies LLC | Engineering That Scales",
     description: "Enterprise software engineering for entrepreneurs. Web apps, automation, AI, security & cloud.",
     images:      ["/og-image.png"],

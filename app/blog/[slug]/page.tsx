@@ -137,7 +137,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title:       post.title,
       description: post.description,
       images:      [ogImage],
-      creator:     "@rivastechnologies",
+      creator:     "@leandryrp",
     },
     alternates: { canonical: `https://rivastechnologies.com/blog/${post.slug}` },
   };
